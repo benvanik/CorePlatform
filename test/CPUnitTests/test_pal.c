@@ -455,7 +455,7 @@ void test_pal_thread_join()
     CPTime t0 = CPPALAbsoluteTimeGetCurrent(pal);
     CU_ASSERT_TRUE(CPPALThreadJoin(pal, thread));
     CPTime t1 = CPPALAbsoluteTimeGetCurrent(pal);
-    CU_ASSERT(t1 - t0 >= 1.0);
+    CU_ASSERT(t1 - t0 >= 0.9);
     CU_ASSERT(state.someValue == 456);
 
     CPRelease(pal);
