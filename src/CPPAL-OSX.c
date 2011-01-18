@@ -33,15 +33,17 @@ CP_DEFINE_TYPE(CPOSXPAL, &CPPALType, CPOSXPALDealloc);
 CP_API sal_checkReturn sal_out_opt CPPALRef CPPALCreate(const CPPALOptions* options)
 {
     CPOSXPALRef pal = (CPOSXPALRef)CPPALAlloc(&CPOSXPALType, sizeof(CPOSXPAL), options);
-    if (!pal) {
-        return NULL;
-    }
+    CPEXPECTNOTNULL(pal);
 
     mach_timebase_info_data_t info;
     CPEXPECT(mach_timebase_info(&info), KERN_SUCCESS);
-    pal->timeToSec = (CPTime)((tinfo.numer / tinfo.denom) / 1000000000.0);
+    pal->timeToSec = (CPTime)((info.numer / info.denom) / 1000000000.0);
     
     return (CPPALRef)pal;
+    
+CPCLEANUP:
+    CPRelease(pal);
+    return NULL;
 }
 
 sal_callback void CPOSXPALDealloc(sal_inout CPOSXPALRef pal)

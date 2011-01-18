@@ -42,9 +42,7 @@
 		907EBA6412E3736C00D20413 /* CPPAL-OSX.c in Sources */ = {isa = PBXBuildFile; fileRef = 907EBA6212E3736C00D20413 /* CPPAL-OSX.c */; };
 		907EBA6612E3736C00D20413 /* CPPAL-OSX.c in Sources */ = {isa = PBXBuildFile; fileRef = 907EBA6212E3736C00D20413 /* CPPAL-OSX.c */; };
 		907EBBE412E3E08500D20413 /* CPStr.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EBBE212E3E08500D20413 /* CPStr.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		907EBBE512E3E08500D20413 /* CPStr.c in Sources */ = {isa = PBXBuildFile; fileRef = 907EBBE312E3E08500D20413 /* CPStr.c */; };
 		907EBBE612E3E08500D20413 /* CPStr.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EBBE212E3E08500D20413 /* CPStr.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		907EBBE712E3E08500D20413 /* CPStr.c in Sources */ = {isa = PBXBuildFile; fileRef = 907EBBE312E3E08500D20413 /* CPStr.c */; };
 		907EBEB812E3FEE900D20413 /* CorePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EBEB712E3FEE900D20413 /* CorePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		907EBEB912E3FEE900D20413 /* CorePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EBEB712E3FEE900D20413 /* CorePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		908ACAC112E50E980086BD9C /* CPArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 908ACABF12E50E980086BD9C /* CPArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -75,7 +73,6 @@
 		907EBA6212E3736C00D20413 /* CPPAL-OSX.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "CPPAL-OSX.c"; sourceTree = "<group>"; };
 		907EBA6812E3737A00D20413 /* CPPAL-POSIX.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "CPPAL-POSIX.c"; path = "../src/CPPAL-POSIX.c"; sourceTree = SOURCE_ROOT; };
 		907EBBE212E3E08500D20413 /* CPStr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPStr.h; path = ../src/CPStr.h; sourceTree = SOURCE_ROOT; };
-		907EBBE312E3E08500D20413 /* CPStr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CPStr.c; path = ../src/CPStr.c; sourceTree = SOURCE_ROOT; };
 		907EBEB712E3FEE900D20413 /* CorePlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CorePlatform.h; path = ../src/CorePlatform.h; sourceTree = SOURCE_ROOT; };
 		908ACABF12E50E980086BD9C /* CPArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPArray.h; sourceTree = "<group>"; };
 		908ACAC012E50E980086BD9C /* CPArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPArray.c; sourceTree = "<group>"; };
@@ -144,7 +141,6 @@
 				907EB91412E2788A00D20413 /* CPMemory.c */,
 				907EB88812E25D4C00D20413 /* CPDebugging.h */,
 				907EBBE212E3E08500D20413 /* CPStr.h */,
-				907EBBE312E3E08500D20413 /* CPStr.c */,
 				907EB86B12E2509600D20413 /* CPCommon.h */,
 			);
 			name = Common;
@@ -313,7 +309,6 @@
 				907EB91612E2788A00D20413 /* CPMemory.c in Sources */,
 				907EBA4512E30F7800D20413 /* CPPAL.c in Sources */,
 				907EBA6612E3736C00D20413 /* CPPAL-OSX.c in Sources */,
-				907EBBE712E3E08500D20413 /* CPStr.c in Sources */,
 				908ACAC412E50E980086BD9C /* CPArray.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,7 +321,6 @@
 				907EB91512E2788A00D20413 /* CPMemory.c in Sources */,
 				907EBA4312E30F7800D20413 /* CPPAL.c in Sources */,
 				907EBA6412E3736C00D20413 /* CPPAL-OSX.c in Sources */,
-				907EBBE512E3E08500D20413 /* CPStr.c in Sources */,
 				908ACAC212E50E980086BD9C /* CPArray.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

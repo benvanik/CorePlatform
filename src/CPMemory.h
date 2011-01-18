@@ -14,11 +14,11 @@
 #include <CPCodeUtilities.h>
 
 #include <memory.h>
-#include <malloc.h>
 
 #if CP_LIKE(WIN32)
 // Always use _malloca to reduce risk of blowing the stack
 // http://msdn.microsoft.com/en-us/library/5471dc8s.aspx
+#include <malloc.h>
 #define CPStackAlloc(size)              _malloca(size)
 #define CPStackFree(ptr)                do { CPASSERTNOTNULL(ptr); if (ptr) { _freea(ptr); ptr = NULL; } } while(0)
 #else

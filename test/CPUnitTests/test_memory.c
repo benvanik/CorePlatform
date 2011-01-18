@@ -21,7 +21,6 @@ static int test_memory_clean()
 
 void test_memory_stack_alloc_1()
 {
-    void* x = _malloca(1);
     void* p = CPStackAlloc(0);
     CU_ASSERT(p != NULL);
     CPStackFree(p);
