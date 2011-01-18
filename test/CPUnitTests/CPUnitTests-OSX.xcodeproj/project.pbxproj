@@ -1,0 +1,385 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8DD76FAC0486AB0100D96B5E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.c */; settings = {ATTRIBUTES = (); }; };
+		907EBEAD12E3FEB700D20413 /* libCUnit-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 907EBE7E12E3FDB800D20413 /* libCUnit-OSX.a */; };
+		908ACAD112E510120086BD9C /* test_array.c in Sources */ = {isa = PBXBuildFile; fileRef = 908ACAD012E510120086BD9C /* test_array.c */; };
+		90CB30A712E446130050A5F4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CB30A612E446130050A5F4 /* CoreFoundation.framework */; };
+		90E514EB12E40416003590D6 /* test_memory.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E514EA12E40416003590D6 /* test_memory.c */; };
+		90E514ED12E40425003590D6 /* test_math.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E514EC12E40425003590D6 /* test_math.c */; };
+		90E514EF12E4042D003590D6 /* test_atomic.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E514EE12E4042D003590D6 /* test_atomic.c */; };
+		90E514F312E40439003590D6 /* test_str.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E514F212E40439003590D6 /* test_str.c */; };
+		90E514F512E40440003590D6 /* test_object.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E514F412E40440003590D6 /* test_object.c */; };
+		90E514F712E40445003590D6 /* test_pal.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E514F612E40445003590D6 /* test_pal.c */; };
+		90E5158612E408D7003590D6 /* libCorePlatform-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E5158112E408C4003590D6 /* libCorePlatform-OSX.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		907EBE7D12E3FDB800D20413 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 907EBE7812E3FDB800D20413 /* CUnit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
+			remoteInfo = "CUnit-OSX";
+		};
+		907EBE7F12E3FDB800D20413 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 907EBE7812E3FDB800D20413 /* CUnit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 907EBC4E12E3F57800D20413;
+			remoteInfo = "CUnit-iOS";
+		};
+		907EBE8A12E3FDCD00D20413 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 907EBE7812E3FDB800D20413 /* CUnit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = "CUnit-OSX";
+		};
+		90E5158012E408C4003590D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90E5157B12E408C4003590D6 /* CorePlatform.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
+			remoteInfo = "CorePlatform-OSX";
+		};
+		90E5158212E408C4003590D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90E5157B12E408C4003590D6 /* CorePlatform.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 907EB82912E24F0500D20413;
+			remoteInfo = "CorePlatform-iOS";
+		};
+		90E5158412E408D0003590D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90E5157B12E408C4003590D6 /* CorePlatform.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = "CorePlatform-OSX";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8DD76FAF0486AB0100D96B5E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		08FB7796FE84155DC02AAC07 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		8DD76FB20486AB0100D96B5E /* CPUnitTests-OSX */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "CPUnitTests-OSX"; sourceTree = BUILT_PRODUCTS_DIR; };
+		907EBE7812E3FDB800D20413 /* CUnit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CUnit.xcodeproj; path = ../../third_party/CUnit/CUnit.xcodeproj; sourceTree = SOURCE_ROOT; };
+		908ACAD012E510120086BD9C /* test_array.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_array.c; sourceTree = "<group>"; };
+		90CB30A612E446130050A5F4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		90E514EA12E40416003590D6 /* test_memory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_memory.c; sourceTree = "<group>"; };
+		90E514EC12E40425003590D6 /* test_math.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_math.c; sourceTree = "<group>"; };
+		90E514EE12E4042D003590D6 /* test_atomic.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_atomic.c; sourceTree = "<group>"; };
+		90E514F212E40439003590D6 /* test_str.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_str.c; sourceTree = "<group>"; };
+		90E514F412E40440003590D6 /* test_object.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_object.c; sourceTree = "<group>"; };
+		90E514F612E40445003590D6 /* test_pal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_pal.c; sourceTree = "<group>"; };
+		90E5150412E4067B003590D6 /* shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shared.h; sourceTree = "<group>"; };
+		90E5157B12E408C4003590D6 /* CorePlatform.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CorePlatform.xcodeproj; path = ../../src/CorePlatform.xcodeproj; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DD76FAD0486AB0100D96B5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90E5158612E408D7003590D6 /* libCorePlatform-OSX.a in Frameworks */,
+				907EBEAD12E3FEB700D20413 /* libCUnit-OSX.a in Frameworks */,
+				90CB30A712E446130050A5F4 /* CoreFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* CPUnitTests-OSX */ = {
+			isa = PBXGroup;
+			children = (
+				90E5157B12E408C4003590D6 /* CorePlatform.xcodeproj */,
+				907EBE7812E3FDB800D20413 /* CUnit.xcodeproj */,
+				08FB7795FE84155DC02AAC07 /* Source */,
+				90CB30AA12E4461F0050A5F4 /* Frameworks */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+			);
+			name = "CPUnitTests-OSX";
+			sourceTree = "<group>";
+		};
+		08FB7795FE84155DC02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				90E5150412E4067B003590D6 /* shared.h */,
+				08FB7796FE84155DC02AAC07 /* main.c */,
+				90E514EC12E40425003590D6 /* test_math.c */,
+				90E514EE12E4042D003590D6 /* test_atomic.c */,
+				90E514EA12E40416003590D6 /* test_memory.c */,
+				90E514F212E40439003590D6 /* test_str.c */,
+				90E514F412E40440003590D6 /* test_object.c */,
+				908ACAD012E510120086BD9C /* test_array.c */,
+				90E514F612E40445003590D6 /* test_pal.c */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DD76FB20486AB0100D96B5E /* CPUnitTests-OSX */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		907EBE7912E3FDB800D20413 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				907EBE7E12E3FDB800D20413 /* libCUnit-OSX.a */,
+				907EBE8012E3FDB800D20413 /* libCUnit-iOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		90CB30AA12E4461F0050A5F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				90CB30A612E446130050A5F4 /* CoreFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		90E5157C12E408C4003590D6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				90E5158112E408C4003590D6 /* libCorePlatform-OSX.a */,
+				90E5158312E408C4003590D6 /* libCorePlatform-iOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8DD76FA90486AB0100D96B5E /* CPUnitTests-OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB928508733DD80010E9CD /* Build configuration list for PBXNativeTarget "CPUnitTests-OSX" */;
+			buildPhases = (
+				8DD76FAB0486AB0100D96B5E /* Sources */,
+				8DD76FAD0486AB0100D96B5E /* Frameworks */,
+				8DD76FAF0486AB0100D96B5E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				907EBE8B12E3FDCD00D20413 /* PBXTargetDependency */,
+				90E5158512E408D0003590D6 /* PBXTargetDependency */,
+			);
+			name = "CPUnitTests-OSX";
+			productInstallPath = "$(HOME)/bin";
+			productName = "CPUnitTests-OSX";
+			productReference = 8DD76FB20486AB0100D96B5E /* CPUnitTests-OSX */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				ORGANIZATIONNAME = "Ben Vanik";
+			};
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "CPUnitTests-OSX" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 08FB7794FE84155DC02AAC07 /* CPUnitTests-OSX */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 90E5157C12E408C4003590D6 /* Products */;
+					ProjectRef = 90E5157B12E408C4003590D6 /* CorePlatform.xcodeproj */;
+				},
+				{
+					ProductGroup = 907EBE7912E3FDB800D20413 /* Products */;
+					ProjectRef = 907EBE7812E3FDB800D20413 /* CUnit.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				8DD76FA90486AB0100D96B5E /* CPUnitTests-OSX */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		907EBE7E12E3FDB800D20413 /* libCUnit-OSX.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libCUnit-OSX.a";
+			remoteRef = 907EBE7D12E3FDB800D20413 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		907EBE8012E3FDB800D20413 /* libCUnit-iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libCUnit-iOS.a";
+			remoteRef = 907EBE7F12E3FDB800D20413 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		90E5158112E408C4003590D6 /* libCorePlatform-OSX.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libCorePlatform-OSX.a";
+			remoteRef = 90E5158012E408C4003590D6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		90E5158312E408C4003590D6 /* libCorePlatform-iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libCorePlatform-iOS.a";
+			remoteRef = 90E5158212E408C4003590D6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DD76FAB0486AB0100D96B5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DD76FAC0486AB0100D96B5E /* main.c in Sources */,
+				90E514EB12E40416003590D6 /* test_memory.c in Sources */,
+				90E514ED12E40425003590D6 /* test_math.c in Sources */,
+				90E514EF12E4042D003590D6 /* test_atomic.c in Sources */,
+				90E514F312E40439003590D6 /* test_str.c in Sources */,
+				90E514F512E40440003590D6 /* test_object.c in Sources */,
+				90E514F712E40445003590D6 /* test_pal.c in Sources */,
+				908ACAD112E510120086BD9C /* test_array.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		907EBE8B12E3FDCD00D20413 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CUnit-OSX";
+			targetProxy = 907EBE8A12E3FDCD00D20413 /* PBXContainerItemProxy */;
+		};
+		90E5158512E408D0003590D6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CorePlatform-OSX";
+			targetProxy = 90E5158412E408D0003590D6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB928608733DD80010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = "CPUnitTests-OSX";
+			};
+			name = Debug;
+		};
+		1DEB928708733DD80010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = "CPUnitTests-OSX";
+			};
+			name = Release;
+		};
+		1DEB928A08733DD80010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)-macos";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)-macos";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)-macos/CorePlatform",
+					../../third_party/CUnit/CUnit/Headers/,
+				);
+				LIBRARY_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)-macos";
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		1DEB928B08733DD80010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)-macos";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)-macos";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)-macos/CorePlatform",
+					../../third_party/CUnit/CUnit/Headers/,
+				);
+				LIBRARY_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)-macos";
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB928508733DD80010E9CD /* Build configuration list for PBXNativeTarget "CPUnitTests-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB928608733DD80010E9CD /* Debug */,
+				1DEB928708733DD80010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "CPUnitTests-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB928A08733DD80010E9CD /* Debug */,
+				1DEB928B08733DD80010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

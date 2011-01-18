@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="CUnit\Headers\Automated.h" />
+    <ClInclude Include="CUnit\Headers\Basic.h" />
+    <ClInclude Include="CUnit\Headers\Console.h" />
+    <ClInclude Include="CUnit\Headers\CUCurses.h" />
+    <ClInclude Include="CUnit\Headers\CUError.h" />
+    <ClInclude Include="CUnit\Headers\CUnit.h" />
+    <ClInclude Include="CUnit\Headers\CUnit_intl.h" />
+    <ClInclude Include="CUnit\Headers\MyMem.h" />
+    <ClInclude Include="CUnit\Headers\TestDB.h" />
+    <ClInclude Include="CUnit\Headers\TestRun.h" />
+    <ClInclude Include="CUnit\Headers\Util.h" />
+    <ClInclude Include="CUnit\Sources\Win\resource.h" />
+    <ClInclude Include="CUnit\Sources\Win\Win.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CUnit\Sources\Automated\Automated.c" />
+    <ClCompile Include="CUnit\Sources\Basic\Basic.c" />
+    <ClCompile Include="CUnit\Sources\Console\Console.c" />
+    <ClCompile Include="CUnit\Sources\Curses\Curses.c" />
+    <ClCompile Include="CUnit\Sources\Framework\CUError.c" />
+    <ClCompile Include="CUnit\Sources\Framework\MyMem.c" />
+    <ClCompile Include="CUnit\Sources\Framework\TestDB.c" />
+    <ClCompile Include="CUnit\Sources\Framework\TestRun.c" />
+    <ClCompile Include="CUnit\Sources\Framework\Util.c" />
+    <ClCompile Include="CUnit\Sources\Win\Win.c" />
+  </ItemGroup>
+</Project>

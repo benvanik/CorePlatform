@@ -1,0 +1,9 @@
+build/
+
+*.pbxuser
+
+*.perspectivev3
+
+
+*.suo
+*.user

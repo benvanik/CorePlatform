@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.c" />
+    <ClCompile Include="test_str.c">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="test_array.c">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="test_atomic.c">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="test_math.c">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="test_memory.c">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="test_object.c">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="test_pal.c">
+      <Filter>Tests</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="shared.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Tests">
+      <UniqueIdentifier>{c783c4a9-9e79-4d17-ba69-42e7b334145c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

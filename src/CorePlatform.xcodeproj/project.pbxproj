@@ -1,0 +1,456 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		907EB86712E2508600D20413 /* CPObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB86512E2508600D20413 /* CPObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB86812E2508600D20413 /* CPObject.c in Sources */ = {isa = PBXBuildFile; fileRef = 907EB86612E2508600D20413 /* CPObject.c */; };
+		907EB86912E2508600D20413 /* CPObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB86512E2508600D20413 /* CPObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB86A12E2508600D20413 /* CPObject.c in Sources */ = {isa = PBXBuildFile; fileRef = 907EB86612E2508600D20413 /* CPObject.c */; };
+		907EB86C12E2509600D20413 /* CPCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB86B12E2509600D20413 /* CPCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB86D12E2509600D20413 /* CPCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB86B12E2509600D20413 /* CPCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB86F12E250E800D20413 /* CPPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB86E12E250E800D20413 /* CPPlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB87012E250E800D20413 /* CPPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB86E12E250E800D20413 /* CPPlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB88012E2513600D20413 /* CPConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB87F12E2513600D20413 /* CPConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB88112E2513600D20413 /* CPConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB87F12E2513600D20413 /* CPConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB88612E25C3800D20413 /* CPCodeUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB88512E25C3800D20413 /* CPCodeUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB88712E25C3800D20413 /* CPCodeUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB88512E25C3800D20413 /* CPCodeUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB88912E25D4C00D20413 /* CPDebugging.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB88812E25D4C00D20413 /* CPDebugging.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB88A12E25D4C00D20413 /* CPDebugging.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB88812E25D4C00D20413 /* CPDebugging.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB88C12E2642000D20413 /* CPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB88B12E2642000D20413 /* CPTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB88D12E2642000D20413 /* CPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB88B12E2642000D20413 /* CPTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB88F12E2663900D20413 /* CPMemory.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB88E12E2663900D20413 /* CPMemory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB89012E2663900D20413 /* CPMemory.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB88E12E2663900D20413 /* CPMemory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB8A512E266DB00D20413 /* CPAnnotations.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB8A412E266DB00D20413 /* CPAnnotations.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB8A612E266DB00D20413 /* CPAnnotations.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB8A412E266DB00D20413 /* CPAnnotations.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB91512E2788A00D20413 /* CPMemory.c in Sources */ = {isa = PBXBuildFile; fileRef = 907EB91412E2788A00D20413 /* CPMemory.c */; };
+		907EB91612E2788A00D20413 /* CPMemory.c in Sources */ = {isa = PBXBuildFile; fileRef = 907EB91412E2788A00D20413 /* CPMemory.c */; };
+		907EB95A12E2862900D20413 /* CPMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB95912E2862900D20413 /* CPMath.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB95B12E2862900D20413 /* CPMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB95912E2862900D20413 /* CPMath.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB97512E29D5A00D20413 /* CPSafeMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB97412E29D5A00D20413 /* CPSafeMath.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB97612E29D5A00D20413 /* CPSafeMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB97412E29D5A00D20413 /* CPSafeMath.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB9A012E2A3F400D20413 /* CPAtomic.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB99F12E2A3F400D20413 /* CPAtomic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EB9A112E2A3F400D20413 /* CPAtomic.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EB99F12E2A3F400D20413 /* CPAtomic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EBA4212E30F7800D20413 /* CPPAL.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EBA4012E30F7800D20413 /* CPPAL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EBA4312E30F7800D20413 /* CPPAL.c in Sources */ = {isa = PBXBuildFile; fileRef = 907EBA4112E30F7800D20413 /* CPPAL.c */; };
+		907EBA4412E30F7800D20413 /* CPPAL.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EBA4012E30F7800D20413 /* CPPAL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EBA4512E30F7800D20413 /* CPPAL.c in Sources */ = {isa = PBXBuildFile; fileRef = 907EBA4112E30F7800D20413 /* CPPAL.c */; };
+		907EBA6412E3736C00D20413 /* CPPAL-OSX.c in Sources */ = {isa = PBXBuildFile; fileRef = 907EBA6212E3736C00D20413 /* CPPAL-OSX.c */; };
+		907EBA6612E3736C00D20413 /* CPPAL-OSX.c in Sources */ = {isa = PBXBuildFile; fileRef = 907EBA6212E3736C00D20413 /* CPPAL-OSX.c */; };
+		907EBBE412E3E08500D20413 /* CPStr.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EBBE212E3E08500D20413 /* CPStr.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EBBE512E3E08500D20413 /* CPStr.c in Sources */ = {isa = PBXBuildFile; fileRef = 907EBBE312E3E08500D20413 /* CPStr.c */; };
+		907EBBE612E3E08500D20413 /* CPStr.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EBBE212E3E08500D20413 /* CPStr.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EBBE712E3E08500D20413 /* CPStr.c in Sources */ = {isa = PBXBuildFile; fileRef = 907EBBE312E3E08500D20413 /* CPStr.c */; };
+		907EBEB812E3FEE900D20413 /* CorePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EBEB712E3FEE900D20413 /* CorePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		907EBEB912E3FEE900D20413 /* CorePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 907EBEB712E3FEE900D20413 /* CorePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		908ACAC112E50E980086BD9C /* CPArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 908ACABF12E50E980086BD9C /* CPArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		908ACAC212E50E980086BD9C /* CPArray.c in Sources */ = {isa = PBXBuildFile; fileRef = 908ACAC012E50E980086BD9C /* CPArray.c */; };
+		908ACAC312E50E980086BD9C /* CPArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 908ACABF12E50E980086BD9C /* CPArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		908ACAC412E50E980086BD9C /* CPArray.c in Sources */ = {isa = PBXBuildFile; fileRef = 908ACAC012E50E980086BD9C /* CPArray.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		907EB82912E24F0500D20413 /* libCorePlatform-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libCorePlatform-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		907EB86512E2508600D20413 /* CPObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPObject.h; path = ../src/CPObject.h; sourceTree = SOURCE_ROOT; };
+		907EB86612E2508600D20413 /* CPObject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CPObject.c; path = ../src/CPObject.c; sourceTree = SOURCE_ROOT; };
+		907EB86B12E2509600D20413 /* CPCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPCommon.h; path = ../src/CPCommon.h; sourceTree = SOURCE_ROOT; };
+		907EB86E12E250E800D20413 /* CPPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPPlatform.h; path = ../src/CPPlatform.h; sourceTree = SOURCE_ROOT; };
+		907EB87F12E2513600D20413 /* CPConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPConfig.h; path = ../src/CPConfig.h; sourceTree = SOURCE_ROOT; };
+		907EB88512E25C3800D20413 /* CPCodeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPCodeUtilities.h; path = ../src/CPCodeUtilities.h; sourceTree = SOURCE_ROOT; };
+		907EB88812E25D4C00D20413 /* CPDebugging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPDebugging.h; path = ../src/CPDebugging.h; sourceTree = SOURCE_ROOT; };
+		907EB88B12E2642000D20413 /* CPTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPTypes.h; path = ../src/CPTypes.h; sourceTree = SOURCE_ROOT; };
+		907EB88E12E2663900D20413 /* CPMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPMemory.h; path = ../src/CPMemory.h; sourceTree = SOURCE_ROOT; };
+		907EB8A412E266DB00D20413 /* CPAnnotations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPAnnotations.h; path = ../src/CPAnnotations.h; sourceTree = SOURCE_ROOT; };
+		907EB91412E2788A00D20413 /* CPMemory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CPMemory.c; path = ../src/CPMemory.c; sourceTree = SOURCE_ROOT; };
+		907EB95912E2862900D20413 /* CPMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPMath.h; path = ../src/CPMath.h; sourceTree = SOURCE_ROOT; };
+		907EB97412E29D5A00D20413 /* CPSafeMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPSafeMath.h; path = ../src/CPSafeMath.h; sourceTree = SOURCE_ROOT; };
+		907EB99F12E2A3F400D20413 /* CPAtomic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPAtomic.h; path = ../src/CPAtomic.h; sourceTree = SOURCE_ROOT; };
+		907EBA4012E30F7800D20413 /* CPPAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPPAL.h; path = ../src/CPPAL.h; sourceTree = SOURCE_ROOT; };
+		907EBA4112E30F7800D20413 /* CPPAL.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CPPAL.c; path = ../src/CPPAL.c; sourceTree = SOURCE_ROOT; };
+		907EBA5C12E3736000D20413 /* CPPAL-Win32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "CPPAL-Win32.c"; path = "../src/CPPAL-Win32.c"; sourceTree = SOURCE_ROOT; };
+		907EBA6212E3736C00D20413 /* CPPAL-OSX.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "CPPAL-OSX.c"; sourceTree = "<group>"; };
+		907EBA6812E3737A00D20413 /* CPPAL-POSIX.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "CPPAL-POSIX.c"; path = "../src/CPPAL-POSIX.c"; sourceTree = SOURCE_ROOT; };
+		907EBBE212E3E08500D20413 /* CPStr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPStr.h; path = ../src/CPStr.h; sourceTree = SOURCE_ROOT; };
+		907EBBE312E3E08500D20413 /* CPStr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CPStr.c; path = ../src/CPStr.c; sourceTree = SOURCE_ROOT; };
+		907EBEB712E3FEE900D20413 /* CorePlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CorePlatform.h; path = ../src/CorePlatform.h; sourceTree = SOURCE_ROOT; };
+		908ACABF12E50E980086BD9C /* CPArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPArray.h; sourceTree = "<group>"; };
+		908ACAC012E50E980086BD9C /* CPArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPArray.c; sourceTree = "<group>"; };
+		D2AAC046055464E500DB518D /* libCorePlatform-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libCorePlatform-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		907EB82712E24F0500D20413 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D289987405E68DCB004EDB86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* CorePlatform */ = {
+			isa = PBXGroup;
+			children = (
+				08FB7795FE84155DC02AAC07 /* Source */,
+				C6A0FF2B0290797F04C91782 /* Documentation */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+			);
+			name = CorePlatform;
+			sourceTree = "<group>";
+		};
+		08FB7795FE84155DC02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				907EB86212E2505700D20413 /* Common */,
+				907EB86412E2506700D20413 /* Types */,
+				907EB86312E2506000D20413 /* PAL */,
+				907EBEB712E3FEE900D20413 /* CorePlatform.h */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2AAC046055464E500DB518D /* libCorePlatform-OSX.a */,
+				907EB82912E24F0500D20413 /* libCorePlatform-iOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		907EB86212E2505700D20413 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				907EB97A12E29D8F00D20413 /* Math */,
+				907EB86E12E250E800D20413 /* CPPlatform.h */,
+				907EB87F12E2513600D20413 /* CPConfig.h */,
+				907EB88B12E2642000D20413 /* CPTypes.h */,
+				907EB8A412E266DB00D20413 /* CPAnnotations.h */,
+				907EB88512E25C3800D20413 /* CPCodeUtilities.h */,
+				907EB99F12E2A3F400D20413 /* CPAtomic.h */,
+				907EB88E12E2663900D20413 /* CPMemory.h */,
+				907EB91412E2788A00D20413 /* CPMemory.c */,
+				907EB88812E25D4C00D20413 /* CPDebugging.h */,
+				907EBBE212E3E08500D20413 /* CPStr.h */,
+				907EBBE312E3E08500D20413 /* CPStr.c */,
+				907EB86B12E2509600D20413 /* CPCommon.h */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		907EB86312E2506000D20413 /* PAL */ = {
+			isa = PBXGroup;
+			children = (
+				907EBA4012E30F7800D20413 /* CPPAL.h */,
+				907EBA4112E30F7800D20413 /* CPPAL.c */,
+				907EBA6212E3736C00D20413 /* CPPAL-OSX.c */,
+				907EBA6812E3737A00D20413 /* CPPAL-POSIX.c */,
+				907EBA5C12E3736000D20413 /* CPPAL-Win32.c */,
+			);
+			name = PAL;
+			sourceTree = "<group>";
+		};
+		907EB86412E2506700D20413 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				907EB86512E2508600D20413 /* CPObject.h */,
+				907EB86612E2508600D20413 /* CPObject.c */,
+				908ACABF12E50E980086BD9C /* CPArray.h */,
+				908ACAC012E50E980086BD9C /* CPArray.c */,
+			);
+			name = Types;
+			sourceTree = "<group>";
+		};
+		907EB97A12E29D8F00D20413 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				907EB95912E2862900D20413 /* CPMath.h */,
+				907EB97412E29D5A00D20413 /* CPSafeMath.h */,
+			);
+			name = Math;
+			sourceTree = "<group>";
+		};
+		C6A0FF2B0290797F04C91782 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		907EB82512E24F0500D20413 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				907EB86912E2508600D20413 /* CPObject.h in Headers */,
+				907EB86D12E2509600D20413 /* CPCommon.h in Headers */,
+				907EB87012E250E800D20413 /* CPPlatform.h in Headers */,
+				907EB88112E2513600D20413 /* CPConfig.h in Headers */,
+				907EB88712E25C3800D20413 /* CPCodeUtilities.h in Headers */,
+				907EB88A12E25D4C00D20413 /* CPDebugging.h in Headers */,
+				907EB88D12E2642000D20413 /* CPTypes.h in Headers */,
+				907EB89012E2663900D20413 /* CPMemory.h in Headers */,
+				907EB8A612E266DB00D20413 /* CPAnnotations.h in Headers */,
+				907EB95A12E2862900D20413 /* CPMath.h in Headers */,
+				907EB97512E29D5A00D20413 /* CPSafeMath.h in Headers */,
+				907EB9A012E2A3F400D20413 /* CPAtomic.h in Headers */,
+				907EBA4412E30F7800D20413 /* CPPAL.h in Headers */,
+				907EBBE612E3E08500D20413 /* CPStr.h in Headers */,
+				907EBEB912E3FEE900D20413 /* CorePlatform.h in Headers */,
+				908ACAC312E50E980086BD9C /* CPArray.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2AAC043055464E500DB518D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				907EB86712E2508600D20413 /* CPObject.h in Headers */,
+				907EB86C12E2509600D20413 /* CPCommon.h in Headers */,
+				907EB86F12E250E800D20413 /* CPPlatform.h in Headers */,
+				907EB88012E2513600D20413 /* CPConfig.h in Headers */,
+				907EB88612E25C3800D20413 /* CPCodeUtilities.h in Headers */,
+				907EB88912E25D4C00D20413 /* CPDebugging.h in Headers */,
+				907EB88C12E2642000D20413 /* CPTypes.h in Headers */,
+				907EB88F12E2663900D20413 /* CPMemory.h in Headers */,
+				907EB8A512E266DB00D20413 /* CPAnnotations.h in Headers */,
+				907EB95B12E2862900D20413 /* CPMath.h in Headers */,
+				907EB97612E29D5A00D20413 /* CPSafeMath.h in Headers */,
+				907EB9A112E2A3F400D20413 /* CPAtomic.h in Headers */,
+				907EBA4212E30F7800D20413 /* CPPAL.h in Headers */,
+				907EBBE412E3E08500D20413 /* CPStr.h in Headers */,
+				907EBEB812E3FEE900D20413 /* CorePlatform.h in Headers */,
+				908ACAC112E50E980086BD9C /* CPArray.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		907EB82812E24F0500D20413 /* CorePlatform-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 907EB82C12E24F8D00D20413 /* Build configuration list for PBXNativeTarget "CorePlatform-iOS" */;
+			buildPhases = (
+				907EB82512E24F0500D20413 /* Headers */,
+				907EB82612E24F0500D20413 /* Sources */,
+				907EB82712E24F0500D20413 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CorePlatform-iOS";
+			productName = "CorePlatform-iOS";
+			productReference = 907EB82912E24F0500D20413 /* libCorePlatform-iOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		D2AAC045055464E500DB518D /* CorePlatform-OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB91EB08733DB70010E9CD /* Build configuration list for PBXNativeTarget "CorePlatform-OSX" */;
+			buildPhases = (
+				D2AAC043055464E500DB518D /* Headers */,
+				D2AAC044055464E500DB518D /* Sources */,
+				D289987405E68DCB004EDB86 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CorePlatform-OSX";
+			productName = CorePlatform;
+			productReference = D2AAC046055464E500DB518D /* libCorePlatform-OSX.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				ORGANIZATIONNAME = "Ben Vanik";
+			};
+			buildConfigurationList = 1DEB91EF08733DB70010E9CD /* Build configuration list for PBXProject "CorePlatform" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 08FB7794FE84155DC02AAC07 /* CorePlatform */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2AAC045055464E500DB518D /* CorePlatform-OSX */,
+				907EB82812E24F0500D20413 /* CorePlatform-iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		907EB82612E24F0500D20413 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				907EB86A12E2508600D20413 /* CPObject.c in Sources */,
+				907EB91612E2788A00D20413 /* CPMemory.c in Sources */,
+				907EBA4512E30F7800D20413 /* CPPAL.c in Sources */,
+				907EBA6612E3736C00D20413 /* CPPAL-OSX.c in Sources */,
+				907EBBE712E3E08500D20413 /* CPStr.c in Sources */,
+				908ACAC412E50E980086BD9C /* CPArray.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2AAC044055464E500DB518D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				907EB86812E2508600D20413 /* CPObject.c in Sources */,
+				907EB91512E2788A00D20413 /* CPMemory.c in Sources */,
+				907EBA4312E30F7800D20413 /* CPPAL.c in Sources */,
+				907EBA6412E3736C00D20413 /* CPPAL-OSX.c in Sources */,
+				907EBBE512E3E08500D20413 /* CPStr.c in Sources */,
+				908ACAC212E50E980086BD9C /* CPArray.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB91EC08733DB70010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)-macos";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)-macos";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "CorePlatform-OSX";
+				PUBLIC_HEADERS_FOLDER_PATH = CorePlatform;
+			};
+			name = Debug;
+		};
+		1DEB91ED08733DB70010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)-macos";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)-macos";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				PRODUCT_NAME = "CorePlatform-OSX";
+				PUBLIC_HEADERS_FOLDER_PATH = CorePlatform;
+			};
+			name = Release;
+		};
+		1DEB91F008733DB70010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		1DEB91F108733DB70010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		907EB82A12E24F0500D20413 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PREBINDING = NO;
+				PRODUCT_NAME = "CorePlatform-iOS";
+				PUBLIC_HEADERS_FOLDER_PATH = CorePlatform;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		907EB82B12E24F0500D20413 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PREBINDING = NO;
+				PRODUCT_NAME = "CorePlatform-iOS";
+				PUBLIC_HEADERS_FOLDER_PATH = CorePlatform;
+				SDKROOT = iphoneos;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB91EB08733DB70010E9CD /* Build configuration list for PBXNativeTarget "CorePlatform-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91EC08733DB70010E9CD /* Debug */,
+				1DEB91ED08733DB70010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB91EF08733DB70010E9CD /* Build configuration list for PBXProject "CorePlatform" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91F008733DB70010E9CD /* Debug */,
+				1DEB91F108733DB70010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		907EB82C12E24F8D00D20413 /* Build configuration list for PBXNativeTarget "CorePlatform-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				907EB82A12E24F0500D20413 /* Debug */,
+				907EB82B12E24F0500D20413 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}
