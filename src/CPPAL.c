@@ -12,7 +12,7 @@
 
 #include <time.h>
 
-#if CP_PAL_HAVE(PTHREADS)
+#if !CP_PAL_HAVE(THREADS)
 #include <unistd.h>
 #include <pthread.h>
 #include <sched.h>
@@ -153,7 +153,7 @@ CP_API void CPPALLogBitmap(sal_in_z const CPChar* filePath, const int32 lineNumb
 #pragma mark -
 #pragma mark Mutexes
 
-#if CP_PAL_HAVE(PTHREADS)
+#if !CP_PAL_HAVE(THREADS)
 
 CP_API sal_checkReturn sal_out_opt CPPALMutex* CPPALMutexCreate(sal_inout CPPALRef pal)
 {
@@ -193,12 +193,12 @@ CP_API void CPPALMutexUnlock(sal_inout CPPALMutex* mutex)
     CPIGNORE(pthread_mutex_unlock(p));
 }
 
-#endif // PTHREADS
+#endif // !THREADS
 
 #pragma mark -
 #pragma mark Conditions
 
-#if CP_PAL_HAVE(PTHREADS)
+#if !CP_PAL_HAVE(THREADS)
 
 CP_API sal_checkReturn sal_out_opt CPPALCondition* CPPALConditionCreate(sal_inout CPPALRef pal)
 {
@@ -245,7 +245,7 @@ CP_API void CPPALConditionBroadcast(sal_inout CPPALCondition* condition)
     CPIGNORE(pthread_cond_broadcast(cond));
 }
 
-#endif // PTHREADS
+#endif // !THREADS
 
 #pragma mark -
 #pragma mark Heaps
@@ -383,7 +383,7 @@ CP_API void CPPALHeapFree(sal_inout CPPALHeap* heap, sal_inout void* ptr)
 #pragma mark -
 #pragma mark Thread Management
 
-#if CP_PAL_HAVE(PTHREADS)
+#if !CP_PAL_HAVE(THREADS)
 
 #ifndef PTHREAD_MAX_PRIORITY
 #define PTHREAD_MAX_PRIORITY 31
@@ -635,12 +635,12 @@ CP_API void CPPALThreadShutdownList(sal_inout CPPALRef pal, sal_inout_ecount(cou
     }
 }
 
-#endif // PTHREADS
+#endif // !THREADS
 
 #pragma mark -
 #pragma mark Thread Operations
 
-#if CP_PAL_HAVE(PTHREADS)
+#if !CP_PAL_HAVE(THREADS)
 
 CP_API BOOL CPPALThreadIsMain(sal_inout CPPALRef pal)
 {
@@ -691,4 +691,4 @@ CP_API void CPPALThreadSleep(sal_inout CPPALRef pal, const CPTime delay)
     }
 }
 
-#endif // PTHREADS
+#endif // !THREADS

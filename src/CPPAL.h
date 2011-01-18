@@ -20,8 +20,8 @@
 #include <CPObject.h>
 
 //#define CP_PAL_HAVE_RANDOM          1
-#if CP_LIKE(OSX) || CP_LIKE(POSIX)
-#define CP_PAL_HAVE_PTHREADS        1
+#if CP_LIKE(WIN32)
+#define CP_PAL_HAVE_THREADS         1
 #endif
 #if CP_LIKE(OSX)
 //#define CP_PAL_HAVE_LOGGING         1
