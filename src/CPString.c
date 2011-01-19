@@ -256,7 +256,7 @@ CP_API sal_out_z const CPChar* CPStringGet(sal_inout CPStringRef string)
     return string->value;
 }
 
-CP_API sal_checkReturn BOOL CPStringGetCharacters(sal_inout CPStringRef string, sal_out_ecount(bufferSize) CPChar* buffer, const size_t bufferSize, const size_t index, const size_t length)
+CP_API sal_checkReturn BOOL CPStringGetCharacters(sal_inout CPStringRef string, sal_out_ecount(bufferLength) CPChar* buffer, const size_t bufferLength, const size_t index, const size_t length)
 {
     // Verify range is valid
     size_t realLength;
@@ -269,10 +269,10 @@ CP_API sal_checkReturn BOOL CPStringGetCharacters(sal_inout CPStringRef string, 
     // Verify output size
     size_t totalBytes;
     CPEXPECTTRUE(CPAddSizeT(sourceBytes, sizeof(CPChar), &totalBytes));
-    CPEXPECTTRUE(bufferSize >= totalBytes);
+    CPEXPECTTRUE(bufferLength >= totalBytes);
 
     // Copy in without the trailing NUL
-    CPEXPECTTRUE(CPCopyMemory(buffer, bufferSize, string->value + index, sourceBytes));
+    CPEXPECTTRUE(CPCopyMemory(buffer, bufferLength, string->value + index, sourceBytes));
 
     // Add trailing NUL
     buffer[realLength] = 0;
