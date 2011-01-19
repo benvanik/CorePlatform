@@ -60,6 +60,14 @@ CP_API sal_checkReturn sal_out_opt CPURLRef CPURLCreate(sal_inout_opt CPURLRef b
         return baseURL;
     }
 
+    // If source is a rooted URL (scheme://) then ignore baseURL
+    // This optimization makes computing absolute paths easier as we can quickly identify roots
+    if (baseURL && CPStrStr(source, CPTEXT("://"))) {
+        // May not be correct, but likely is - validation will ensure it below
+        baseURL = NULL;
+    }
+
+    // Create empty URL of appropriate length
     url = _CPURLCreateEmpty(baseURL, sourceLength);
     CPEXPECTNOTNULL(url);
 
