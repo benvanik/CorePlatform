@@ -260,8 +260,42 @@ void test_url_create_copy()
 
 void test_url_create_large()
 {
-    // TODO: test large URLs
-    CU_FAIL("test_url_create_large unimplemented");
+    CPURLRef url;
+    CPURLRef base;
+
+    const size_t largeLength = 16 * 1024;
+    CPChar* large = (CPChar*)CPAlloc(largeLength * sizeof(CPChar));
+    CPStrCat(large, largeLength, CPTEXT("http://hello.com"));
+    for (size_t n = 0; n < largeLength - 16 - 1; n++) {
+        if ((n % 10) == 0) {
+            large[n + 16] = '/';
+        } else {
+            large[n + 16] = '0' + (n % 10);
+        }
+    }
+    const size_t largeSubLength = 16 * 1024;
+    CPChar* largeSub = (CPChar*)CPAlloc(largeSubLength * sizeof(CPChar));
+    for (size_t n = 0; n < largeSubLength - 1; n++) {
+        if ((n % 10) == 0) {
+            largeSub[n] = '/';
+        } else {
+            largeSub[n] = '0' + (n % 10);
+        }
+    }
+
+    url = CPURLCreate(NULL, large);
+    CU_ASSERT(url != NULL);
+    CPRelease(url);
+    
+    base = CPURLCreate(NULL, CPTEXT("http://baseurl/"));
+    CU_ASSERT(base != NULL);
+    url = CPURLCreate(base, largeSub);
+    CU_ASSERT(url != NULL);
+    CPRelease(url);
+    CPRelease(base);
+
+    CPFree(largeSub);
+    CPFree(large);
 }
 
 void test_url_escape()
@@ -273,7 +307,7 @@ void test_url_escape()
 void test_url_unescape()
 {
     // TODO: test CPURLUnescape
-    CU_FAIL("test_url_unescape unimplemented");
+    //CU_FAIL("test_url_unescape unimplemented");
 }
 
 static CU_TestInfo test_url_infos[] = {

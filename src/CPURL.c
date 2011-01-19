@@ -9,10 +9,6 @@
 
 #include <CPURL.h>
 
-// This number should be tweaked higher if there is trouble with long URLs (data URIs? something?)
-// TODO: remove the need for this - only required because of _CPURLMeasureAbsoluteLength
-#define CPURLBUFFERCOUNT    2048
-
 CP_DEFINE_TYPE(CPURL, NULL, CPURLDealloc);
 
 // NOTE: imported from CPString.c - this is nasty, but efficient
@@ -246,12 +242,34 @@ size_t _CPURLMeasureAbsoluteLength(sal_inout CPURLRef url)
         return -1;
     }
 
-    // TODO: increase buffer size to get larger max URLs?
-    CPChar buffer[CPURLBUFFERCOUNT];
-    if (!_CPURLConstructAbsoluteString(url, rootLength, buffer, sizeof(buffer))) {
+    // Compute sum of all URLs in chain - that's our max buffer (+ one / per URL and one NUL)
+    size_t bufferCapacity = 1;
+    CPURLRef baseURL = url;
+    while (baseURL) {
+        if (!CPAddSizeT(bufferCapacity, 1, &bufferCapacity) ||
+            !CPAddSizeT(bufferCapacity, baseURL->length, &bufferCapacity)) {
+            return -1;
+        }
+        baseURL = baseURL->baseURL;
+    }
+    size_t bufferSize;
+    if (!CPMultSizeT(bufferCapacity, sizeof(CPChar), &bufferSize)) {
         return -1;
     }
-    return CPStrLen(buffer);
+    CPChar* buffer = (CPChar*)CPStackAlloc(bufferSize);
+    if (!buffer) {
+        return -1;
+    }
+
+    const BOOL result = _CPURLConstructAbsoluteString(url, rootLength, buffer, bufferSize);
+    size_t bufferLength = -1;
+    if (result) {
+        bufferLength = CPStrLen(buffer);
+    }
+    
+    CPStackFree(buffer);
+
+    return bufferLength;
 }
 
 // NOTE: this is a utility method and should not be exposed!
