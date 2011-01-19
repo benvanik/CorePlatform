@@ -42,13 +42,14 @@
 #define CPASSERTCORE(expr)              CP_EMPTY_MACRO
 #endif
 
-#define CPASSERT(expr)                  CPASSERTCORE( (expr)             )
-#define CPASSERTTRUE(expr)              CPASSERTCORE( (expr)             )
-#define CPASSERTFALSE(expr)             CPASSERTCORE(!(expr)             )
-#define CPASSERTZERO(expr)              CPASSERTCORE( (expr) == 0        )
-#define CPASSERTNOTZERO(expr)           CPASSERTCORE( (expr) != 0        )
-#define CPASSERTNULL(expr)              CPASSERTCORE( (expr) == NULL     )
-#define CPASSERTNOTNULL(expr)           CPASSERTCORE( (expr) != NULL     )
+#define CPASSERTALWAYS()                CPASSERTCORE( FALSE          )
+#define CPASSERT(expr)                  CPASSERTCORE( (expr)         )
+#define CPASSERTTRUE(expr)              CPASSERTCORE( (expr)         )
+#define CPASSERTFALSE(expr)             CPASSERTCORE(!(expr)         )
+#define CPASSERTZERO(expr)              CPASSERTCORE( (expr) == 0    )
+#define CPASSERTNOTZERO(expr)           CPASSERTCORE( (expr) != 0    )
+#define CPASSERTNULL(expr)              CPASSERTCORE( (expr) == NULL )
+#define CPASSERTNOTNULL(expr)           CPASSERTCORE( (expr) != NULL )
 
 
 
