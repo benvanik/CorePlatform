@@ -117,22 +117,28 @@ void test_url_create_abs()
 
     for (size_t n = 0; n < CPCOUNT(test_url_validURLs); n += 3) {
         const CPChar* source = test_url_validURLs[n + 0];
+        const CPChar* verify = test_url_validURLs[n + 0];
 
         url = CPURLCreate(NULL, source);
         CU_ASSERT(url != NULL);
         if (!url) {
             int x = 123; // for debugging
         }
+        CPZeroMemory(buffer, sizeof(buffer), 0, sizeof(buffer));
         CU_ASSERT_TRUE(CPURLGetAbsoluteString(url, buffer, sizeof(buffer)));
-        CU_ASSERT(CPStrCmp(source, buffer) == 0);
+        CU_ASSERT(CPStrCmp(verify, buffer) == 0);
+        if (CPStrCmp(verify, buffer) != 0) {
+            int x = 123; // for debugging
+        }
         CPRelease(url);
 
         sourceString = CPStringCreate(source);
         CU_ASSERT(sourceString != NULL);
         url = CPURLCreateWithString(NULL, sourceString);
         CU_ASSERT(url != NULL);
+        CPZeroMemory(buffer, sizeof(buffer), 0, sizeof(buffer));
         CU_ASSERT_TRUE(CPURLGetAbsoluteString(url, buffer, sizeof(buffer)));
-        CU_ASSERT(CPStrCmp(source, buffer) == 0);
+        CU_ASSERT(CPStrCmp(verify, buffer) == 0);
         CPRelease(url);
         CPRelease(sourceString);
     }
@@ -183,6 +189,7 @@ void test_url_create_rel()
             int x = 123; // for debugging
         }
         if (sub) {
+            CPZeroMemory(buffer, sizeof(buffer), 0, sizeof(buffer));
             CU_ASSERT_TRUE(CPURLGetAbsoluteString(sub, buffer, sizeof(buffer)));
             CU_ASSERT(CPStrCmp(sourceVerify, buffer) == 0);
             if (CPStrCmp(sourceVerify, buffer) != 0) {

@@ -101,30 +101,6 @@ size_t _CPURLMeasureRootLength(sal_inout CPURLRef url)
     return length;
 }
 
-size_t _CPURLMeasureAbsoluteLength(sal_inout CPURLRef url)
-{
-    if (!url->baseURL && _CPURLIsRooted(url->value)) {
-        // Likely a rooted URL, e.g. http://host/path
-        // Still try to measure the root, though, as it will verify things
-        const size_t rootLength = _CPURLMeasureRootLength(url);
-        return rootLength;
-    } else if (url->baseURL) {
-        // Relative URL
-        if (url->value[0] == '/') {
-            // Absolute path - quickly get the root and add to self
-            const size_t rootLength = _CPURLMeasureRootLength(url);
-            return rootLength + url->length;
-        } else {
-            // Relative path - need to construct entire parent and combine the URLs to check
-            // TODO:
-            return -1;
-        }
-    } else {
-        // Not root and no base, so invalid?
-        return -1;
-    }
-}
-
 size_t _CPURLCopyRoot(sal_inout CPURLRef url, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize)
 {
     // Walk up until at the top
@@ -146,22 +122,28 @@ size_t _CPURLCopyRoot(sal_inout CPURLRef url, sal_out_bcount(bufferSize) CPChar*
     if (!CPCopyMemory(buffer, bufferSize, url->value, rootSize)) {
         return -1;
     }
-    // Add NUL
-    buffer[rootLength] = 0;
+
+    // Add trailing / if needed
+    if (buffer[rootLength - 1] != '/') {
+        buffer[rootLength] = '/';
+
+        // Add NUL
+        buffer[rootLength + 1] = 0;
+    } else {
+        // Add NUL
+        buffer[rootLength] = 0;
+    }
 
     return rootLength;
 }
 
 sal_checkReturn BOOL _CPURLConstructAbsoluteString(sal_inout CPURLRef url, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize)
 {
-    const size_t totalBytes = _CPStringGetTotalByteLength(url->absoluteLength);
-    if (totalBytes > bufferSize) {
-        return FALSE;
-    }
-
     if (!url->baseURL && _CPURLIsRooted(url->value)) {
         // Likely a rooted URL, e.g. http://host/path
-        // Copy self out
+        if (_CPURLMeasureRootLength(url) == -1) {
+            return FALSE;
+        }
         return CPStrCpy(buffer, bufferSize / sizeof(CPChar), url->value);
     } else if (url->baseURL) {
         // Relative URL
@@ -183,6 +165,16 @@ sal_checkReturn BOOL _CPURLConstructAbsoluteString(sal_inout CPURLRef url, sal_o
         // Not root and no base, so invalid?
         return FALSE;
     }
+}
+
+size_t _CPURLMeasureAbsoluteLength(sal_inout CPURLRef url)
+{
+    // TODO: increase buffer size to get larger max URLs?
+    CPChar buffer[2048];
+    if (!_CPURLConstructAbsoluteString(url, buffer, sizeof(buffer))) {
+        return -1;
+    }
+    return CPStrLen(buffer);
 }
 
 // NOTE: this is a utility method and should not be exposed!
@@ -248,6 +240,7 @@ CP_API sal_checkReturn sal_out_opt CPURLRef CPURLCreate(sal_inout_opt CPURLRef b
 
     // A little late to do the check, but verify the URL is (somewhat) valid and cache absolute length
     url->absoluteLength = _CPURLMeasureAbsoluteLength(url);
+    CPEXPECT(url->absoluteLength != 0);
     CPEXPECT(url->absoluteLength != -1);
 
     return url;
@@ -319,6 +312,11 @@ CPCLEANUP:
 
 CP_API sal_checkReturn BOOL CPURLGetAbsoluteString(sal_inout CPURLRef url, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize)
 {
+    const size_t totalBytes = _CPStringGetTotalByteLength(url->absoluteLength);
+    if (totalBytes > bufferSize) {
+        return FALSE;
+    }
+
     return _CPURLConstructAbsoluteString(url, buffer, bufferSize);
 }
 
