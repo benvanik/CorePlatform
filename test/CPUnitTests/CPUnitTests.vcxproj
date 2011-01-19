@@ -29,6 +29,7 @@
     <ClCompile Include="test_pal.c" />
     <ClCompile Include="test_str.c" />
     <ClCompile Include="test_string.c" />
+    <ClCompile Include="test_url.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shared.h" />

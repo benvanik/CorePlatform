@@ -37,6 +37,7 @@
     <ClInclude Include="CPStr.h" />
     <ClInclude Include="CPString.h" />
     <ClInclude Include="CPTypes.h" />
+    <ClInclude Include="CPURL.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPArray.c" />
@@ -58,6 +59,7 @@
     <ClCompile Include="CPPAL-Win32.c" />
     <ClCompile Include="CPPAL.c" />
     <ClCompile Include="CPString.c" />
+    <ClCompile Include="CPURL.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B52FD97F-8A77-4626-8B2F-6D7CC5282697}</ProjectGuid>
