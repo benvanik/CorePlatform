@@ -10,6 +10,9 @@
 		8DD76FAC0486AB0100D96B5E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.c */; settings = {ATTRIBUTES = (); }; };
 		907EBEAD12E3FEB700D20413 /* libCUnit-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 907EBE7E12E3FDB800D20413 /* libCUnit-OSX.a */; };
 		908ACAD112E510120086BD9C /* test_array.c in Sources */ = {isa = PBXBuildFile; fileRef = 908ACAD012E510120086BD9C /* test_array.c */; };
+		9090E83A12E7344A000F1EB7 /* test_linkedlist.c in Sources */ = {isa = PBXBuildFile; fileRef = 9090E83712E7344A000F1EB7 /* test_linkedlist.c */; };
+		9090E83B12E7344A000F1EB7 /* test_string.c in Sources */ = {isa = PBXBuildFile; fileRef = 9090E83812E7344A000F1EB7 /* test_string.c */; };
+		9090E83C12E7344A000F1EB7 /* test_url.c in Sources */ = {isa = PBXBuildFile; fileRef = 9090E83912E7344A000F1EB7 /* test_url.c */; };
 		90CB30A712E446130050A5F4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CB30A612E446130050A5F4 /* CoreFoundation.framework */; };
 		90E514EB12E40416003590D6 /* test_memory.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E514EA12E40416003590D6 /* test_memory.c */; };
 		90E514ED12E40425003590D6 /* test_math.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E514EC12E40425003590D6 /* test_math.c */; };
@@ -82,6 +85,9 @@
 		8DD76FB20486AB0100D96B5E /* CPUnitTests-OSX */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "CPUnitTests-OSX"; sourceTree = BUILT_PRODUCTS_DIR; };
 		907EBE7812E3FDB800D20413 /* CUnit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CUnit.xcodeproj; path = ../../third_party/CUnit/CUnit.xcodeproj; sourceTree = SOURCE_ROOT; };
 		908ACAD012E510120086BD9C /* test_array.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_array.c; sourceTree = "<group>"; };
+		9090E83712E7344A000F1EB7 /* test_linkedlist.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_linkedlist.c; sourceTree = "<group>"; };
+		9090E83812E7344A000F1EB7 /* test_string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_string.c; sourceTree = "<group>"; };
+		9090E83912E7344A000F1EB7 /* test_url.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_url.c; sourceTree = "<group>"; };
 		90CB30A612E446130050A5F4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		90E514EA12E40416003590D6 /* test_memory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_memory.c; sourceTree = "<group>"; };
 		90E514EC12E40425003590D6 /* test_math.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_math.c; sourceTree = "<group>"; };
@@ -130,6 +136,9 @@
 				90E514F212E40439003590D6 /* test_str.c */,
 				90E514F412E40440003590D6 /* test_object.c */,
 				908ACAD012E510120086BD9C /* test_array.c */,
+				9090E83712E7344A000F1EB7 /* test_linkedlist.c */,
+				9090E83812E7344A000F1EB7 /* test_string.c */,
+				9090E83912E7344A000F1EB7 /* test_url.c */,
 				90E514F612E40445003590D6 /* test_pal.c */,
 			);
 			name = Source;
@@ -274,6 +283,9 @@
 				90E514F512E40440003590D6 /* test_object.c in Sources */,
 				90E514F712E40445003590D6 /* test_pal.c in Sources */,
 				908ACAD112E510120086BD9C /* test_array.c in Sources */,
+				9090E83A12E7344A000F1EB7 /* test_linkedlist.c in Sources */,
+				9090E83B12E7344A000F1EB7 /* test_string.c in Sources */,
+				9090E83C12E7344A000F1EB7 /* test_url.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

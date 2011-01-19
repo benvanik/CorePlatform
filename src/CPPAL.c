@@ -40,7 +40,7 @@ CP_API sal_checkReturn sal_out_bcount_opt(size) CPPALRef CPPALAlloc(sal_in const
 
     // Assign default options
     if (CPStrLen(destOptions->applicationName) == 0) {
-        CPEXPECTNOTNULL(CPStrCpy(destOptions->applicationName, CPCOUNT(destOptions->applicationName), CPTEXT("CorePlatform")));
+        CPIGNORE(CPStrCpy(destOptions->applicationName, CPCOUNT(destOptions->applicationName), CPTEXT("CorePlatform")));
     }
 
     srand((unsigned int)time(NULL));

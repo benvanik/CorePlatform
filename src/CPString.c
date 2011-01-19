@@ -125,6 +125,13 @@ CP_API sal_checkReturn sal_out_opt CPStringRef CPStringCreateWithFormatAndArgume
 {
     CPStringRef string = NULL;
 
+#if !CP_COMPILER(MSVC)
+    va_list args2;
+    va_copy(args2, args);
+#else
+    va_list args2 = args;
+#endif
+    
     // Attempt to use a small stack buffer first
     // NOTE: this may still be larger than we need on avg, but shouldn't hurt
     CPChar smallBuffer[512];
@@ -133,7 +140,7 @@ CP_API sal_checkReturn sal_out_opt CPStringRef CPStringCreateWithFormatAndArgume
         // Wrote into small buffer successfully
         return CPStringCreateWithCharacters(smallBuffer, result);
     }
-
+    
     // NOTE: certain implementations of CPVSNPrintF return -1 for any issues, others return the number of characters that would have
     // been written. Because of that we have to handle both:
 #if defined(CPVSCPrintF)
@@ -156,7 +163,7 @@ CP_API sal_checkReturn sal_out_opt CPStringRef CPStringCreateWithFormatAndArgume
     // Try to write again
     size_t totalChars;
     CPEXPECTTRUE(CPAddSizeT(string->length, 1, &totalChars));
-    result = CPVSNPrintF(string->value, totalChars, format, args);
+    result = CPVSNPrintF(string->value, totalChars, format, args2);
     CPEXPECT((result != -1) && (result < totalChars));
     
     // Wrote into string successfully!

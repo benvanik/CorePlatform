@@ -49,6 +49,18 @@
 		908ACAC212E50E980086BD9C /* CPArray.c in Sources */ = {isa = PBXBuildFile; fileRef = 908ACAC012E50E980086BD9C /* CPArray.c */; };
 		908ACAC312E50E980086BD9C /* CPArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 908ACABF12E50E980086BD9C /* CPArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		908ACAC412E50E980086BD9C /* CPArray.c in Sources */ = {isa = PBXBuildFile; fileRef = 908ACAC012E50E980086BD9C /* CPArray.c */; };
+		9090E85D12E73486000F1EB7 /* CPLinkedList.c in Sources */ = {isa = PBXBuildFile; fileRef = 9090E85712E73486000F1EB7 /* CPLinkedList.c */; };
+		9090E85E12E73486000F1EB7 /* CPLinkedList.h in Headers */ = {isa = PBXBuildFile; fileRef = 9090E85812E73486000F1EB7 /* CPLinkedList.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9090E85F12E73486000F1EB7 /* CPString.c in Sources */ = {isa = PBXBuildFile; fileRef = 9090E85912E73486000F1EB7 /* CPString.c */; };
+		9090E86012E73486000F1EB7 /* CPString.h in Headers */ = {isa = PBXBuildFile; fileRef = 9090E85A12E73486000F1EB7 /* CPString.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9090E86112E73486000F1EB7 /* CPURL.c in Sources */ = {isa = PBXBuildFile; fileRef = 9090E85B12E73486000F1EB7 /* CPURL.c */; };
+		9090E86212E73486000F1EB7 /* CPURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 9090E85C12E73486000F1EB7 /* CPURL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9090E86312E73486000F1EB7 /* CPLinkedList.c in Sources */ = {isa = PBXBuildFile; fileRef = 9090E85712E73486000F1EB7 /* CPLinkedList.c */; };
+		9090E86412E73486000F1EB7 /* CPLinkedList.h in Headers */ = {isa = PBXBuildFile; fileRef = 9090E85812E73486000F1EB7 /* CPLinkedList.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9090E86512E73486000F1EB7 /* CPString.c in Sources */ = {isa = PBXBuildFile; fileRef = 9090E85912E73486000F1EB7 /* CPString.c */; };
+		9090E86612E73486000F1EB7 /* CPString.h in Headers */ = {isa = PBXBuildFile; fileRef = 9090E85A12E73486000F1EB7 /* CPString.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9090E86712E73486000F1EB7 /* CPURL.c in Sources */ = {isa = PBXBuildFile; fileRef = 9090E85B12E73486000F1EB7 /* CPURL.c */; };
+		9090E86812E73486000F1EB7 /* CPURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 9090E85C12E73486000F1EB7 /* CPURL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +88,12 @@
 		907EBEB712E3FEE900D20413 /* CorePlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CorePlatform.h; path = ../src/CorePlatform.h; sourceTree = SOURCE_ROOT; };
 		908ACABF12E50E980086BD9C /* CPArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPArray.h; sourceTree = "<group>"; };
 		908ACAC012E50E980086BD9C /* CPArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPArray.c; sourceTree = "<group>"; };
+		9090E85712E73486000F1EB7 /* CPLinkedList.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPLinkedList.c; sourceTree = "<group>"; };
+		9090E85812E73486000F1EB7 /* CPLinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLinkedList.h; sourceTree = "<group>"; };
+		9090E85912E73486000F1EB7 /* CPString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPString.c; sourceTree = "<group>"; };
+		9090E85A12E73486000F1EB7 /* CPString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPString.h; sourceTree = "<group>"; };
+		9090E85B12E73486000F1EB7 /* CPURL.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPURL.c; sourceTree = "<group>"; };
+		9090E85C12E73486000F1EB7 /* CPURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPURL.h; sourceTree = "<group>"; };
 		D2AAC046055464E500DB518D /* libCorePlatform-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libCorePlatform-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -165,6 +183,12 @@
 				907EB86612E2508600D20413 /* CPObject.c */,
 				908ACABF12E50E980086BD9C /* CPArray.h */,
 				908ACAC012E50E980086BD9C /* CPArray.c */,
+				9090E85812E73486000F1EB7 /* CPLinkedList.h */,
+				9090E85712E73486000F1EB7 /* CPLinkedList.c */,
+				9090E85A12E73486000F1EB7 /* CPString.h */,
+				9090E85912E73486000F1EB7 /* CPString.c */,
+				9090E85C12E73486000F1EB7 /* CPURL.h */,
+				9090E85B12E73486000F1EB7 /* CPURL.c */,
 			);
 			name = Types;
 			sourceTree = "<group>";
@@ -208,6 +232,9 @@
 				907EBBE612E3E08500D20413 /* CPStr.h in Headers */,
 				907EBEB912E3FEE900D20413 /* CorePlatform.h in Headers */,
 				908ACAC312E50E980086BD9C /* CPArray.h in Headers */,
+				9090E86412E73486000F1EB7 /* CPLinkedList.h in Headers */,
+				9090E86612E73486000F1EB7 /* CPString.h in Headers */,
+				9090E86812E73486000F1EB7 /* CPURL.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +258,9 @@
 				907EBBE412E3E08500D20413 /* CPStr.h in Headers */,
 				907EBEB812E3FEE900D20413 /* CorePlatform.h in Headers */,
 				908ACAC112E50E980086BD9C /* CPArray.h in Headers */,
+				9090E85E12E73486000F1EB7 /* CPLinkedList.h in Headers */,
+				9090E86012E73486000F1EB7 /* CPString.h in Headers */,
+				9090E86212E73486000F1EB7 /* CPURL.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +340,9 @@
 				907EBA4512E30F7800D20413 /* CPPAL.c in Sources */,
 				907EBA6612E3736C00D20413 /* CPPAL-OSX.c in Sources */,
 				908ACAC412E50E980086BD9C /* CPArray.c in Sources */,
+				9090E86312E73486000F1EB7 /* CPLinkedList.c in Sources */,
+				9090E86512E73486000F1EB7 /* CPString.c in Sources */,
+				9090E86712E73486000F1EB7 /* CPURL.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +355,9 @@
 				907EBA4312E30F7800D20413 /* CPPAL.c in Sources */,
 				907EBA6412E3736C00D20413 /* CPPAL-OSX.c in Sources */,
 				908ACAC212E50E980086BD9C /* CPArray.c in Sources */,
+				9090E85D12E73486000F1EB7 /* CPLinkedList.c in Sources */,
+				9090E85F12E73486000F1EB7 /* CPString.c in Sources */,
+				9090E86112E73486000F1EB7 /* CPURL.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

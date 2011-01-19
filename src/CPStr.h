@@ -15,12 +15,12 @@
 #include <CPCodeUtilities.h>
 #include <CPMemory.h>
 
+#include <stdio.h>
+#include <stdarg.h>
+
 // NOTE: these differing implementations should behave pretty much the same - if they don't, then they will have to be abstracted out
 
 #if CP_PLATFORM(WIN32)
-
-#include <stdio.h>
-#include <stdarg.h>
 
 typedef wchar_t CPChar;
 #define CP_WCHAR            1
@@ -55,9 +55,9 @@ typedef char CPChar;
 #define CPStrRChr           strrchr
 #define CPStrStr            strstr
 
-#define CPStrCpy(dest, destLength, source)              (strcpy(dest, source) == dest)
-#define CPStrNCpy(dest, destLength, source, count)      (strncpy(dest, source, count) == dest)
-#define CPStrCat(dest, destLength, source)              (strcat(dest, source) == dest)
+#define CPStrCpy(dest, destLength, source)              (strcpy(dest, source) == dest + (destLength*0))
+#define CPStrNCpy(dest, destLength, source, count)      (strncpy(dest, source, count) == dest + (destLength*0))
+#define CPStrCat(dest, destLength, source)              (strcat(dest, source) == dest + (destLength*0))
 
 #define CPSNPrintF(buffer, bufferCount, format, ...)    snprintf(buffer, bufferCount, format, ##__VA_ARGS__)
 #define CPVSNPrintF(buffer, bufferCount, format, args)  vsnprintf(buffer, bufferCount, format, args)

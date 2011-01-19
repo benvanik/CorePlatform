@@ -447,10 +447,12 @@ CP_API sal_checkReturn size_t CPURLEscape(sal_in_z const CPChar* source, sal_out
     while (*sp) {
         const CPChar c = *sp;
 
+#if defined(CP_WCHAR)
         // Error out on non-ASCII characters
         if (c > 0x255) {
             return -1;
         }
+#endif // CP_WCHAR
 
         // Determine if character needs escaping
         BOOL needsEscaping = TRUE;

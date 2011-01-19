@@ -12,6 +12,9 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		90115DB412E5C03B008B69EF /* test_array.c in Sources */ = {isa = PBXBuildFile; fileRef = 90115DB312E5C03B008B69EF /* test_array.c */; };
 		907EBDCA12E3FC0600D20413 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 907EBDC912E3FC0600D20413 /* main.c */; };
+		9090E84C12E73461000F1EB7 /* test_linkedlist.c in Sources */ = {isa = PBXBuildFile; fileRef = 9090E84912E73461000F1EB7 /* test_linkedlist.c */; };
+		9090E84D12E73461000F1EB7 /* test_string.c in Sources */ = {isa = PBXBuildFile; fileRef = 9090E84A12E73461000F1EB7 /* test_string.c */; };
+		9090E84E12E73461000F1EB7 /* test_url.c in Sources */ = {isa = PBXBuildFile; fileRef = 9090E84B12E73461000F1EB7 /* test_url.c */; };
 		90E5155112E407C9003590D6 /* libCUnit-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 907EBE8912E3FDBC00D20413 /* libCUnit-iOS.a */; };
 		90E5159012E40917003590D6 /* libCorePlatform-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E5157A12E408BC003590D6 /* libCorePlatform-iOS.a */; };
 		90E5159F12E40957003590D6 /* test_atomic.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E5159812E40957003590D6 /* test_atomic.c */; };
@@ -76,6 +79,9 @@
 		907EBDC912E3FC0600D20413 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		907EBE1212E3FCEF00D20413 /* CPUnitTests-iOS-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CPUnitTests-iOS-Info.plist"; sourceTree = "<group>"; };
 		907EBE8112E3FDBC00D20413 /* CUnit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CUnit.xcodeproj; path = ../../third_party/CUnit/CUnit.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9090E84912E73461000F1EB7 /* test_linkedlist.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_linkedlist.c; sourceTree = "<group>"; };
+		9090E84A12E73461000F1EB7 /* test_string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_string.c; sourceTree = "<group>"; };
+		9090E84B12E73461000F1EB7 /* test_url.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_url.c; sourceTree = "<group>"; };
 		90E5157212E408BC003590D6 /* CorePlatform.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CorePlatform.xcodeproj; path = ../../src/CorePlatform.xcodeproj; sourceTree = SOURCE_ROOT; };
 		90E5159712E40957003590D6 /* shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shared.h; sourceTree = "<group>"; };
 		90E5159812E40957003590D6 /* test_atomic.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_atomic.c; sourceTree = "<group>"; };
@@ -144,6 +150,9 @@
 				90E5159E12E40957003590D6 /* test_str.c */,
 				90E5159C12E40957003590D6 /* test_object.c */,
 				90115DB312E5C03B008B69EF /* test_array.c */,
+				9090E84912E73461000F1EB7 /* test_linkedlist.c */,
+				9090E84A12E73461000F1EB7 /* test_string.c */,
+				9090E84B12E73461000F1EB7 /* test_url.c */,
 				90E5159D12E40957003590D6 /* test_pal.c */,
 			);
 			name = Source;
@@ -281,6 +290,9 @@
 				90E515A412E40957003590D6 /* test_pal.c in Sources */,
 				90E515A512E40957003590D6 /* test_str.c in Sources */,
 				90115DB412E5C03B008B69EF /* test_array.c in Sources */,
+				9090E84C12E73461000F1EB7 /* test_linkedlist.c in Sources */,
+				9090E84D12E73461000F1EB7 /* test_string.c in Sources */,
+				9090E84E12E73461000F1EB7 /* test_url.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

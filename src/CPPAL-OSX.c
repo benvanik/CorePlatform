@@ -12,6 +12,8 @@
 
 #include <CoreFoundation/CoreFoundation.h>
 
+#include <unistd.h>
+
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
@@ -55,7 +57,7 @@ sal_callback void CPOSXPALDealloc(sal_inout CPOSXPALRef pal)
 {
 }
 
-sal_ret_opt CPURLRef CPOSXPALConvertCFURLToCPURL(sal_inout CFURLRef source)
+sal_out_opt CPURLRef CPOSXPALConvertCFURLToCPURL(sal_inout CFURLRef source)
 {
     // TODO: CFURL -> CPURL
     CPASSERTALWAYS();
@@ -64,8 +66,6 @@ sal_ret_opt CPURLRef CPOSXPALConvertCFURLToCPURL(sal_inout CFURLRef source)
 
 sal_checkReturn BOOL CPOSXPALSetupSystemPaths(sal_inout CPPALRef pal)
 {
-    CPChar buffer[2048];
-    size_t bufferLength;
     CPURLRef url = NULL;
     CFURLRef cfurl = NULL;
 
@@ -98,7 +98,7 @@ sal_checkReturn BOOL CPOSXPALSetupSystemPaths(sal_inout CPPALRef pal)
     CPEXPECTNOTNULL(finalTemp);
     url = CPPALConvertFileSystemPathToURL(pal, finalTemp);
     CPEXPECTNOTNULL(url);
-    pal->systemPaths[CPPALSystemPathTemp] = CPURLCreate(url);
+    pal->systemPaths[CPPALSystemPathTemp] = CPURLRetain(url);
     CPRelease(url);
 
     CFRelease(bundle);
