@@ -38,11 +38,6 @@
 #define CPFORCEINLINE                   
 #define CPNOINLINE                      
 #endif
-// In debug mode always disable inlines (I'll thank myself for this later)
-#if defined(CP_DEBUG)
-#undef CPFORCEINLINE
-#define CPFORCEINLINE
-#endif
 
 #if CP_COMPILER(MSVC)
 // http://msdn.microsoft.com/en-us/library/83ythb65.aspx
