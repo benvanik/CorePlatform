@@ -46,11 +46,11 @@ const CPChar* test_url_validURLs[] = {
     CPTEXT("http://test.com/x.y/a"),                        CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
     CPTEXT("http://test.com/x.y/a/"),                       CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
     CPTEXT("http://test.com/x.y/a."),                       CPTEXT("path/file"),            CPTEXT("http://test.com/x.y/path/file"),
-    CPTEXT("http://test.com/x.y/a.b"),                      CPTEXT("path/file"),            CPTEXT("http://test.com/x.y/a.b/path/file"),
+    CPTEXT("http://test.com/x.y/a.b"),                      CPTEXT("path/file"),            CPTEXT("http://test.com/x.y/path/file"),
     CPTEXT("http://test.com/x.y/a."),                       CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
     CPTEXT("http://test.com/x.y/a.b"),                      CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
     CPTEXT("http://test.com/a%20b/"),                       CPTEXT("path/f%20ile"),         CPTEXT("http://test.com/a%20b/path/f%20ile"),
-    CPTEXT("http://test.com/a%20%2E"),                      CPTEXT("path/f%20ile"),         CPTEXT("http://test.com/a%20b%2E/path/f%20ile"),
+    CPTEXT("http://test.com/a%20%2E"),                      CPTEXT("path/f%20ile"),         CPTEXT("http://test.com/path/f%20ile"),
     CPTEXT("http://test.com/a%20b/"),                       CPTEXT("/path/f%20ile"),        CPTEXT("http://test.com/path/f%20ile"),
     CPTEXT("http://test.com/a%20%2E"),                      CPTEXT("/path/f%20ile"),        CPTEXT("http://test.com/path/f%20ile"),
     CPTEXT("http://test.com/a?k1=v1&k2=v2"),                CPTEXT("path/file"),            CPTEXT("http://test.com/path/file"),
@@ -188,13 +188,11 @@ void test_url_create_rel()
         if (!sub) {
             int x = 123; // for debugging
         }
-        if (sub) {
-            CPZeroMemory(buffer, sizeof(buffer), 0, sizeof(buffer));
-            CU_ASSERT_TRUE(CPURLGetAbsoluteString(sub, buffer, sizeof(buffer)));
-            CU_ASSERT(CPStrCmp(sourceVerify, buffer) == 0);
-            if (CPStrCmp(sourceVerify, buffer) != 0) {
-                int y = 123;
-            }
+        CPZeroMemory(buffer, sizeof(buffer), 0, sizeof(buffer));
+        CU_ASSERT_TRUE(CPURLGetAbsoluteString(sub, buffer, sizeof(buffer)));
+        CU_ASSERT(CPStrCmp(sourceVerify, buffer) == 0);
+        if (CPStrCmp(sourceVerify, buffer) != 0) {
+            int y = 123;
         }
         CPRelease(sub);
         CPRelease(url);
@@ -215,13 +213,55 @@ void test_url_create_rel()
 void test_url_create_copy()
 {
     CPURLRef url;
-    CU_FAIL("test_url_create_copy unimplemented");
+    CPURLRef sub;
+    CPURLRef copy;
+    CPChar buffer[4096];
+    
+    for (size_t n = 0; n < CPCOUNT(test_url_validURLs); n += 3) {
+        const CPChar* source = test_url_validURLs[n + 0];
+        const CPChar* verify = test_url_validURLs[n + 0];
+
+        url = CPURLCreate(NULL, source);
+        CU_ASSERT(url != NULL);
+        copy = CPURLCreateAbsoluteCopy(url);
+        CU_ASSERT(copy != NULL);
+        CPZeroMemory(buffer, sizeof(buffer), 0, sizeof(buffer));
+        CU_ASSERT_TRUE(CPURLGetAbsoluteString(copy, buffer, sizeof(buffer)));
+        CU_ASSERT(CPStrCmp(verify, buffer) == 0);
+        if (CPStrCmp(verify, buffer) != 0) {
+            int y = 123;
+        }
+        CPRelease(copy);
+        CPRelease(url);
+    }
+
+    for (size_t n = 0; n < CPCOUNT(test_url_validURLs); n += 3) {
+        const CPChar* sourceBase    = test_url_validURLs[n + 0];
+        const CPChar* sourceSub     = test_url_validURLs[n + 1];
+        const CPChar* sourceVerify  = test_url_validURLs[n + 2];
+
+        url = CPURLCreate(NULL, sourceBase);
+        CU_ASSERT(url != NULL);
+        sub = CPURLCreate(url, sourceSub);
+        CU_ASSERT(sub != NULL);
+        copy = CPURLCreateAbsoluteCopy(sub);
+        CU_ASSERT(copy != NULL);
+        CPZeroMemory(buffer, sizeof(buffer), 0, sizeof(buffer));
+        CU_ASSERT_TRUE(CPURLGetAbsoluteString(copy, buffer, sizeof(buffer)));
+        CU_ASSERT(CPStrCmp(sourceVerify, buffer) == 0);
+        if (CPStrCmp(sourceVerify, buffer) != 0) {
+            int y = 123;
+        }
+        CPRelease(copy);
+        CPRelease(sub);
+        CPRelease(url);
+    }
 }
 
-void test_url_gets()
+void test_url_create_large()
 {
-    CPURLRef url;
-    CU_FAIL("test_url_gets unimplemented");
+    // TODO: test large URLs
+    CU_FAIL("test_url_create_large unimplemented");
 }
 
 void test_url_escape()
@@ -240,7 +280,7 @@ static CU_TestInfo test_url_infos[] = {
     { "test_url_create_abs",            test_url_create_abs             },
     { "test_url_create_rel",            test_url_create_rel             },
     { "test_url_create_copy",           test_url_create_copy            },
-    { "test_url_gets",                  test_url_gets                   },
+    { "test_url_create_large",          test_url_create_large           },
     { "test_url_escape",                test_url_escape                 },
     { "test_url_unescape",              test_url_unescape               },
 };

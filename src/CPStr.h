@@ -34,6 +34,7 @@ typedef wchar_t CPChar;
 #define CPStrStr            wcsstr
 
 #define CPStrCpy(dest, destLength, source)              (wcscpy_s(dest, destLength, source) == 0)
+#define CPStrNCpy(dest, destLength, source, count)      (wcsncpy_s(dest, destLength, source, count) == 0)
 #define CPStrCat(dest, destLength, source)              (wcscat_s(dest, destLength, source) == 0)
 
 #define CPSNPrintF(buffer, bufferCount, format, ...)    _snwprintf_s(buffer, bufferCount, (bufferCount) ? (bufferCount - 1) : 0, format, ##__VA_ARGS__)
@@ -55,6 +56,7 @@ typedef char CPChar;
 #define CPStrStr            strstr
 
 #define CPStrCpy(dest, destLength, source)              (strcpy(dest, source) == dest)
+#define CPStrNCpy(dest, destLength, source, count)      (strncpy(dest, source, count) == dest)
 #define CPStrCat(dest, destLength, source)              (strcat(dest, source) == dest)
 
 #define CPSNPrintF(buffer, bufferCount, format, ...)    snprintf(buffer, bufferCount, format, ##__VA_ARGS__)
