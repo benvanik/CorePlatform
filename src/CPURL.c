@@ -143,7 +143,7 @@ CPCLEANUP:
     return NULL;
 }
 
-CP_API sal_checkReturn BOOL CPURLGetAbsoluteString(sal_inout CPURLRef url, sal_out_ecount(bufferSize) CPChar* buffer, const size_t bufferSize)
+CP_API sal_checkReturn BOOL CPURLGetAbsoluteString(sal_inout CPURLRef url, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize)
 {
     const size_t length = _CPURLMeasureAbsoluteLength(url);
     if (length == -1) {

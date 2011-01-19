@@ -47,7 +47,7 @@ CP_API sal_checkReturn sal_out_opt CPURLRef CPURLCreateWithString(sal_inout_opt 
 CP_API sal_checkReturn sal_out_opt CPURLRef CPURLCreateAbsoluteCopy(sal_inout CPURLRef source);
 
 CP_API sal_out_opt CPStringRef CPURLCopyAbsoluteString(sal_inout CPURLRef url);
-CP_API sal_checkReturn BOOL CPURLGetAbsoluteString(sal_inout CPURLRef url, sal_out_ecount(bufferSize) CPChar* buffer, const size_t bufferSize);
+CP_API sal_checkReturn BOOL CPURLGetAbsoluteString(sal_inout CPURLRef url, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize);
 
 // TODO: queries:
 // CPURLGetScheme
