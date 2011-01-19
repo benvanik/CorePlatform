@@ -97,7 +97,7 @@ void test_pal_random()
     anyFailed = FALSE;
     for (size_t n = 0; n < 1000; n++) {
         const int32 r = CPPALRandomInt32(pal);
-        if (r <= 0) {
+        if (r < 0) {
             anyFailed = TRUE;
             break;
         }

@@ -257,6 +257,7 @@ CP_API sal_out_opt CPURLRef CPPALConvertFileSystemPathToURL(sal_inout CPPALRef p
         if (*p == '\\') {
             *p = '/';
         }
+        p++;
     }
 
     // scratchBuffer is now file:/// + canonicalBuffer and will contain something like 'file:///C:/My/Long Path.txt'
