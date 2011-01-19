@@ -25,7 +25,7 @@
 CP_DECLARE_TYPE(CPArray);
 
 struct CPArray_t {
-    CPObject        base;
+    CPObject        object;
     
     size_t          capacity;
     size_t          count;

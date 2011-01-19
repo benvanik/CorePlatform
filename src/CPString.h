@@ -35,7 +35,7 @@ typedef enum CPStringOptions_e {
 CP_DECLARE_TYPE(CPString);
 
 struct CPString_t {
-    CPObject        base;
+    CPObject        object;
     
     size_t          length;
     

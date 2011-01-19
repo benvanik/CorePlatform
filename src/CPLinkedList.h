@@ -23,7 +23,7 @@
 CP_DECLARE_TYPE(CPLinkedList);
 
 struct CPLinkedList_t {
-    CPObject        base;
+    CPObject        object;
 
     size_t          prevPointerOffset, nextPointerOffset;
     
