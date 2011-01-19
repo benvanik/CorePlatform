@@ -132,18 +132,4 @@ CP_API void CPPALLogBitmap(sal_in_z const CPChar* filePath, const int32 lineNumb
 #pragma mark -
 #pragma mark Thread Blocks
 
-#define CP_DUMMY_THREAD_BLOCK ((void*)0xDEADBEEF)
-
-CP_API sal_out void* CPPALThreadBlockBegin(sal_inout CPPALRef pal)
-{
-    CPUNREFERENCED(pal);
-    CPASSERTNOTNULL(pal);
-    return CP_DUMMY_THREAD_BLOCK;
-}
-
-CP_API void CPPALThreadBlockEnd(sal_inout CPPALRef pal, sal_inout void* block)
-{
-    CPUNREFERENCED(pal);
-    CPASSERTNOTNULL(pal);
-    CPASSERT(block == CP_DUMMY_THREAD_BLOCK);
-}
+// In shared CPPAL.c using default implementation

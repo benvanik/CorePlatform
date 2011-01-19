@@ -27,6 +27,9 @@
 //#define CP_PAL_HAVE_LOGGING         1
 #endif
 //#define CP_PAL_HAVE_HEAPS           1
+#if CP_LIKE(OSX)
+#define CP_PAL_HAVE_THREADBLOCKS    1
+#endif
 
 #define CP_PAL_HAVE(NAME)   (defined CP_PAL_HAVE_##NAME && CP_PAL_HAVE_##NAME   )
 

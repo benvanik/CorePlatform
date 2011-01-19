@@ -692,3 +692,26 @@ CP_API void CPPALThreadSleep(sal_inout CPPALRef pal, const CPTime delay)
 }
 
 #endif // !THREADS
+
+#pragma mark -
+#pragma mark Thread Blocks
+
+#if !CP_PAL_HAVE(THREADBLOCKS)
+
+#define CP_DUMMY_THREAD_BLOCK ((void*)0xDEADBEEF)
+
+CP_API sal_out void* CPPALThreadBlockBegin(sal_inout CPPALRef pal)
+{
+    CPUNREFERENCED(pal);
+    CPASSERTNOTNULL(pal);
+    return CP_DUMMY_THREAD_BLOCK;
+}
+
+CP_API void CPPALThreadBlockEnd(sal_inout CPPALRef pal, sal_inout void* block)
+{
+    CPUNREFERENCED(pal);
+    CPASSERTNOTNULL(pal);
+    CPASSERT(block == CP_DUMMY_THREAD_BLOCK);
+}
+
+#endif // !THREADBLOCKS
