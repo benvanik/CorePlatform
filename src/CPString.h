@@ -56,7 +56,7 @@ CP_API sal_checkReturn sal_out_opt CPStringRef CPStringCreateByCombiningStrings(
 CP_API BOOL CPStringIsNullOrEmpty(sal_inout_opt CPStringRef string);
 CP_API size_t CPStringGetLength(sal_inout CPStringRef string);
 CP_API sal_out_z const CPChar* CPStringGet(sal_inout CPStringRef string);
-CP_API sal_checkReturn BOOL CPStringGetCharacters(sal_inout CPStringRef string, sal_out_ecount(bufferLength) CPChar* buffer, const size_t bufferLength, const size_t index, const size_t length);
+CP_API sal_checkReturn BOOL CPStringGetCharacters(sal_inout CPStringRef string, sal_out_ecount(bufferSize) CPChar* buffer, const size_t bufferSize, const size_t index, const size_t length);
 
 CP_API int32 CPStringCompare(sal_inout CPStringRef string1, sal_inout CPStringRef string2, const uint32 compareOptions);
 CP_API int32 CPStringCompareChar(sal_inout CPStringRef string1, sal_in_z const CPChar* string2, const uint32 compareOptions);
