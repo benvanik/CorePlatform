@@ -31,6 +31,8 @@ struct CPOSXPAL_t {
 
 CP_DEFINE_TYPE(CPOSXPAL, &CPPALType, CPOSXPALDealloc);
 
+sal_checkReturn BOOL CPOSXPALSetupSystemPaths(sal_inout CPPALRef pal);
+
 CP_API sal_checkReturn sal_out_opt CPPALRef CPPALCreate(const CPPALOptions* options)
 {
     CPOSXPALRef pal = (CPOSXPALRef)CPPALAlloc(&CPOSXPALType, sizeof(CPOSXPAL), options);
@@ -40,8 +42,10 @@ CP_API sal_checkReturn sal_out_opt CPPALRef CPPALCreate(const CPPALOptions* opti
     CPEXPECT(mach_timebase_info(&info), KERN_SUCCESS);
     pal->timeToSec = (CPTime)((info.numer / info.denom) / 1000000000.0);
     
-    return (CPPALRef)pal;
+    CPEXPECTTRUE(CPOSXPALSetupSystemPaths(&pal->base));
     
+    return (CPPALRef)pal;
+
 CPCLEANUP:
     CPRelease(pal);
     return NULL;
@@ -49,6 +53,62 @@ CPCLEANUP:
 
 sal_callback void CPOSXPALDealloc(sal_inout CPOSXPALRef pal)
 {
+}
+
+sal_ret_opt CPURLRef CPOSXPALConvertCFURLToCPURL(sal_inout CFURLRef source)
+{
+    // TODO: CFURL -> CPURL
+    CPASSERTALWAYS();
+    return NULL;
+}
+
+sal_checkReturn BOOL CPOSXPALSetupSystemPaths(sal_inout CPPALRef pal)
+{
+    CPChar buffer[2048];
+    size_t bufferLength;
+    CPURLRef url = NULL;
+    CFURLRef cfurl = NULL;
+
+    CFBundleRef bundle = CFBundleGetMainBundle();
+
+    // Current executable path
+    cfurl = CFBundleCopyExecutableURL(bundle);
+    CPEXPECTNOTNULL(cfurl);
+    url = CPOSXPALConvertCFURLToCPURL(cfurl);
+    CPEXPECTNOTNULL(url);
+    pal->systemPaths[CPPALSystemPathAppExecutable] = CPURLRetain(url);
+    CPRelease(url);
+
+    // Application path (app data)
+    cfurl = CFBundleCopyResourcesDirectoryURL(bundle);
+    CPEXPECTNOTNULL(cfurl);
+    url = CPOSXPALConvertCFURLToCPURL(cfurl);
+    CPEXPECTNOTNULL(url);
+    pal->systemPaths[CPPALSystemPathAppResources] = CPURLRetain(url);
+    CPRelease(url);
+    CFRelease(cfurl);
+
+    // Temp directory
+    char tempTemplate[256];
+    tempTemplate[0] = 0;
+    strcat(tempTemplate, "/tmp/");
+    strcat(tempTemplate, pal->options.applicationName);
+    strcat(tempTemplate, ".XXXXXX");
+    char* finalTemp = mkdtemp(tempTemplate);
+    CPEXPECTNOTNULL(finalTemp);
+    url = CPPALConvertFileSystemPathToURL(pal, finalTemp);
+    CPEXPECTNOTNULL(url);
+    pal->systemPaths[CPPALSystemPathTemp] = CPURLCreate(url);
+    CPRelease(url);
+
+    CFRelease(bundle);
+    return TRUE;
+
+CPCLEANUP:
+    CFRelease(cfurl);
+    CFRelease(bundle);
+    CPRelease(url);
+    return FALSE;
 }
 
 #pragma mark -

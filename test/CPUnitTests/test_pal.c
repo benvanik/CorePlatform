@@ -43,6 +43,31 @@ void test_pal_systeminfo()
     CPRelease(pal);
 }
 
+void test_pal_systempaths()
+{
+    CPPALOptions options;
+    CPPALOptionsInitialize(&options);
+    CPPAL* pal = CPPALCreate(&options);
+
+    // TODO: test system paths
+    // CPPALSystemGetPath
+
+    CPRelease(pal);
+}
+
+void test_pal_pathconversion()
+{
+    CPPALOptions options;
+    CPPALOptionsInitialize(&options);
+    CPPAL* pal = CPPALCreate(&options);
+
+    // TODO: test path conversion
+    //CPPALConvertURLToFileSystemPath
+    //CPPALConvertFileSystemPathToURL
+
+    CPRelease(pal);
+}
+
 void test_pal_time()
 {
     CPPALOptions options;
@@ -667,6 +692,8 @@ void test_pal_sleep()
 static CU_TestInfo test_pal_infos[] = {
     { "test_pal_creation",          test_pal_creation           },
     { "test_pal_systeminfo",        test_pal_systeminfo         },
+    { "test_pal_systempaths",       test_pal_systempaths        },
+    { "test_pal_pathconversion",    test_pal_pathconversion     },
     { "test_pal_time",              test_pal_time               },
     { "test_pal_random",            test_pal_random             },
     { "test_pal_mutex",             test_pal_mutex              },

@@ -12,6 +12,8 @@
 
 #if !CP_PLATFORM(XBOX360)
 #include <objbase.h>
+#include <shlwapi.h>
+#pragma comment(lib, "shlwapi.lib")
 #endif // XBOX360
 
 CP_DECLARE_TYPE(CPWin32PAL);
@@ -27,12 +29,12 @@ struct CPWin32PAL_t {
 
 CP_DEFINE_TYPE(CPWin32PAL, &CPPALType, CPWin32PALDealloc);
 
+sal_checkReturn BOOL CPWin32PALSetupSystemPaths(sal_inout CPPALRef pal);
+
 CP_API sal_checkReturn sal_out_opt CPPALRef CPPALCreate(const CPPALOptions* options)
 {
     CPWin32PALRef pal = (CPWin32PALRef)CPPALAlloc(&CPWin32PALType, sizeof(CPWin32PAL), options);
-    if (!pal) {
-        return NULL;
-    }
+    CPEXPECTNOTNULL(pal);
     
     // NOTE: we always assume we start on the main thread - this may not be true, but that's what our definition of 'main thread' is
     pal->mainThreadId   = GetCurrentThreadId();
@@ -52,8 +54,14 @@ CP_API sal_checkReturn sal_out_opt CPPALRef CPPALCreate(const CPPALOptions* opti
     // NOTE: this may fail if COM has already been initialized - that's OK
     CPIGNORE(CoInitializeEx(NULL, COINIT_MULTITHREADED));
 #endif // XBOX360
+
+    CPEXPECTTRUE(CPWin32PALSetupSystemPaths(&pal->base));
     
     return (CPPALRef)pal;
+
+CPCLEANUP:
+    CPRelease(pal);
+    return NULL;
 }
 
 sal_callback void CPWin32PALDealloc(sal_inout CPWin32PALRef pal)
@@ -61,6 +69,51 @@ sal_callback void CPWin32PALDealloc(sal_inout CPWin32PALRef pal)
 #if !CP_PLATFORM(XBOX360)
     CoUninitialize();
 #endif // XBOX360
+}
+
+sal_checkReturn BOOL CPWin32PALSetupSystemPaths(sal_inout CPPALRef pal)
+{
+    CPChar buffer[2048];
+    size_t bufferLength;
+    CPURLRef url = NULL;
+
+    // Current executable path
+    bufferLength = GetModuleFileName(NULL, buffer, CPCOUNT(buffer));
+    CPEXPECTTRUE(bufferLength > 0);
+    url = CPPALConvertFileSystemPathToURL(pal, buffer);
+    CPEXPECTNOTNULL(url);
+    pal->systemPaths[CPPALSystemPathAppExecutable] = CPURLRetain(url);
+    CPRelease(url);
+
+    // Application path (app data)
+    bufferLength = GetModuleFileName(NULL, buffer, CPCOUNT(buffer));
+    CPEXPECTTRUE(bufferLength > 0);
+    const CPChar* lastSlash = CPStrRChr(buffer, '\\');
+    CPEXPECTNOTNULL(lastSlash);
+    bufferLength = (lastSlash - buffer) + 1;
+    CPEXPECTTRUE(bufferLength + 1 < CPCOUNT(buffer));
+    buffer[bufferLength] = 0;
+    url = CPPALConvertFileSystemPathToURL(pal, buffer);
+    CPEXPECTNOTNULL(url);
+    pal->systemPaths[CPPALSystemPathAppResources] = CPURLRetain(url);
+    CPRelease(url);
+
+    // Temp directory
+    bufferLength = GetTempPath(CPCOUNT(buffer), buffer);
+    CPEXPECTTRUE(bufferLength > 0);
+    // TODO: add random secure string on the end of temp path
+    CPEXPECTNOTNULL(CPStrCat(buffer, CPCOUNT(buffer), pal->options.applicationName));
+    CPEXPECTNOTNULL(CPStrCat(buffer, CPCOUNT(buffer), CPTEXT(".XXXXXXX\\")));
+    url = CPPALConvertFileSystemPathToURL(pal, buffer);
+    CPEXPECTNOTNULL(url);
+    pal->systemPaths[CPPALSystemPathTemp] = CPURLRetain(url);
+    CPRelease(url);
+
+    return TRUE;
+
+CPCLEANUP:
+    CPRelease(url);
+    return FALSE;
 }
 
 #pragma mark -
@@ -166,6 +219,54 @@ CP_API BOOL CPPALSystemInfoQuery(sal_inout CPPALRef pal, sal_inout CPPALSystemIn
 
 CPCLEANUP:
     return FALSE;
+}
+
+#pragma mark -
+#pragma mark Path Utilities
+
+CP_API BOOL CPPALConvertURLToFileSystemPath(sal_inout CPPALRef pal, sal_inout CPURLRef url, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize)
+{
+    CPASSERTALWAYS();
+    return FALSE;
+}
+
+CP_API sal_out_opt CPURLRef CPPALConvertFileSystemPathToURL(sal_inout CPPALRef pal, sal_in_z const CPChar* buffer)
+{
+#if CP_PLATFORM(XBOX360)
+    // TODO: XBOX360 CPPALConvertFileSystemPathToURL
+    CPASSERTALWAYS();
+    return NULL;
+#else
+    // Build URLs in the form of:
+    // C:\My\Long Path.txt -> file:///C:/My/Long%20Path.txt
+
+    // Setup the scratch buffer with 'file:///'
+    CPChar scratchBuffer[8 + 1024];
+    CPIGNORE(CPZeroMemory(scratchBuffer, sizeof(scratchBuffer), 0, sizeof(scratchBuffer)));
+    CPStrCat(scratchBuffer, CPCOUNT(scratchBuffer), CPTEXT("file:///"));
+
+    // Populate canonicalBuffer with the expanded path
+    CPChar* canonicalBuffer = scratchBuffer + 8;
+    if (!PathCanonicalize(canonicalBuffer, buffer)) {
+        return NULL;
+    }
+
+    // Flip all slashes around from \ to /
+    for (size_t n = 0; n < MAX_PATH; n++) {
+        if (canonicalBuffer[n] == 0) {
+            break;
+        }
+        if (canonicalBuffer[n] == '\\') {
+            canonicalBuffer[n] = '/';
+        }
+    }
+
+    // scratchBuffer is now file:/// + canonicalBuffer and will contain something like 'C:/My/Long Path.txt'
+
+    // TODO: encode
+
+    return CPURLCreate(NULL, scratchBuffer);
+#endif // XBOX360
 }
 
 #pragma mark -

@@ -33,8 +33,15 @@ CP_API sal_checkReturn sal_out_bcount_opt(size) CPPALRef CPPALAlloc(sal_in const
     if (!pal) {
         return NULL;
     }
-    
-    CPEXPECTTRUE(CPCopyMemory((CPPALOptions*)&pal->options, sizeof(CPPALOptions), options, sizeof(CPPALOptions)));
+
+    // Copy options local
+    CPPALOptions* destOptions = (CPPALOptions*)&pal->options;
+    CPEXPECTTRUE(CPCopyMemory(destOptions, sizeof(CPPALOptions), options, sizeof(CPPALOptions)));
+
+    // Assign default options
+    if (CPStrLen(destOptions->applicationName) == 0) {
+        CPEXPECTNOTNULL(CPStrCpy(destOptions->applicationName, CPCOUNT(destOptions->applicationName), CPTEXT("CorePlatform")));
+    }
 
     srand((unsigned int)time(NULL));
     
@@ -47,7 +54,40 @@ CPCLEANUP:
 
 void CPPALDealloc(sal_inout CPPALRef pal)
 {
+    for (size_t n = 0; n < CPCOUNT(pal->systemPaths); n++) {
+        CPRelease(pal->systemPaths[n]);
+    }
 }
+
+#pragma mark -
+#pragma mark System Info
+
+CP_API sal_out_opt CPURLRef CPPALSystemGetPath(sal_inout CPPALRef pal, const CPPALSystemPath systemPath)
+{
+    if (systemPath >= CPCOUNT(pal->systemPaths)) {
+        return NULL;
+    }
+    return pal->systemPaths[systemPath];
+}
+
+#pragma mark -
+#pragma mark Path Utilities
+
+#if !CP_PAL_HAVE(PATHUTILS)
+
+CP_API BOOL CPPALConvertURLToFileSystemPath(sal_inout CPPALRef pal, sal_inout CPURLRef url, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize)
+{
+    CPASSERTALWAYS();
+    return FALSE;
+}
+
+CP_API sal_out_opt CPURLRef CPPALConvertFileSystemPathToURL(sal_inout CPPALRef pal, sal_in_z const CPChar* buffer)
+{
+    CPASSERTALWAYS();
+    return NULL;
+}
+
+#endif // !PATHUTILS
 
 #pragma mark -
 #pragma mark Random Numbers

@@ -20,18 +20,73 @@ struct CPPOSIXPAL_t {
 
 CP_DEFINE_TYPE(CPPOSIXPAL, &CPPALType, CPPOSIXPALDealloc);
 
+sal_checkReturn BOOL CPPOSIXPALSetupSystemPaths(sal_inout CPPALRef pal);
+
 CP_API sal_checkReturn sal_out_opt CPPALRef CPPALCreate(const CPPALOptions* options)
 {
     CPPOSIXPALRef pal = (CPPOSIXPALRef)CPPALAlloc(&CPPOSIXPALType, sizeof(CPPOSIXPAL), options);
-    if (!pal) {
-        return NULL;
-    }
+    CPEXPECTNOTNULL(pal);
+
+    CPEXPECTTRUE(CPPOSIXPALSetupSystemPaths(&pal->base));
     
     return (CPPALRef)pal;
+
+CPCLEANUP:
+    CPRelease(pal);
+    return NULL;
 }
 
 sal_callback void CPPOSIXPALDealloc(sal_inout CPPOSIXPALRef pal)
 {
+}
+
+sal_checkReturn BOOL CPPOSIXPALSetupSystemPaths(sal_inout CPPALRef pal)
+{
+    CPChar buffer[2048];
+    size_t bufferLength;
+    CPURLRef url = NULL;
+
+    // Current executable path
+    // TODO: CPPALSystemPathAppExecutable is wrong on POSIX - using applicationName instead
+    CPEXPECTNOTNULL(getcwd(buffer, CPCOUNT(buffer)));
+    // HACK: appending applicationName because I don't know how to get exe name
+    if (CPStrLen(pal->options.applicationName)) {
+        strcat(buffer, pal->options.applicationName);
+    }
+    bufferLength = CPStrLen(buffer);
+    CPEXPECTTRUE(bufferLength > 0);
+    url = CPPALConvertFileSystemPathToURL(pal, buffer);
+    CPEXPECTNOTNULL(url);
+    pal->systemPaths[CPPALSystemPathAppExecutable] = CPURLRetain(url);
+    CPRelease(url);
+
+    // Application path (app data)
+    CPEXPECTNOTNULL(getcwd(buffer, CPCOUNT(buffer)));
+    bufferLength = CPStrLen(buffer);
+    CPEXPECTTRUE(bufferLength > 0);
+    url = CPPALConvertFileSystemPathToURL(pal, buffer);
+    CPEXPECTNOTNULL(url);
+    pal->systemPaths[CPPALSystemPathAppResources] = CPURLRetain(url);
+    CPRelease(url);
+
+    // Temp directory
+    char tempTemplate[256];
+    tempTemplate[0] = 0;
+    strcat(tempTemplate, "/tmp/");
+    strcat(tempTemplate, pal->options.applicationName);
+    strcat(tempTemplate, ".XXXXXX");
+    char* finalTemp = mkdtemp(tempTemplate);
+    CPEXPECTNOTNULL(finalTemp);
+    url = CPPALConvertFileSystemPathToURL(pal, finalTemp);
+    CPEXPECTNOTNULL(url);
+    pal->systemPaths[CPPALSystemPathTemp] = CPURLCreate(url);
+    CPRelease(url);
+
+    return TRUE;
+
+CPCLEANUP:
+    CPRelease(url);
+    return FALSE;
 }
 
 #pragma mark -

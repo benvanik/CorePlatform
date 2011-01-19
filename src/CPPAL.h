@@ -18,17 +18,31 @@
 #include <CPDebugging.h>
 #include <CPStr.h>
 #include <CPObject.h>
+#include <CPString.h>
+#include <CPURL.h>
 
-//#define CP_PAL_HAVE_RANDOM          1
+// Matrix of platform -> custom PAL feature implementations - if 0 then the standard CPPAL implementation is used
 #if CP_LIKE(WIN32)
+#define CP_PAL_HAVE_PATHUTILS       1
+#define CP_PAL_HAVE_RANDOM          0
 #define CP_PAL_HAVE_THREADS         1
-#endif
-#if CP_LIKE(OSX)
-//#define CP_PAL_HAVE_LOGGING         1
-#endif
-//#define CP_PAL_HAVE_HEAPS           1
-#if CP_LIKE(OSX)
+#define CP_PAL_HAVE_LOGGING         0
+#define CP_PAL_HAVE_HEAPS           0
+#define CP_PAL_HAVE_THREADBLOCKS    0
+#elif CP_LIKE(OSX)
+#define CP_PAL_HAVE_PATHUTILS       0
+#define CP_PAL_HAVE_RANDOM          0
+#define CP_PAL_HAVE_THREADS         0
+#define CP_PAL_HAVE_LOGGING         0
+#define CP_PAL_HAVE_HEAPS           0
 #define CP_PAL_HAVE_THREADBLOCKS    1
+#elif CP_LIKE(POSIX)
+#define CP_PAL_HAVE_PATHUTILS       0
+#define CP_PAL_HAVE_RANDOM          0
+#define CP_PAL_HAVE_THREADS         0
+#define CP_PAL_HAVE_LOGGING         0
+#define CP_PAL_HAVE_HEAPS           0
+#define CP_PAL_HAVE_THREADBLOCKS    0
 #endif
 
 #define CP_PAL_HAVE(NAME)   (defined CP_PAL_HAVE_##NAME && CP_PAL_HAVE_##NAME   )
@@ -40,33 +54,41 @@ typedef void CPPALThread;
 typedef void CPPALFile;
 
 typedef enum CPPALLogLevel_e {
-    CPPALLogLevelError              = 3,
-    CPPALLogLevelWarning            = 4,
-    CPPALLogLevelInfo               = 6,
-    CPPALLogLevelDebug              = 7,
+    CPPALLogLevelError                  = 3,
+    CPPALLogLevelWarning                = 4,
+    CPPALLogLevelInfo                   = 6,
+    CPPALLogLevelDebug                  = 7,
 } CPPALLogLevel;
 
 typedef enum CPPALHeapOptions_e {
-    CPPALHeapOptionsDefault         = 0x00000000,
-    CPPALHeapOptionsLockless        = 0x00000001,
-    CPPALHeapOptionsFixedSize       = 0x00000002,
+    CPPALHeapOptionsDefault             = 0x00000000,
+    CPPALHeapOptionsLockless            = 0x00000001,
+    CPPALHeapOptionsFixedSize           = 0x00000002,
 } CPPALHeapOptions;
 
 typedef enum CPPALThreadOptions_e {
-    CPPALThreadOptionsDefault       = 0x00000000,
-    CPPALThreadOptionsJoinable      = 0x00000001,
-    CPPALThreadOptionsSmallStack    = 0x00000002,
+    CPPALThreadOptionsDefault           = 0x00000000,
+    CPPALThreadOptionsJoinable          = 0x00000001,
+    CPPALThreadOptionsSmallStack        = 0x00000002,
 } CPPALThreadOptions;
 
 typedef enum CPPALThreadPriority_e {
-    CPPALThreadPriorityIdle         = 0,
-    CPPALThreadPriorityLow          = 1,
-    CPPALThreadPriorityNormal       = 2,
-    CPPALThreadPriorityHigh         = 3,
-    CPPALThreadPriorityRealtime     = 4,
+    CPPALThreadPriorityIdle             = 0,
+    CPPALThreadPriorityLow              = 1,
+    CPPALThreadPriorityNormal           = 2,
+    CPPALThreadPriorityHigh             = 3,
+    CPPALThreadPriorityRealtime         = 4,
     
-    CPPALThreadPriorityDefault      = CPPALThreadPriorityNormal,
+    CPPALThreadPriorityDefault          = CPPALThreadPriorityNormal,
 } CPPALThreadPriority;
+
+typedef enum CPPALSystemPath_e {
+    CPPALSystemPathAppExecutable        = 0,
+    CPPALSystemPathAppResources         = 1,
+    CPPALSystemPathTemp                 = 2,
+
+    CPPALSystemPathMax,
+} CPPALSystemPath;
 
 typedef struct CPPALSystemInfo_t {
     struct {
@@ -76,15 +98,17 @@ typedef struct CPPALSystemInfo_t {
 } CPPALSystemInfo;
 
 typedef struct CPPALOptions_t {
-    BOOL                reserved;
+    CPChar              applicationName[128];
 } CPPALOptions;
 
 CP_DECLARE_TYPE(CPPAL);
 
 struct CPPAL_t {
-    CPObject            base;
+    CPObject            object;
     
     const CPPALOptions  options;
+
+    CPURLRef            systemPaths[CPPALSystemPathMax];
 };
 
 typedef sal_callback void (*CPPALThreadEntry)(sal_inout CPPALRef pal, sal_inout_opt void* state);
@@ -94,6 +118,10 @@ CP_API sal_checkReturn sal_out_bcount_opt(size) CPPALRef CPPALAlloc(sal_in const
 CP_API sal_checkReturn sal_out_opt CPPALRef CPPALCreate(const CPPALOptions* options);
 
 CP_API BOOL CPPALSystemInfoQuery(sal_inout CPPALRef pal, sal_inout CPPALSystemInfo* sysInfo);
+CP_API sal_out_opt CPURLRef CPPALSystemGetPath(sal_inout CPPALRef pal, const CPPALSystemPath systemPath);
+
+CP_API BOOL CPPALConvertURLToFileSystemPath(sal_inout CPPALRef pal, sal_inout CPURLRef url, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize);
+CP_API sal_out_opt CPURLRef CPPALConvertFileSystemPathToURL(sal_inout CPPALRef pal, sal_in_z const CPChar* buffer);
 
 CP_API CPTime CPPALAbsoluteTimeGetCurrent(sal_inout CPPALRef pal);
 
