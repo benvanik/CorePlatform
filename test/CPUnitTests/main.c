@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
     CU_INVOKE_SUITE(test_str);
     CU_INVOKE_SUITE(test_object);
     CU_INVOKE_SUITE(test_array);
+    CU_INVOKE_SUITE(test_linkedlist);
     CU_INVOKE_SUITE(test_pal);
     
     CU_basic_set_mode(CU_BRM_VERBOSE);

@@ -27,6 +27,7 @@
     <ClInclude Include="CPCommon.h" />
     <ClInclude Include="CPConfig.h" />
     <ClInclude Include="CPDebugging.h" />
+    <ClInclude Include="CPLinkedList.h" />
     <ClInclude Include="CPMath.h" />
     <ClInclude Include="CPMemory.h" />
     <ClInclude Include="CPObject.h" />
@@ -38,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPArray.c" />
+    <ClCompile Include="CPLinkedList.c" />
     <ClCompile Include="CPMemory.c" />
     <ClCompile Include="CPObject.c" />
     <ClCompile Include="CPPAL-OSX.c">

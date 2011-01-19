@@ -22,6 +22,7 @@
     <ClCompile Include="main.c" />
     <ClCompile Include="test_array.c" />
     <ClCompile Include="test_atomic.c" />
+    <ClCompile Include="test_linkedlist.c" />
     <ClCompile Include="test_math.c" />
     <ClCompile Include="test_memory.c" />
     <ClCompile Include="test_object.c" />
