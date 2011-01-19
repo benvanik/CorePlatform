@@ -18,15 +18,15 @@ struct CPPlainObject_t {
     CPObject        base;
 };
 CP_DEFINE_TYPE(CPPlainObject, NULL, CPPlainObjectDealloc);
-sal_checkReturn sal_out_opt CPPlainObject* CPPlainObjectCreate()
+sal_checkReturn sal_out_opt CPPlainObjectRef CPPlainObjectCreate()
 {
-    CPPlainObject* obj = (CPPlainObject*)CPObjectAlloc(&CPPlainObjectType, sizeof(CPPlainObject));
+    CPPlainObjectRef obj = (CPPlainObjectRef)CPObjectAlloc(&CPPlainObjectType, sizeof(CPPlainObject));
     if (!obj) {
         return NULL;
     }
     return obj;
 }
-sal_callback void CPPlainObjectDealloc(sal_inout CPPlainObject* obj)
+sal_callback void CPPlainObjectDealloc(sal_inout CPPlainObjectRef obj)
 {
     _test_object_dealloced = 1;
 }
@@ -36,15 +36,15 @@ struct CPBaseObject_t {
     CPObject        base;
 };
 CP_DEFINE_TYPE(CPBaseObject, NULL, CPBaseObjectDealloc);
-sal_checkReturn sal_out_opt CPBaseObject* CPBaseObjectAlloc(sal_in const CPObjectType* subclassType, const size_t size)
+sal_checkReturn sal_out_opt CPBaseObjectRef CPBaseObjectAlloc(sal_in const CPObjectType* subclassType, const size_t size)
 {
-    CPBaseObject* obj = (CPBaseObject*)CPObjectAlloc(subclassType, size);
+    CPBaseObjectRef obj = (CPBaseObjectRef)CPObjectAlloc(subclassType, size);
     if (!obj) {
         return NULL;
     }
     return obj;
 }
-sal_callback void CPBaseObjectDealloc(sal_inout CPBaseObject* obj)
+sal_callback void CPBaseObjectDealloc(sal_inout CPBaseObjectRef obj)
 {
     _test_object_base_dealloced = 1;
 }
@@ -54,15 +54,15 @@ struct CPSubclassObject_t {
     CPBaseObject    base;
 };
 CP_DEFINE_TYPE(CPSubclassObject, &CPBaseObjectType, CPSubclassObjectDealloc);
-sal_checkReturn sal_out_opt CPSubclassObject* CPSubclassObjectCreate()
+sal_checkReturn sal_out_opt CPSubclassObjectRef CPSubclassObjectCreate()
 {
-    CPSubclassObject* obj = (CPSubclassObject*)CPBaseObjectAlloc(&CPSubclassObjectType, sizeof(CPSubclassObject));
+    CPSubclassObjectRef obj = (CPSubclassObjectRef)CPBaseObjectAlloc(&CPSubclassObjectType, sizeof(CPSubclassObject));
     if (!obj) {
         return NULL;
     }
     return obj;
 }
-sal_callback void CPSubclassObjectDealloc(sal_inout CPSubclassObject* obj)
+sal_callback void CPSubclassObjectDealloc(sal_inout CPSubclassObjectRef obj)
 {
     _test_object_subclass_dealloced = 1;
 }
@@ -81,7 +81,7 @@ void test_object_plain()
 {
     _test_object_dealloced = 0;
     
-    CPPlainObject* obj = CPPlainObjectCreate();
+    CPPlainObjectRef obj = CPPlainObjectCreate();
     CU_ASSERT(obj != NULL);
     CPRelease(obj);
     CU_ASSERT(obj == NULL);
@@ -93,7 +93,7 @@ void test_object_subclass()
     _test_object_base_dealloced = 0;
     _test_object_subclass_dealloced = 0;
     
-    CPSubclassObject* obj = (CPSubclassObject*)CPObjectAlloc(&CPSubclassObjectType, sizeof(CPSubclassObject));
+    CPSubclassObjectRef obj = (CPSubclassObjectRef)CPObjectAlloc(&CPSubclassObjectType, sizeof(CPSubclassObject));
     CU_ASSERT(obj != NULL);
     CPRelease(obj);
     CU_ASSERT(obj == NULL);
@@ -103,8 +103,8 @@ void test_object_subclass()
 
 void test_object_retainrelease()
 {
-    CPPlainObject* obj;
-    CPPlainObject* p;
+    CPPlainObjectRef obj;
+    CPPlainObjectRef p;
     
     _test_object_dealloced = 0;
     

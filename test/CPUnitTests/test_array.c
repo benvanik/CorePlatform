@@ -16,20 +16,19 @@ struct CPArrayItem_t {
     CPObject        base;
 };
 CP_DEFINE_TYPE(CPArrayItem, NULL, CPArrayItemDealloc);
-sal_checkReturn sal_out_opt CPArrayItem* CPArrayItemCreate()
+sal_checkReturn sal_out_opt CPArrayItemRef CPArrayItemCreate()
 {
-    CPArrayItem* obj = (CPArrayItem*)CPObjectAlloc(&CPArrayItemType, sizeof(CPArrayItem));
+    CPArrayItemRef obj = (CPArrayItemRef)CPObjectAlloc(&CPArrayItemType, sizeof(CPArrayItem));
     if (!obj) {
         return NULL;
     }
     _test_array_total_item_count++;
     return obj;
 }
-sal_callback void CPArrayItemDealloc(sal_inout CPArrayItem* obj)
+sal_callback void CPArrayItemDealloc(sal_inout CPArrayItemRef obj)
 {
     _test_array_total_item_count--;
 }
-
 
 static int test_array_init()
 {
@@ -43,7 +42,7 @@ static int test_array_clean()
 
 void test_array_create()
 {
-    CPArray* array;
+    CPArrayRef array;
     
     array = CPArrayCreate(0);
     CU_ASSERT(array != NULL);
@@ -66,7 +65,7 @@ void test_array_create()
 
 void test_array_expansion()
 {
-    CPArray* array;
+    CPArrayRef array;
     BOOL anyFailed;
     
     array = CPArrayCreate(0);
@@ -75,7 +74,7 @@ void test_array_expansion()
     CU_ASSERT(CPArrayGetCount(array) == 0);
     anyFailed = FALSE;
     for (size_t n = 0; n < 128; n++) {
-        CPArrayItem* item = CPArrayItemCreate();
+        CPArrayItemRef item = CPArrayItemCreate();
         if (!item) {
             anyFailed = TRUE;
             continue;
@@ -96,7 +95,7 @@ void test_array_expansion()
     CU_ASSERT(CPArrayGetCount(array) == 0);
     anyFailed = FALSE;
     for (size_t n = 0; n < 128; n++) {
-        CPArrayItem* item = CPArrayItemCreate();
+        CPArrayItemRef item = CPArrayItemCreate();
         if (!item) {
             anyFailed = TRUE;
             continue;
@@ -115,18 +114,18 @@ void test_array_expansion()
 
 void test_array_addremove()
 {
-    CPArray* array;
+    CPArrayRef array;
     BOOL anyFailed;
-    CPArrayItem* item0;
-    CPArrayItem* item1;
-    CPArrayItem* item2;
+    CPArrayItemRef item0;
+    CPArrayItemRef item1;
+    CPArrayItemRef item2;
     
     _test_array_total_item_count = 0;
     array = CPArrayCreate(128);
     CU_ASSERT(array != NULL);
     anyFailed = FALSE;
     for (size_t n = 0; n < 128; n++) {
-        CPArrayItem* item = CPArrayItemCreate();
+        CPArrayItemRef item = CPArrayItemCreate();
         if (!item) {
             anyFailed = TRUE;
             continue;
@@ -147,7 +146,7 @@ void test_array_addremove()
     CU_ASSERT(array != NULL);
     anyFailed = FALSE;
     for (size_t n = 0; n < 128; n++) {
-        CPArrayItem* item = CPArrayItemCreate();
+        CPArrayItemRef item = CPArrayItemCreate();
         CU_ASSERT(item != NULL);
         if (!CPArrayAddItem(array, item)) {
             anyFailed = TRUE;
