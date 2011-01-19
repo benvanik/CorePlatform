@@ -79,7 +79,7 @@ sal_checkReturn BOOL CPWin32PALSetupSystemPaths(sal_inout CPPALRef pal)
 
     // Current executable path
     bufferLength = GetModuleFileName(NULL, buffer, CPCOUNT(buffer));
-    CPEXPECTTRUE(bufferLength > 0);
+    CPEXPECT(bufferLength > 0);
     url = CPPALConvertFileSystemPathToURL(pal, buffer);
     CPEXPECTNOTNULL(url);
     pal->systemPaths[CPPALSystemPathAppExecutable] = CPURLRetain(url);
@@ -87,11 +87,11 @@ sal_checkReturn BOOL CPWin32PALSetupSystemPaths(sal_inout CPPALRef pal)
 
     // Application path (app data)
     bufferLength = GetModuleFileName(NULL, buffer, CPCOUNT(buffer));
-    CPEXPECTTRUE(bufferLength > 0);
+    CPEXPECT(bufferLength > 0);
     const CPChar* lastSlash = CPStrRChr(buffer, '\\');
     CPEXPECTNOTNULL(lastSlash);
     bufferLength = (lastSlash - buffer) + 1;
-    CPEXPECTTRUE(bufferLength + 1 < CPCOUNT(buffer));
+    CPEXPECT(bufferLength + 1 < CPCOUNT(buffer));
     buffer[bufferLength] = 0;
     url = CPPALConvertFileSystemPathToURL(pal, buffer);
     CPEXPECTNOTNULL(url);
@@ -100,7 +100,7 @@ sal_checkReturn BOOL CPWin32PALSetupSystemPaths(sal_inout CPPALRef pal)
 
     // Temp directory
     bufferLength = GetTempPath(CPCOUNT(buffer), buffer);
-    CPEXPECTTRUE(bufferLength > 0);
+    CPEXPECT(bufferLength > 0);
     // TODO: add random secure string on the end of temp path
     CPEXPECTNOTNULL(CPStrCat(buffer, CPCOUNT(buffer), pal->options.applicationName));
     CPEXPECTNOTNULL(CPStrCat(buffer, CPCOUNT(buffer), CPTEXT(".XXXXXXX\\")));
@@ -150,7 +150,7 @@ BOOL CPWin32PALGetProcessorInfo(sal_inout CPPALSystemInfo* sysInfo)
     // Call GetLogicalProcessorInformation to get the buffer length, allocate it, and then call again to fill
     DWORD bufferLength = 0;
     CPEXPECTFALSE(glpi(NULL, &bufferLength));
-    CPEXPECT(GetLastError(), ERROR_INSUFFICIENT_BUFFER);
+    CPEXPECT(GetLastError() == ERROR_INSUFFICIENT_BUFFER);
     buffer = (PSYSTEM_LOGICAL_PROCESSOR_INFORMATION)CPStackAlloc(bufferLength);
     CPEXPECTNOTNULL(buffer);
     CPEXPECTTRUE(glpi(buffer, &bufferLength));

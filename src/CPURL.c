@@ -82,7 +82,7 @@ CP_API sal_checkReturn sal_out_opt CPURLRef CPURLCreate(sal_inout_opt CPURLRef b
     url->value[sourceLength] = 0;
 
     // A little late to do the check, but verify the URL is (somewhat) valid
-    CPEXPECTNOT(_CPURLMeasureAbsoluteLength(url), -1);
+    CPEXPECT(_CPURLMeasureAbsoluteLength(url) > 0);
 
     return url;
 

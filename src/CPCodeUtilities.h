@@ -89,8 +89,8 @@ typedef CPCACHEALIGN volatile void      CPAlignedVoid;
 #endif
 #endif
 
-#define CPEXPECT(expr, result)          if ( (expr) != (result) ) { goto CPCLEANUP; }
-#define CPEXPECTNOT(expr, result)       if ( (expr) == (result) ) { goto CPCLEANUP; }
+#define CPFAIL()                        goto CPCLEANUP
+#define CPEXPECT(expr)                  if (!(expr)             ) { goto CPCLEANUP; }
 #define CPEXPECTTRUE(expr)              if (!(expr)             ) { goto CPCLEANUP; }
 #define CPEXPECTFALSE(expr)             if ( (expr)             ) { goto CPCLEANUP; }
 #define CPEXPECTZERO(expr)              if ( (expr) != 0        ) { goto CPCLEANUP; }

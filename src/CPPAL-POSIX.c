@@ -54,7 +54,7 @@ sal_checkReturn BOOL CPPOSIXPALSetupSystemPaths(sal_inout CPPALRef pal)
         strcat(buffer, pal->options.applicationName);
     }
     bufferLength = CPStrLen(buffer);
-    CPEXPECTTRUE(bufferLength > 0);
+    CPEXPECT(bufferLength > 0);
     url = CPPALConvertFileSystemPathToURL(pal, buffer);
     CPEXPECTNOTNULL(url);
     pal->systemPaths[CPPALSystemPathAppExecutable] = CPURLRetain(url);
@@ -63,7 +63,7 @@ sal_checkReturn BOOL CPPOSIXPALSetupSystemPaths(sal_inout CPPALRef pal)
     // Application path (app data)
     CPEXPECTNOTNULL(getcwd(buffer, CPCOUNT(buffer)));
     bufferLength = CPStrLen(buffer);
-    CPEXPECTTRUE(bufferLength > 0);
+    CPEXPECT(bufferLength > 0);
     url = CPPALConvertFileSystemPathToURL(pal, buffer);
     CPEXPECTNOTNULL(url);
     pal->systemPaths[CPPALSystemPathAppResources] = CPURLRetain(url);

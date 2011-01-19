@@ -39,7 +39,7 @@ CP_API sal_checkReturn sal_out_opt CPPALRef CPPALCreate(const CPPALOptions* opti
     CPEXPECTNOTNULL(pal);
 
     mach_timebase_info_data_t info;
-    CPEXPECT(mach_timebase_info(&info), KERN_SUCCESS);
+    CPEXPECT(mach_timebase_info(&info) == KERN_SUCCESS);
     pal->timeToSec = (CPTime)((info.numer / info.denom) / 1000000000.0);
     
     CPEXPECTTRUE(CPOSXPALSetupSystemPaths(&pal->base));

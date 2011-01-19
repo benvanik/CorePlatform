@@ -27,7 +27,7 @@ BOOL CPStringValidateRange(const size_t totalLength, const size_t index, const s
     // Always set so that worst case it's a no-op
     *prealLength = 0;
 
-    CPEXPECTTRUE(index <= totalLength);
+    CPEXPECT(index <= totalLength);
 
     size_t remainingLength;
     CPEXPECTTRUE(CPSubSizeT(totalLength, index, &remainingLength));
@@ -157,7 +157,7 @@ CP_API sal_checkReturn sal_out_opt CPStringRef CPStringCreateWithFormatAndArgume
     size_t totalChars;
     CPEXPECTTRUE(CPAddSizeT(string->length, 1, &totalChars));
     result = CPVSNPrintF(string->value, totalChars, format, args);
-    CPEXPECTTRUE((result != -1) && (result < totalChars));
+    CPEXPECT((result != -1) && (result < totalChars));
     
     // Wrote into string successfully!
     return string;
@@ -269,7 +269,7 @@ CP_API sal_checkReturn BOOL CPStringGetCharacters(sal_inout CPStringRef string, 
     // Verify output size
     size_t totalBytes;
     CPEXPECTTRUE(CPAddSizeT(sourceBytes, sizeof(CPChar), &totalBytes));
-    CPEXPECTTRUE(bufferSize >= totalBytes);
+    CPEXPECT(bufferSize >= totalBytes);
 
     // Copy in without the trailing NUL
     CPEXPECTTRUE(CPCopyMemory(buffer, bufferSize, string->value + index, sourceBytes));
