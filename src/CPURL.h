@@ -27,6 +27,10 @@
 
 #define CPURLInvalidIndex ((size_t)-1)
 
+typedef enum CPURLEscapeOptions_e {
+    CPURLEscapeOptionsPath          = 1,
+} CPURLEscapeOptions;
+
 CP_DECLARE_TYPE(CPURL);
 
 struct CPURL_t {
@@ -65,5 +69,5 @@ CP_API sal_checkReturn BOOL CPURLGetAbsoluteString(sal_inout CPURLRef url, sal_o
 // CPURLIsHTTPS
 // CPURLIsFile
 
-// TODO: encode/decode
-// TODO: encode/decode path
+CP_API sal_checkReturn size_t CPURLEscape(sal_in_z const CPChar* source, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize, const uint32 escapeOptions);
+CP_API sal_checkReturn size_t CPURLUnescape(sal_in_z const CPChar* source, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize);

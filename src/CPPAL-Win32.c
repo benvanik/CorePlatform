@@ -252,20 +252,22 @@ CP_API sal_out_opt CPURLRef CPPALConvertFileSystemPathToURL(sal_inout CPPALRef p
     }
 
     // Flip all slashes around from \ to /
-    for (size_t n = 0; n < MAX_PATH; n++) {
-        if (canonicalBuffer[n] == 0) {
-            break;
-        }
-        if (canonicalBuffer[n] == '\\') {
-            canonicalBuffer[n] = '/';
+    CPChar* p = canonicalBuffer;
+    while (*p) {
+        if (*p == '\\') {
+            *p = '/';
         }
     }
 
-    // scratchBuffer is now file:/// + canonicalBuffer and will contain something like 'C:/My/Long Path.txt'
+    // scratchBuffer is now file:/// + canonicalBuffer and will contain something like 'file:///C:/My/Long Path.txt'
 
-    // TODO: encode
+    // Escape scratchBuffer (we use a bigger buffer because we may be expanding by as much as 2x)
+    CPChar encodedBuffer[2048];
+    if (CPURLEscape(scratchBuffer, encodedBuffer, sizeof(encodedBuffer), CPURLEscapeOptionsPath) == -1) {
+        return NULL;
+    }
 
-    return CPURLCreate(NULL, scratchBuffer);
+    return CPURLCreate(NULL, encodedBuffer);
 #endif // XBOX360
 }
 

@@ -110,19 +110,31 @@ void test_url_create_abs()
 void test_url_create_rel()
 {
     CPURLRef url;
-    
+    CU_FAIL("test_url_create_rel unimplemented");
 }
 
 void test_url_create_copy()
 {
     CPURLRef url;
-    
+    CU_FAIL("test_url_create_copy unimplemented");
 }
 
 void test_url_gets()
 {
     CPURLRef url;
-    
+    CU_FAIL("test_url_gets unimplemented");
+}
+
+void test_url_escape()
+{
+    // TODO: test CPURLEscape
+    CU_FAIL("test_url_escape unimplemented");
+}
+
+void test_url_unescape()
+{
+    // TODO: test CPURLUnescape
+    CU_FAIL("test_url_unescape unimplemented");
 }
 
 static CU_TestInfo test_url_infos[] = {
@@ -130,6 +142,8 @@ static CU_TestInfo test_url_infos[] = {
     { "test_url_create_rel",            test_url_create_rel             },
     { "test_url_create_copy",           test_url_create_copy            },
     { "test_url_gets",                  test_url_gets                   },
+    { "test_url_escape",                test_url_escape                 },
+    { "test_url_unescape",              test_url_unescape               },
 };
 
 CU_REGISTER_SUITE(test_url);

@@ -159,3 +159,97 @@ CP_API sal_checkReturn BOOL CPURLGetAbsoluteString(sal_inout CPURLRef url, sal_o
 
     return TRUE;
 }
+
+// URL escape/unescape comes from:
+// http://www.icosaedro.it/apache/urlencode.c
+// http://www.icosaedro.it/apache/urldecode.c
+// Slight modifications made to support paths
+// http://www.faqs.org/rfcs/rfc1738.html
+
+CP_API sal_checkReturn size_t CPURLEscape(sal_in_z const CPChar* source, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize, const uint32 escapeOptions)
+{
+    const CPChar* hex = CPTEXT("0123456789abcdef");
+
+    // Require room for at least one character (NUL)
+    if (bufferSize < sizeof(CPChar)) {
+        return -1;
+    }
+
+    // For each character in the source string, copy or escape to the buffer
+    size_t index = 0;
+    const CPChar* sp = source;
+    while (*sp) {
+        const CPChar c = *sp;
+
+        // Error out on non-ASCII characters
+        if (c > 0x255) {
+            return -1;
+        }
+
+        // Determine if character needs escaping
+        BOOL needsEscaping = TRUE;
+        if ((('a' <= c) && (c <= 'z')) ||
+            (('A' <= c) && (c <= 'Z')) ||
+            (('0' <= c) && (c <= '9'))) {
+            // No - in the valid range
+            needsEscaping = FALSE;
+        } else if (escapeOptions & CPURLEscapeOptionsPath) {
+            // Check to see if it's a valid path character
+            // This list is taken from RFC1738 - should be pretty inclusive
+            if ((c == '/') || (c == '@') ||
+                (c == ':') || (c == ';') ||
+                (c == '_') || (c == '-') ||
+                (c == '+') || (c == '=') ||
+                (c == '.') || (c == '?') ||
+                (c == '&') || (c == '#')) {
+                needsEscaping = FALSE;
+            }
+        }
+
+        size_t charsToWrite;
+        if (needsEscaping) {
+            // 3 for the escaped byte + NUL at the end
+            charsToWrite = 3 + 1;
+        } else {
+            // 1 for the character + NUL at the end
+            charsToWrite = 1 + 1;
+        }
+
+        // Verify we can write at least charsToWrite to the buffer
+        size_t endIndex;
+        if (!CPAddSizeT(index, 3 + 1, &endIndex)) {
+            return -1;
+        }
+        size_t endOffset;
+        if (!CPMultSizeT(endIndex, sizeof(CPChar), &endOffset)) {
+            return -1;
+        }
+        if (endOffset > bufferSize) {
+            return -1;
+        }
+
+        // Write the characters
+        if (needsEscaping) {
+            buffer[index++] = '%';
+            buffer[index++] = hex[c >> 4];
+            buffer[index++] = hex[c & 15];
+        } else {
+            
+            buffer[index++] = c;
+        }
+
+        sp++;
+    }
+
+    // Add trailing NUL
+    buffer[index++] = 0;
+
+    // Return character count (excluding NUL)
+    return index - 1;
+}
+
+CP_API sal_checkReturn size_t CPURLUnescape(sal_in_z const CPChar* source, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize)
+{
+    CPASSERTALWAYS();
+    return -1;
+}
