@@ -59,9 +59,25 @@ sal_callback void CPOSXPALDealloc(sal_inout CPOSXPALRef pal)
 
 sal_out_opt CPURLRef CPOSXPALConvertCFURLToCPURL(sal_inout CFURLRef source)
 {
-    // TODO: CFURL -> CPURL
-    CPASSERTALWAYS();
-    return NULL;
+    CFStringRef cfstring = CFURLGetString(source);
+    CFIndex length = CFStringGetLength(cfstring);
+    
+    CPChar* buffer = (CPChar*)CPAlloc((length + 1) * sizeof(CPChar));
+    if (!buffer) {
+        return NULL;
+    }
+    
+    CFStringInlineBuffer inlineBuffer;
+    CFStringInitInlineBuffer(cfstring, &inlineBuffer, CFRangeMake(0, length));
+    for (size_t n = 0; n < length; n++) {
+        UniChar c = CFStringGetCharacterFromInlineBuffer(&inlineBuffer, n);
+        buffer[n] = (CPChar)c;
+    }
+    
+    CPURLRef url = CPURLCreate(NULL, buffer);
+    CPFree(buffer);
+    
+    return url;
 }
 
 sal_checkReturn BOOL CPOSXPALSetupSystemPaths(sal_inout CPPALRef pal)
@@ -100,13 +116,11 @@ sal_checkReturn BOOL CPOSXPALSetupSystemPaths(sal_inout CPPALRef pal)
     CPEXPECTNOTNULL(url);
     pal->systemPaths[CPPALSystemPathTemp] = CPURLRetain(url);
     CPRelease(url);
-
-    CFRelease(bundle);
+    
     return TRUE;
 
 CPCLEANUP:
     CFRelease(cfurl);
-    CFRelease(bundle);
     CPRelease(url);
     return FALSE;
 }

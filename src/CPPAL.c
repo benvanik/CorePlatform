@@ -83,7 +83,24 @@ CP_API BOOL CPPALConvertURLToFileSystemPath(sal_inout CPPALRef pal, sal_inout CP
 
 CP_API sal_out_opt CPURLRef CPPALConvertFileSystemPathToURL(sal_inout CPPALRef pal, sal_in_z const CPChar* buffer)
 {
-    CPASSERTALWAYS();
+    // Incoming is expected to be /path/file.etc
+    if (buffer[0] != '/') {
+        return NULL;
+    }
+    
+    CPURLRef baseURL = NULL;
+    CPURLRef finalURL = NULL;
+    
+    baseURL = CPURLCreate(NULL, CPTEXT("file://localhost/"));
+    CPEXPECTNOTNULL(baseURL);
+    finalURL = CPURLCreate(baseURL, buffer);
+    CPEXPECTNOTNULL(finalURL);
+    CPRelease(baseURL);
+    return finalURL;
+    
+CPCLEANUP:
+    CPRelease(finalURL);
+    CPRelease(baseURL);
     return NULL;
 }
 
