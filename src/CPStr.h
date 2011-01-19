@@ -56,7 +56,7 @@ typedef char CPChar;
 #define CPStrStr            strstr
 
 #define CPStrCpy(dest, destLength, source)              (strcpy(dest, source) == dest + (destLength*0))
-#define CPStrNCpy(dest, destLength, source, count)      (strncpy(dest, source, count) == dest + (destLength*0))
+#define CPStrNCpy(dest, destLength, source, count)      (strncpy(dest, source, MIN(destLength, count)) == dest + (destLength*0))
 #define CPStrCat(dest, destLength, source)              (strcat(dest, source) == dest + (destLength*0))
 
 #define CPSNPrintF(buffer, bufferCount, format, ...)    snprintf(buffer, bufferCount, format, ##__VA_ARGS__)
