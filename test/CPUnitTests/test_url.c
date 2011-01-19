@@ -19,43 +19,91 @@ static int test_url_clean()
     return 0;
 }
 
+// url | relative path | url + relative
+const CPChar* test_url_validURLs[] = {
+    CPTEXT("http://test"),                                  CPTEXT("path/file"),            CPTEXT("http://test/path/file"),
+    CPTEXT("http://test/"),                                 CPTEXT("path/file"),            CPTEXT("http://test/path/file"),
+    CPTEXT("http://test"),                                  CPTEXT("/path/file"),           CPTEXT("http://test/path/file"),
+    CPTEXT("http://test/"),                                 CPTEXT("/path/file"),           CPTEXT("http://test/path/file"),
+    CPTEXT("http://test.com"),                              CPTEXT("path/file"),            CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/"),                             CPTEXT("path/file"),            CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com"),                              CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/"),                             CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/x"),                            CPTEXT("path/file"),            CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/x/"),                           CPTEXT("path/file"),            CPTEXT("http://test.com/x/path/file"),
+    CPTEXT("http://test.com/x"),                            CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/x/"),                           CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/x."),                           CPTEXT("path/file"),            CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/x./"),                          CPTEXT("path/file"),            CPTEXT("http://test.com/x./path/file"),
+    CPTEXT("http://test.com/x."),                           CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/x./"),                          CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/x.y"),                          CPTEXT("path/file"),            CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/x.y/"),                         CPTEXT("path/file"),            CPTEXT("http://test.com/x.y/path/file"),
+    CPTEXT("http://test.com/x.y"),                          CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/x.y/"),                         CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/x.y/a"),                        CPTEXT("path/file"),            CPTEXT("http://test.com/x.y/path/file"),
+    CPTEXT("http://test.com/x.y/a/"),                       CPTEXT("path/file"),            CPTEXT("http://test.com/x.y/a/path/file"),
+    CPTEXT("http://test.com/x.y/a"),                        CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/x.y/a/"),                       CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/x.y/a."),                       CPTEXT("path/file"),            CPTEXT("http://test.com/x.y/path/file"),
+    CPTEXT("http://test.com/x.y/a.b"),                      CPTEXT("path/file"),            CPTEXT("http://test.com/x.y/a.b/path/file"),
+    CPTEXT("http://test.com/x.y/a."),                       CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/x.y/a.b"),                      CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/a%20b/"),                       CPTEXT("path/f%20ile"),         CPTEXT("http://test.com/a%20b/path/f%20ile"),
+    CPTEXT("http://test.com/a%20%2E"),                      CPTEXT("path/f%20ile"),         CPTEXT("http://test.com/a%20b%2E/path/f%20ile"),
+    CPTEXT("http://test.com/a%20b/"),                       CPTEXT("/path/f%20ile"),        CPTEXT("http://test.com/path/f%20ile"),
+    CPTEXT("http://test.com/a%20%2E"),                      CPTEXT("/path/f%20ile"),        CPTEXT("http://test.com/path/f%20ile"),
+    CPTEXT("http://test.com/a?k1=v1&k2=v2"),                CPTEXT("path/file"),            CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/a/?k1=v1&k2=v2"),               CPTEXT("path/file"),            CPTEXT("http://test.com/a/path/file"),
+    CPTEXT("http://test.com/a?k1=v1&k2=v2"),                CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/a/?k1=v1&k2=v2"),               CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/a#fragment"),                   CPTEXT("path/file"),            CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/a/#fragment"),                  CPTEXT("path/file"),            CPTEXT("http://test.com/a/path/file"),
+    CPTEXT("http://test.com/a#fragment"),                   CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/a/#fragment"),                  CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/a/#fragment"),                  CPTEXT("path/#frag"),           CPTEXT("http://test.com/a/path/#frag"),
+    CPTEXT("http://test.com/a#fragment"),                   CPTEXT("path/file#frag"),       CPTEXT("http://test.com/path/file#frag"),
+    CPTEXT("http://test.com/a/#fragment"),                  CPTEXT("#FRAG"),                CPTEXT("http://test.com/a/#FRAG"),
+    CPTEXT("http://test.com/a/#fragment"),                  CPTEXT("/#FRAG"),               CPTEXT("http://test.com/#FRAG"),
+    CPTEXT("http://test.com/a?k1=v1&k2=v2#frag"),           CPTEXT("path/file"),            CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/a/?k1=v1&k2=v2#frag"),          CPTEXT("path/file"),            CPTEXT("http://test.com/a/path/file"),
+    CPTEXT("http://test.com/a?k1=v1&k2=v2#frag"),           CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/a/?k1=v1&k2=v2#frag"),          CPTEXT("/path/file"),           CPTEXT("http://test.com/path/file"),
+    CPTEXT("http://test.com/a?k1=v1&k2=v2#frag"),           CPTEXT("path/file?K=V"),        CPTEXT("http://test.com/path/file?K=V"),
+    CPTEXT("http://test.com/a/?k1=v1&k2=v2#frag"),          CPTEXT("path/file?K=V"),        CPTEXT("http://test.com/a/path/file?K=V"),
+    CPTEXT("http://test.com/a?k1=v1&k2=v2#frag"),           CPTEXT("/path/file?K=V"),       CPTEXT("http://test.com/path/file?K=V"),
+    CPTEXT("http://test.com/a/?k1=v1&k2=v2#frag"),          CPTEXT("/path/file?K=V"),       CPTEXT("http://test.com/path/file?K=V"),
+    CPTEXT("http://test.com/a"),                            CPTEXT("?K=V"),                 CPTEXT("http://test.com/a?K=V"),
+    CPTEXT("http://test.com/a/"),                           CPTEXT("?K=V"),                 CPTEXT("http://test.com/a/?K=V"),
+    CPTEXT("http://test.com/a"),                            CPTEXT("/?K=V"),                CPTEXT("http://test.com/?K=V"),
+    CPTEXT("http://test.com/a/"),                           CPTEXT("/?K=V"),                CPTEXT("http://test.com/?K=V"),
+    CPTEXT("http:///"),                                     CPTEXT("path/file"),            CPTEXT("http:///path/file"),
+    CPTEXT("http:///x"),                                    CPTEXT("path/file"),            CPTEXT("http:///path/file"),
+    CPTEXT("http:///"),                                     CPTEXT("/path/file"),           CPTEXT("http:///path/file"),
+    CPTEXT("http:///x"),                                    CPTEXT("/path/file"),           CPTEXT("http:///path/file"),
+    CPTEXT("http://test:123"),                              CPTEXT("path/file"),            CPTEXT("http://test:123/path/file"),
+    CPTEXT("http://test:123/"),                             CPTEXT("path/file"),            CPTEXT("http://test:123/path/file"),
+    CPTEXT("http://test:123"),                              CPTEXT("/path/file"),           CPTEXT("http://test:123/path/file"),
+    CPTEXT("http://test:123/"),                             CPTEXT("/path/file"),           CPTEXT("http://test:123/path/file"),
+    CPTEXT("http://test.com:123"),                          CPTEXT("path/file"),            CPTEXT("http://test.com:123/path/file"),
+    CPTEXT("http://test.com:123/"),                         CPTEXT("path/file"),            CPTEXT("http://test.com:123/path/file"),
+    CPTEXT("http://test.com:123/x"),                        CPTEXT("/path/file"),           CPTEXT("http://test.com:123/path/file"),
+    CPTEXT("http://test.com:123/x/"),                       CPTEXT("/path/file"),           CPTEXT("http://test.com:123/path/file"),
+    CPTEXT("about:blank"),                                  CPTEXT("path/file"),            CPTEXT("about:blank/path/file"),
+    CPTEXT("about:blank/"),                                 CPTEXT("path/file"),            CPTEXT("about:blank/path/file"),
+    CPTEXT("about:blank/test1"),                            CPTEXT("path/file"),            CPTEXT("about:blank/path/file"),
+    CPTEXT("about:blank/test1/"),                           CPTEXT("path/file"),            CPTEXT("about:blank/test1/path/file"),
+    CPTEXT("about:blank"),                                  CPTEXT("/path/file"),           CPTEXT("about:blank/path/file"),
+    CPTEXT("about:blank/"),                                 CPTEXT("/path/file"),           CPTEXT("about:blank/path/file"),
+    CPTEXT("about:blank/test1"),                            CPTEXT("/path/file"),           CPTEXT("about:blank/path/file"),
+    CPTEXT("about:blank/test1/"),                           CPTEXT("/path/file"),           CPTEXT("about:blank/path/file"),
+};
+
 void test_url_create_abs()
 {
     CPURLRef url;
     CPStringRef sourceString;
     CPChar buffer[4096];
-
-    const CPChar* validURLs[] = {
-        CPTEXT("http://test"),
-        CPTEXT("http://test/"),
-        CPTEXT("http://test.com"),
-        CPTEXT("http://test.com/"),
-        CPTEXT("http://test.com/x"),
-        CPTEXT("http://test.com/x/"),
-        CPTEXT("http://test.com/x."),
-        CPTEXT("http://test.com/x.y"),
-        CPTEXT("http://test.com/x.y/"),
-        CPTEXT("http://test.com/x.y/a"),
-        CPTEXT("http://test.com/x.y/a/"),
-        CPTEXT("http://test.com/x.y/a."),
-        CPTEXT("http://test.com/x.y/a.b"),
-        CPTEXT("http://test.com/a%20b/"),
-        CPTEXT("http://test.com/a%20%2E"),
-        CPTEXT("http://test.com/a?key1=value1&key2=value2"),
-        CPTEXT("http://test.com/a/?key1=value1&key2=value2"),
-        CPTEXT("http://test.com/a#fragment"),
-        CPTEXT("http://test.com/a/#fragment"),
-        CPTEXT("http://test.com/a?key1=value1&key2=value2#fragment"),
-        CPTEXT("http://test.com/a/?key1=value1&key2=value2#fragment"),
-        CPTEXT("http:///"),
-        CPTEXT("http:///x"),
-        CPTEXT("http://test:123"),
-        CPTEXT("http://test:123/"),
-        CPTEXT("http://test.com:123"),
-        CPTEXT("http://test.com:123/"),
-        CPTEXT("http://test.com:123/x"),
-        CPTEXT("http://test.com:123/x/"),
-    };
 
     const CPChar* invalidURLs[] = {
         CPTEXT(""),
@@ -65,12 +113,11 @@ void test_url_create_abs()
         CPTEXT("http://"),
         CPTEXT("http://test:"),
         CPTEXT("http://test:/"),
-        CPTEXT("http://test:XXX"),
-        CPTEXT("http://test:XXX/"),
     };
 
-    for (size_t n = 0; n < CPCOUNT(validURLs); n++) {
-        const CPChar* source = validURLs[n];
+    for (size_t n = 0; n < CPCOUNT(test_url_validURLs); n += 3) {
+        const CPChar* source = test_url_validURLs[n + 0];
+
         url = CPURLCreate(NULL, source);
         CU_ASSERT(url != NULL);
         if (!url) {
@@ -110,7 +157,52 @@ void test_url_create_abs()
 void test_url_create_rel()
 {
     CPURLRef url;
-    CU_FAIL("test_url_create_rel unimplemented");
+    CPURLRef sub;
+    CPChar buffer[4096];
+
+    /*const CPChar* invalidURLs[] = {
+        CPTEXT(""),
+        CPTEXT("h"),
+        CPTEXT("http:"),
+        CPTEXT("http:/"),
+        CPTEXT("http://"),
+        CPTEXT("http://test:"),
+        CPTEXT("http://test:/"),
+    };*/
+
+    for (size_t n = 0; n < CPCOUNT(test_url_validURLs); n += 3) {
+        const CPChar* sourceBase    = test_url_validURLs[n + 0];
+        const CPChar* sourceSub     = test_url_validURLs[n + 1];
+        const CPChar* sourceVerify  = test_url_validURLs[n + 2];
+
+        url = CPURLCreate(NULL, sourceBase);
+        CU_ASSERT(url != NULL);
+        sub = CPURLCreate(url, sourceSub);
+        CU_ASSERT(sub != NULL);
+        if (!sub) {
+            int x = 123; // for debugging
+        }
+        if (sub) {
+            CU_ASSERT_TRUE(CPURLGetAbsoluteString(sub, buffer, sizeof(buffer)));
+            CU_ASSERT(CPStrCmp(sourceVerify, buffer) == 0);
+            if (CPStrCmp(sourceVerify, buffer) != 0) {
+                int y = 123;
+            }
+        }
+        CPRelease(sub);
+        CPRelease(url);
+    }
+
+    /*for (size_t n = 0; n < CPCOUNT(invalidURLs); n += 3) {
+        const CPChar* sourceBase    = invalidURLs[n + 0];
+        const CPChar* sourceSub     = invalidURLs[n + 1];
+        const CPChar* sourceVerify  = invalidURLs[n + 2];
+
+        url = CPURLCreate(NULL, sourceBase);
+        CU_ASSERT(url == NULL);
+        sub = CPURLCreate(url, sourceSub);
+        CU_ASSERT(sub == NULL);
+    }*/
 }
 
 void test_url_create_copy()

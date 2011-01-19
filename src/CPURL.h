@@ -36,6 +36,7 @@ CP_DECLARE_TYPE(CPURL);
 struct CPURL_t {
     CPObject        object;
 
+    size_t          absoluteLength;
     CPURLRef        baseURL;
 
     size_t          length;
