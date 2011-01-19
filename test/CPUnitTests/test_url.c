@@ -300,8 +300,33 @@ void test_url_create_large()
 
 void test_url_escape()
 {
-    // TODO: test CPURLEscape
-    CU_FAIL("test_url_escape unimplemented");
+    CPChar buffer[4096];
+
+    CPZeroMemory(buffer, sizeof(buffer), 0, sizeof(buffer));
+    CU_ASSERT(CPURLEscape(CPTEXT("h e l l o"), buffer, 0, 0) == -1);
+    CPZeroMemory(buffer, sizeof(buffer), 0, sizeof(buffer));
+    CU_ASSERT(CPURLEscape(CPTEXT("h e l l o"), buffer, sizeof(buffer), 0) != -1);
+    CU_ASSERT(CPStrCmp(buffer, CPTEXT("h%20e%20l%20l%20o")) == 0);
+    CPZeroMemory(buffer, sizeof(buffer), 0, sizeof(buffer));
+    CU_ASSERT(CPURLEscape(CPTEXT("/@:;_-+=.?&#h e l l o"), buffer, sizeof(buffer), 0) != -1);
+    CU_ASSERT(CPStrCmp(buffer, CPTEXT("%2f%40%3a%3b%5f%2d%2b%3d%2e%3f%26%23h%20e%20l%20l%20o")) == 0);
+    CPZeroMemory(buffer, sizeof(buffer), 0, sizeof(buffer));
+    CU_ASSERT(CPURLEscape(CPTEXT("/@:;_-+=.?&#h e l l o"), buffer, sizeof(buffer), CPURLEscapeOptionsPath) != -1);
+    CU_ASSERT(CPStrCmp(buffer, CPTEXT("/@:;_-+=.?&#h%20e%20l%20l%20o")) == 0);
+
+    // Try large
+    const size_t largeLength = 16 * 1024;
+    CPChar* large = (CPChar*)CPAlloc(largeLength * sizeof(CPChar));
+    CPStrCat(large, largeLength, CPTEXT("http://hello.com"));
+    for (size_t n = 0; n < largeLength - 16 - 1; n++) {
+        if ((n % 10) == 0) {
+            large[n + 16] = '/';
+        } else {
+            large[n + 16] = '0' + (n % 10);
+        }
+    }
+    CU_ASSERT(CPURLEscape(large, buffer, sizeof(buffer), 0) == -1);
+    CPFree(large);
 }
 
 void test_url_unescape()
