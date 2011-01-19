@@ -19,6 +19,9 @@
 
 #if CP_PLATFORM(WIN32)
 
+#include <stdio.h>
+#include <stdarg.h>
+
 typedef wchar_t CPChar;
 #define CP_WCHAR            1
 #define CPTEXT(s)           L ## s
@@ -30,8 +33,12 @@ typedef wchar_t CPChar;
 #define CPStrRChr           wcsrchr
 #define CPStrStr            wcsstr
 
-#define CPSNPrintF(buffer, bufferCount, format, ...)    _snwprintf_s(buffer, bufferCount, bufferCount, format, ##__VA_ARGS__)
-#define CPVSNPrintF(buffer, bufferCount, format, args)  _vsnwprintf_s(buffer, bufferCount, bufferCount, format, args)
+#define CPStrCat(dest, size, source)                    (wcscat_s(dest, size, source) == 0)
+
+#define CPSNPrintF(buffer, bufferCount, format, ...)    _snwprintf_s(buffer, bufferCount, (bufferCount) ? (bufferCount - 1) : 0, format, ##__VA_ARGS__)
+#define CPVSNPrintF(buffer, bufferCount, format, args)  _vsnwprintf_s(buffer, bufferCount, (bufferCount) ? (bufferCount - 1) : 0, format, args)
+
+#define CPVSCPrintF(format, args)                       _vscwprintf(format, args)
 
 #else
 
@@ -46,7 +53,11 @@ typedef char CPChar;
 #define CPStrRChr           strrchr
 #define CPStrStr            strstr
 
+#define CPStrCat(dest, size, source)                    (strcat(dest, source) == dest)
+
 #define CPSNPrintF(buffer, bufferCount, format, ...)    snprintf(buffer, bufferCount, format, ##__VA_ARGS__)
 #define CPVSNPrintF(buffer, bufferCount, format, args)  vsnprintf(buffer, bufferCount, format, args)
+
+#undef CPVSCPrintF  // Not needed
 
 #endif // WIN32

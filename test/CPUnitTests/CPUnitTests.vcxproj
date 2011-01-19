@@ -28,6 +28,7 @@
     <ClCompile Include="test_object.c" />
     <ClCompile Include="test_pal.c" />
     <ClCompile Include="test_str.c" />
+    <ClCompile Include="test_string.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shared.h" />

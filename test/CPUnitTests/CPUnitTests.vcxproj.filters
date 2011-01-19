@@ -23,6 +23,9 @@
     <ClCompile Include="test_pal.c">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="test_string.c">
+      <Filter>Tests</Filter>
+    </ClCompile>
     <ClCompile Include="test_linkedlist.c">
       <Filter>Tests</Filter>
     </ClCompile>

@@ -26,6 +26,7 @@ extern "C" {
 #include <CPObject.h>
 #include <CPArray.h>
 #include <CPLinkedList.h>
+#include <CPString.h>
 #include <CPPAL.h>
 
 // NOTE: these should exist on all platforms

@@ -47,6 +47,9 @@
     <ClInclude Include="CPStr.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="CPString.h">
+      <Filter>Common\Types</Filter>
+    </ClInclude>
     <ClInclude Include="CPLinkedList.h">
       <Filter>Common\Types</Filter>
     </ClInclude>
@@ -72,6 +75,9 @@
     </ClCompile>
     <ClCompile Include="CPPAL.c">
       <Filter>Common\PAL</Filter>
+    </ClCompile>
+    <ClCompile Include="CPString.c">
+      <Filter>Common\Types</Filter>
     </ClCompile>
     <ClCompile Include="CPLinkedList.c">
       <Filter>Common\Types</Filter>

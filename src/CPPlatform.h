@@ -157,3 +157,5 @@ CP_CPU:         32BIT | 64BIT | BIGENDIAN | LITTLEENDIAN
 // Disable warning C4068: unknown pragma
 #pragma warning(disable : 4068)
 #endif // MSVC
+
+#include <stdlib.h>

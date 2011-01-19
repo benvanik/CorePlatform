@@ -35,6 +35,7 @@
     <ClInclude Include="CPPlatform.h" />
     <ClInclude Include="CPSafeMath.h" />
     <ClInclude Include="CPStr.h" />
+    <ClInclude Include="CPString.h" />
     <ClInclude Include="CPTypes.h" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +57,7 @@
     </ClCompile>
     <ClCompile Include="CPPAL-Win32.c" />
     <ClCompile Include="CPPAL.c" />
+    <ClCompile Include="CPString.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B52FD97F-8A77-4626-8B2F-6D7CC5282697}</ProjectGuid>
