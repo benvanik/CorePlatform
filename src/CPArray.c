@@ -7,7 +7,7 @@
  *
  */
 
-#include "CPArray.h"
+#include <CPArray.h>
 
 CP_DEFINE_TYPE(CPArray, NULL, CPArrayDealloc);
 

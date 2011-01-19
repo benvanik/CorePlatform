@@ -24,15 +24,24 @@
 
 #if CP_COMPILER(MSVC)
 // http://msdn.microsoft.com/en-us/library/z8y1yy88.aspx
-#define CPFORCEINLINE                   __forceinline
+#define CPFORCEINLINE                   static __forceinline
 #define CPNOINLINE                      __declspec(noinline)
 #elif CP_COMPILER(GNUC)
 // http://gcc.gnu.org/onlinedocs/gcc/Function-Attributes.html
+#if (__GNUC__ >= 4)
 #define CPFORCEINLINE                   static __inline__ __attribute__ ((always_inline))
-#define CPNOINLINE                      __attribute__ ((noinline))
 #else
-#define CPFORCEINLINE                   CP_EMPTY_MACRO
-#define CPNOINLINE                      CP_EMPTY_MACRO
+#define CPFORCEINLINE                   static __inline__
+#endif
+#define CPNOINLINE                      
+#else
+#define CPFORCEINLINE                   
+#define CPNOINLINE                      
+#endif
+// In debug mode always disable inlines (I'll thank myself for this later)
+#if defined(CP_DEBUG)
+#undef CPFORCEINLINE
+#define CPFORCEINLINE
 #endif
 
 #if CP_COMPILER(MSVC)
@@ -58,7 +67,7 @@ typedef CPCACHEALIGN volatile void      CPAlignedVoid;
 #if defined(__cplusplus)
 #define CP_EXTERNC                      extern "C"
 #else
-#define CP_EXTERNC                      
+#define CP_EXTERNC                      extern
 #endif
 #if CP_COMPILER(MSVC)
 #if defined(CP_API_EXPORT)

@@ -7,9 +7,7 @@
  *
  */
 
-#include "CPPAL.h"
-
-#include "CPPAL.h"
+#include <CPPAL.h>
 #include <CPCommon.h>
 
 #if !CP_PLATFORM(XBOX360)

@@ -7,7 +7,7 @@
  *
  */
 
-#include "CPPAL.h"
+#include <CPPAL.h>
 #include <CPCommon.h>
 
 #include <time.h>

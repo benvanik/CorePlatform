@@ -7,7 +7,7 @@
  *
  */
 
-#include "CPObject.h"
+#include <CPObject.h>
 #include <CPAtomic.h>
 #include <CPDebugging.h>
 
