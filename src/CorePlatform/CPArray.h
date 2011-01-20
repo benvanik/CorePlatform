@@ -9,16 +9,16 @@
 
 #pragma once
 
-#include <CPPlatform.h>
-#include <CPConfig.h>
-#include <CPTypes.h>
-#include <CPAnnotations.h>
-#include <CPCodeUtilities.h>
-#include <CPMath.h>
-#include <CPAtomic.h>
-#include <CPMemory.h>
-#include <CPDebugging.h>
-#include <CPObject.h>
+#include <CorePlatform/CPPlatform.h>
+#include <CorePlatform/CPConfig.h>
+#include <CorePlatform/CPTypes.h>
+#include <CorePlatform/CPAnnotations.h>
+#include <CorePlatform/CPCodeUtilities.h>
+#include <CorePlatform/CPMath.h>
+#include <CorePlatform/CPAtomic.h>
+#include <CorePlatform/CPMemory.h>
+#include <CorePlatform/CPDebugging.h>
+#include <CorePlatform/CPObject.h>
 
 #define CPArrayInvalidIndex ((size_t)-1)
 

@@ -19,47 +19,47 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CorePlatform.h" />
-    <ClInclude Include="CPAnnotations.h" />
-    <ClInclude Include="CPArray.h" />
-    <ClInclude Include="CPAtomic.h" />
-    <ClInclude Include="CPCodeUtilities.h" />
-    <ClInclude Include="CPCommon.h" />
-    <ClInclude Include="CPConfig.h" />
-    <ClInclude Include="CPDebugging.h" />
-    <ClInclude Include="CPLinkedList.h" />
-    <ClInclude Include="CPMath.h" />
-    <ClInclude Include="CPMemory.h" />
-    <ClInclude Include="CPObject.h" />
-    <ClInclude Include="CPPAL.h" />
-    <ClInclude Include="CPPlatform.h" />
-    <ClInclude Include="CPSafeMath.h" />
-    <ClInclude Include="CPStr.h" />
-    <ClInclude Include="CPString.h" />
-    <ClInclude Include="CPTypes.h" />
-    <ClInclude Include="CPURL.h" />
+    <ClInclude Include="CorePlatform\CorePlatform.h" />
+    <ClInclude Include="CorePlatform\CPAnnotations.h" />
+    <ClInclude Include="CorePlatform\CPArray.h" />
+    <ClInclude Include="CorePlatform\CPAtomic.h" />
+    <ClInclude Include="CorePlatform\CPCodeUtilities.h" />
+    <ClInclude Include="CorePlatform\CPCommon.h" />
+    <ClInclude Include="CorePlatform\CPConfig.h" />
+    <ClInclude Include="CorePlatform\CPDebugging.h" />
+    <ClInclude Include="CorePlatform\CPLinkedList.h" />
+    <ClInclude Include="CorePlatform\CPMath.h" />
+    <ClInclude Include="CorePlatform\CPMemory.h" />
+    <ClInclude Include="CorePlatform\CPObject.h" />
+    <ClInclude Include="CorePlatform\CPPAL.h" />
+    <ClInclude Include="CorePlatform\CPPlatform.h" />
+    <ClInclude Include="CorePlatform\CPSafeMath.h" />
+    <ClInclude Include="CorePlatform\CPStr.h" />
+    <ClInclude Include="CorePlatform\CPString.h" />
+    <ClInclude Include="CorePlatform\CPTypes.h" />
+    <ClInclude Include="CorePlatform\CPURL.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CPArray.c" />
-    <ClCompile Include="CPLinkedList.c" />
-    <ClCompile Include="CPMemory.c" />
-    <ClCompile Include="CPObject.c" />
-    <ClCompile Include="CPPAL-OSX.c">
+    <ClCompile Include="CorePlatform\CPArray.c" />
+    <ClCompile Include="CorePlatform\CPLinkedList.c" />
+    <ClCompile Include="CorePlatform\CPMemory.c" />
+    <ClCompile Include="CorePlatform\CPObject.c" />
+    <ClCompile Include="CorePlatform\CPPAL-OSX.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="CPPAL-POSIX.c">
+    <ClCompile Include="CorePlatform\CPPAL-POSIX.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="CPPAL-Win32.c" />
-    <ClCompile Include="CPPAL.c" />
-    <ClCompile Include="CPString.c" />
-    <ClCompile Include="CPURL.c" />
+    <ClCompile Include="CorePlatform\CPPAL-Win32.c" />
+    <ClCompile Include="CorePlatform\CPPAL.c" />
+    <ClCompile Include="CorePlatform\CPString.c" />
+    <ClCompile Include="CorePlatform\CPURL.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B52FD97F-8A77-4626-8B2F-6D7CC5282697}</ProjectGuid>

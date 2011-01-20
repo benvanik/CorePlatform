@@ -7,7 +7,7 @@
  *
  */
 
-#include <CPLinkedList.h>
+#include <CorePlatform/CPLinkedList.h>
 
 CP_DEFINE_TYPE(CPLinkedList, NULL, CPLinkedListDealloc);
 

@@ -1,92 +1,92 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="CorePlatform.h" />
-    <ClInclude Include="CPSafeMath.h">
+    <ClInclude Include="CorePlatform\CPMath.h">
       <Filter>Common\Math</Filter>
     </ClInclude>
-    <ClInclude Include="CPMath.h">
+    <ClInclude Include="CorePlatform\CPSafeMath.h">
       <Filter>Common\Math</Filter>
     </ClInclude>
-    <ClInclude Include="CPObject.h">
-      <Filter>Common\Types</Filter>
-    </ClInclude>
-    <ClInclude Include="CPArray.h">
-      <Filter>Common\Types</Filter>
-    </ClInclude>
-    <ClInclude Include="CPAnnotations.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="CPCommon.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="CPAtomic.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="CPCodeUtilities.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="CPConfig.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="CPMemory.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="CPDebugging.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="CPPAL.h">
+    <ClInclude Include="CorePlatform\CPPAL.h">
       <Filter>Common\PAL</Filter>
     </ClInclude>
-    <ClInclude Include="CPPlatform.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="CPTypes.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="CPStr.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="CPString.h">
+    <ClInclude Include="CorePlatform\CPArray.h">
       <Filter>Common\Types</Filter>
     </ClInclude>
-    <ClInclude Include="CPURL.h">
+    <ClInclude Include="CorePlatform\CPLinkedList.h">
       <Filter>Common\Types</Filter>
     </ClInclude>
-    <ClInclude Include="CPLinkedList.h">
+    <ClInclude Include="CorePlatform\CPObject.h">
       <Filter>Common\Types</Filter>
     </ClInclude>
+    <ClInclude Include="CorePlatform\CPString.h">
+      <Filter>Common\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="CorePlatform\CPURL.h">
+      <Filter>Common\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="CorePlatform\CPAnnotations.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="CorePlatform\CPAtomic.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="CorePlatform\CPCodeUtilities.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="CorePlatform\CPCommon.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="CorePlatform\CPConfig.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="CorePlatform\CPDebugging.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="CorePlatform\CPMemory.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="CorePlatform\CPPlatform.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="CorePlatform\CPStr.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="CorePlatform\CPTypes.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="CorePlatform\CorePlatform.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CPObject.c">
+    <ClCompile Include="CorePlatform\CPPAL.c">
+      <Filter>Common\PAL</Filter>
+    </ClCompile>
+    <ClCompile Include="CorePlatform\CPPAL-OSX.c">
+      <Filter>Common\PAL</Filter>
+    </ClCompile>
+    <ClCompile Include="CorePlatform\CPPAL-POSIX.c">
+      <Filter>Common\PAL</Filter>
+    </ClCompile>
+    <ClCompile Include="CorePlatform\CPPAL-Win32.c">
+      <Filter>Common\PAL</Filter>
+    </ClCompile>
+    <ClCompile Include="CorePlatform\CPArray.c">
       <Filter>Common\Types</Filter>
     </ClCompile>
-    <ClCompile Include="CPArray.c">
+    <ClCompile Include="CorePlatform\CPLinkedList.c">
       <Filter>Common\Types</Filter>
     </ClCompile>
-    <ClCompile Include="CPMemory.c">
+    <ClCompile Include="CorePlatform\CPObject.c">
+      <Filter>Common\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="CorePlatform\CPString.c">
+      <Filter>Common\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="CorePlatform\CPURL.c">
+      <Filter>Common\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="CorePlatform\CPMemory.c">
       <Filter>Common</Filter>
-    </ClCompile>
-    <ClCompile Include="CPPAL-OSX.c">
-      <Filter>Common\PAL</Filter>
-    </ClCompile>
-    <ClCompile Include="CPPAL-POSIX.c">
-      <Filter>Common\PAL</Filter>
-    </ClCompile>
-    <ClCompile Include="CPPAL-Win32.c">
-      <Filter>Common\PAL</Filter>
-    </ClCompile>
-    <ClCompile Include="CPPAL.c">
-      <Filter>Common\PAL</Filter>
-    </ClCompile>
-    <ClCompile Include="CPString.c">
-      <Filter>Common\Types</Filter>
-    </ClCompile>
-    <ClCompile Include="CPURL.c">
-      <Filter>Common\Types</Filter>
-    </ClCompile>
-    <ClCompile Include="CPLinkedList.c">
-      <Filter>Common\Types</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

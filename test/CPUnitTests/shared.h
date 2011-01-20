@@ -8,7 +8,7 @@
  */
 
 #include <CUnit.h>
-#include <CorePlatform.h>
+#include <CorePlatform/CorePlatform.h>
 
 #define CU_REGISTER_SUITE(name) \
     CU_pSuite name##_register() { \

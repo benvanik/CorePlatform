@@ -7,7 +7,7 @@
  *
  */
 
-#include <CPURL.h>
+#include <CorePlatform/CPURL.h>
 
 CP_DEFINE_TYPE(CPURL, NULL, CPURLDealloc);
 

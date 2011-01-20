@@ -7,7 +7,7 @@
  *
  */
 
-#include <CPString.h>
+#include <CorePlatform/CPString.h>
 
 CP_DEFINE_TYPE(CPString, NULL, CPStringDealloc);
 
