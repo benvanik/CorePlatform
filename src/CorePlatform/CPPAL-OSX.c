@@ -94,6 +94,8 @@ sal_checkReturn BOOL CPOSXPALSetupSystemPaths(sal_inout CPPALRef pal)
     CPEXPECTNOTNULL(url);
     pal->systemPaths[CPPALSystemPathAppExecutable] = CPURLRetain(url);
     CPRelease(url);
+    CFRelease(cfurl);
+    cfurl = NULL;
 
     // Application path (app data)
     cfurl = CFBundleCopyResourcesDirectoryURL(bundle);
@@ -103,6 +105,7 @@ sal_checkReturn BOOL CPOSXPALSetupSystemPaths(sal_inout CPPALRef pal)
     pal->systemPaths[CPPALSystemPathAppResources] = CPURLRetain(url);
     CPRelease(url);
     CFRelease(cfurl);
+    cfurl = NULL;
 
     // Temp directory
     char tempTemplate[256];
@@ -120,7 +123,9 @@ sal_checkReturn BOOL CPOSXPALSetupSystemPaths(sal_inout CPPALRef pal)
     return TRUE;
 
 CPCLEANUP:
-    CFRelease(cfurl);
+    if (cfurl) {
+        CFRelease(cfurl);
+    }
     CPRelease(url);
     return FALSE;
 }

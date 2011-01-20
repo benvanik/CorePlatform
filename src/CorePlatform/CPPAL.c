@@ -464,7 +464,7 @@ void CPPALThreadSetPriorityCore(pthread_t thread, const CPPALThreadPriority prio
     const int maxPriority = PTHREAD_MAX_PRIORITY;
 #endif
     
-    int newPriority = param.sched_priority;
+    int newPriority;
     switch (priority) {
         case CPPALThreadPriorityIdle:
             newPriority = (maxPriority - minPriority) * 0.00f + minPriority;
@@ -525,7 +525,9 @@ sal_checkReturn sal_out_opt CPPThreadHandle* CPPThreadHandleCreate(sal_inout CPP
     return handle;
     
 CPCLEANUP:
-    CPRelease(handle->pal);
+    if (handle) {
+        CPRelease(handle->pal);
+    }
     CPFree(handle);
     return NULL;
 }

@@ -206,7 +206,6 @@ sal_checkReturn BOOL _CPURLConstructAbsoluteString(sal_inout CPURLRef url, const
                     *p = '/';
                     p++;
                     *p = 0;
-                    p++;
                 } else {
                     // Found a trailing / - trunc all after it
                     p++;
@@ -485,7 +484,7 @@ CP_API sal_checkReturn size_t CPURLEscape(sal_in_z const CPChar* source, sal_out
 
         // Verify we can write at least charsToWrite to the buffer
         size_t endIndex;
-        if (!CPAddSizeT(index, 3 + 1, &endIndex)) {
+        if (!CPAddSizeT(index, charsToWrite, &endIndex)) {
             return -1;
         }
         size_t endOffset;
