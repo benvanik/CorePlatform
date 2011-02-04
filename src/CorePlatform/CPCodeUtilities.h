@@ -64,14 +64,19 @@ typedef CPCACHEALIGN volatile void      CPAlignedVoid;
 #else
 #define CP_EXTERNC                      extern
 #endif
+
 #if CP_COMPILER(MSVC)
-#if defined(CP_API_EXPORT)
-#define CP_API                          CP_EXTERNC __declspec(dllexport)
-#elif defined(CP_API_IMPORT)
-#define CP_API                          CP_EXTERNC __declspec(dllimport)
+#define CP_API_EXPORT                   CP_EXTERNC __declspec(dllexport)
+#define CP_API_IMPORT                   CP_EXTERNC __declspec(dllimport)
 #else
-#define CP_API                          CP_EXTERNC
+#define CP_API_EXPORT                   CP_EXTERNC
+#define CP_API_IMPORT                   CP_EXTERNC
 #endif
+
+#if defined(CP_API_EXPORT)
+#define CP_API                          CP_API_EXPORT
+#elif defined(CP_API_IMPORT)
+#define CP_API                          CP_API_IMPORT
 #else
 #define CP_API                          CP_EXTERNC
 #endif
