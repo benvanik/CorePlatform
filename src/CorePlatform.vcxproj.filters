@@ -56,6 +56,9 @@
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="CorePlatform\CorePlatform.h" />
+    <ClInclude Include="CorePlatform\CPLFStack.h">
+      <Filter>Common\Types</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CorePlatform\CPPAL.c">
@@ -87,6 +90,9 @@
     </ClCompile>
     <ClCompile Include="CorePlatform\CPMemory.c">
       <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="CorePlatform\CPLFStack.c">
+      <Filter>Common\Types</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

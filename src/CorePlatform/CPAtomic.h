@@ -18,6 +18,8 @@
 // These functions are modeled off of the Apple OSAtomic routines
 // http://developer.apple.com/library/mac/#documentation/DriversKernelHardware/Reference/libkern_ref/OSAtomic_h/
 
+typedef CPAlignedVoid* CPStackPointer;
+
 #if CP_LIKE(OSX)
 #include <libkern/OSAtomic.h>
 

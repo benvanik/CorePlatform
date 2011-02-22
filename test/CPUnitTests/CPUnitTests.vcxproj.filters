@@ -32,6 +32,9 @@
     <ClCompile Include="test_linkedlist.c">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="test_lfstack.c">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shared.h" />

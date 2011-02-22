@@ -25,6 +25,7 @@ extern "C" {
 #include <CorePlatform/CPStr.h>
 #include <CorePlatform/CPObject.h>
 #include <CorePlatform/CPArray.h>
+#include <CorePlatform/CPLFStack.h>
 #include <CorePlatform/CPLinkedList.h>
 #include <CorePlatform/CPString.h>
 #include <CorePlatform/CPURL.h>

@@ -27,6 +27,7 @@
     <ClInclude Include="CorePlatform\CPCommon.h" />
     <ClInclude Include="CorePlatform\CPConfig.h" />
     <ClInclude Include="CorePlatform\CPDebugging.h" />
+    <ClInclude Include="CorePlatform\CPLFStack.h" />
     <ClInclude Include="CorePlatform\CPLinkedList.h" />
     <ClInclude Include="CorePlatform\CPMath.h" />
     <ClInclude Include="CorePlatform\CPMemory.h" />
@@ -41,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CorePlatform\CPArray.c" />
+    <ClCompile Include="CorePlatform\CPLFStack.c" />
     <ClCompile Include="CorePlatform\CPLinkedList.c" />
     <ClCompile Include="CorePlatform\CPMemory.c" />
     <ClCompile Include="CorePlatform\CPObject.c" />

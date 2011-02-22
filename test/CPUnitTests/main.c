@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
     CU_INVOKE_SUITE(test_string);
     CU_INVOKE_SUITE(test_url);
     CU_INVOKE_SUITE(test_pal);
+    CU_INVOKE_SUITE(test_lfstack);
     
     CU_basic_set_mode(CU_BRM_VERBOSE);
     CU_basic_run_tests();
