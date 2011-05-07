@@ -142,9 +142,7 @@ CP_CPU:         32BIT | 64BIT | BIGENDIAN | LITTLEENDIAN
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
 #endif
-#ifndef _WIN32_WINNT
-#define _WIN32_WINNT            0x0601
-#endif
+#include <SDKDDKVer.h>
 #include <windows.h>
 #endif // WINCE || WIN32
 

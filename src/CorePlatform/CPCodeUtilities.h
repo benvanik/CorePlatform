@@ -17,6 +17,12 @@
 #define CPUNREFERENCED(expr)            (void)(expr)
 
 #if CP_COMPILER(MSVC)
+#define CPCAST(type, value)             static_cast<type>(value)
+#else
+#define CPCAST(type, value)             ((type)(value))
+#endif
+
+#if CP_COMPILER(MSVC)
 #define CPASSUME(expr)                  __analysis_assume(expr)
 #else
 #define CPASSUME(expr)                  
@@ -73,9 +79,9 @@ typedef CPCACHEALIGN volatile void      CPAlignedVoid;
 #define CP_API_IMPORT                   CP_EXTERNC
 #endif
 
-#if defined(CP_API_EXPORT)
+#if defined(CP_EXPORT)
 #define CP_API                          CP_API_EXPORT
-#elif defined(CP_API_IMPORT)
+#elif defined(CP_IMPORT)
 #define CP_API                          CP_API_IMPORT
 #else
 #define CP_API                          CP_EXTERNC

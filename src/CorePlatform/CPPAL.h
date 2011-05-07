@@ -21,6 +21,8 @@
 #include <CorePlatform/CPString.h>
 #include <CorePlatform/CPURL.h>
 
+#define CP_MAX_PATH                 2048
+
 // Matrix of platform -> custom PAL feature implementations - if 0 then the standard CPPAL implementation is used
 #if CP_LIKE(WIN32)
 #define CP_PAL_HAVE_PATHUTILS       1
