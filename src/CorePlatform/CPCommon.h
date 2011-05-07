@@ -29,6 +29,7 @@ extern "C" {
 #include <CorePlatform/CPLinkedList.h>
 #include <CorePlatform/CPString.h>
 #include <CorePlatform/CPURL.h>
+#include <CorePlatform/CPFile.h>
 #include <CorePlatform/CPPAL.h>
 
 // NOTE: these should exist on all platforms
