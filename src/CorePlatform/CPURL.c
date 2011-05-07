@@ -405,7 +405,7 @@ CPCLEANUP:
     return NULL;
 }
 
-CP_API sal_checkReturn BOOL CPURLGetAbsoluteString(sal_inout CPURLRef url, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize)
+CP_API sal_checkReturn BOOL CPURLGetAbsoluteString(sal_inout CPURLRef url, sal_out_bcount_opt(bufferSize) CPChar* buffer, const size_t bufferSize)
 {
     const size_t totalBytes = _CPStringGetTotalByteLength(url->absoluteLength);
     if (totalBytes > bufferSize) {
@@ -423,6 +423,64 @@ CP_API sal_checkReturn BOOL CPURLGetAbsoluteString(sal_inout CPURLRef url, sal_o
         CPASSERT(CPStrLen(buffer) == url->absoluteLength);
     }
     return result;
+}
+
+CP_API size_t CPURLGetScheme(sal_inout CPURLRef url, sal_out_bcount_opt(bufferSize) CPChar* buffer, const size_t bufferSize)
+{
+    // Scheme is always in base
+    if (url->baseURL) {
+        return CPURLGetScheme(url->baseURL, buffer, bufferSize);
+    }
+
+    const CPChar* p = CPStrStr(url->value, CPTEXT("://"));
+    if (!p) {
+        return 0;
+    }
+    const size_t length = p - url->value;
+    if (bufferSize < length + 1) {
+        return 0;
+    }
+    if (!CPStrNCpy(buffer, bufferSize, url->value, length)) {
+        return 0;
+    }
+    return length;
+}
+
+CP_API sal_out_opt CPStringRef CPURLCopyScheme(sal_inout CPURLRef url)
+{
+    // TODO: intern common schemes
+    CPChar buffer[64];
+    if (!CPURLGetScheme(url, buffer, CPCOUNT(buffer))) {
+        return NULL;
+    }
+    return CPStringCreate(buffer);
+}
+
+CP_API BOOL CPURLIsHTTP(sal_inout CPURLRef url)
+{
+    CPChar buffer[64];
+    if (!CPURLGetScheme(url, buffer, CPCOUNT(buffer))) {
+        return FALSE;
+    }
+    return CPStrCaseCmp(buffer, CPTEXT("http")) == 0;
+}
+
+CP_API BOOL CPURLIsHTTPS(sal_inout CPURLRef url)
+{
+    CPChar buffer[64];
+    if (!CPURLGetScheme(url, buffer, CPCOUNT(buffer))) {
+        return FALSE;
+    }
+    return CPStrCaseCmp(buffer, CPTEXT("https")) == 0;
+}
+
+CP_API BOOL CPURLIsFile(sal_inout CPURLRef url)
+{
+    CPChar buffer[64];
+    if (!CPURLGetScheme(url, buffer, CPCOUNT(buffer))) {
+        return FALSE;
+    }
+    return CPStrCaseCmp(buffer, CPTEXT("file")) == 0;
 }
 
 // URL escape/unescape comes from:
@@ -515,8 +573,95 @@ CP_API sal_checkReturn size_t CPURLEscape(sal_in_z const CPChar* source, sal_out
     return index - 1;
 }
 
+#define CPURLUnescapeNext() \
+    if ((c == 0) || ((idx - 2) >= length)) goto decodeDone; \
+    c = c1; c1 = c2; c2 = *sp; sp++; idx++;
+#define CPURLUnescapeCheck() \
+    if ((size_t)(dp - buffer) + 1 >= bufferSize) return CPInvalidSize;
+
 CP_API sal_checkReturn size_t CPURLUnescape(sal_in_z const CPChar* source, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize)
 {
-    CPASSERTALWAYS();
-    return -1;
+    const size_t length = CPStrLen(source);
+
+    const CPChar* sp = source;
+    CPChar* dp = buffer;
+    size_t idx = 0;
+
+    // Prime the chars
+    CPChar c = *sp;
+    sp++; idx++;
+    CPChar c1 = 0;
+    CPChar c2 = 0;
+    if ((c != 0) && (idx < length)) {
+        c1 = *sp;
+        sp++; idx++;
+        if ((c1 != 0) && (idx < length)) {
+            c2 = *sp;
+            sp++; idx++;
+        }
+    }
+
+    // For each (potential) char tripplet, decode
+    while ((c != 0) && ((idx - 2) <= length)) {
+        if(c == '%') {
+            if (isxdigit(c1) && isxdigit(c2)) {
+                // Valid %HH sequence found
+                CPURLUnescapeCheck();
+
+                // Convert to lower case (inline, instead of calling tolower)
+                c1 = ((((c1) >= 'A') && ((c1) <= 'Z')) ? ((c1) - 'A' + 'a') : (c1));
+                c2 = ((((c2) >= 'A') && ((c2) <= 'Z')) ? ((c2) - 'A' + 'a') : (c2));
+                if (c1 <= '9') {
+                    c1 = c1 - '0';
+                } else {
+                    c1 = c1 - 'a' + 10;
+                }
+                if (c2 <= '9') {
+                    c2 = c2 - '0';
+                } else {
+                    c2 = c2 - 'a' + 10;
+                }
+                *dp = 16 * c1 + c2;
+                dp++;
+                c1 = c2 = 999;
+                CPURLUnescapeNext();
+                CPURLUnescapeNext();
+                CPURLUnescapeNext();
+            } else {
+                // Invalid or incomplete sequence
+                CPURLUnescapeCheck();
+
+                *dp = '%';
+                dp++;
+                CPURLUnescapeNext();
+            }
+        } else if (c == '+') {
+            CPURLUnescapeCheck();
+
+            *dp = ' ';
+            dp++;
+            CPURLUnescapeNext();
+        } else {
+            CPURLUnescapeCheck();
+
+            *dp = c;
+            dp++;
+            CPURLUnescapeNext();
+        }
+    }
+    
+decodeDone:
+    dp[ 0 ] = 0;
+    return dp - buffer;
+}
+
+CP_API void CPURLNormalizeSlashes(sal_in_z CPChar* url, const CPChar slashChar)
+{
+    CPChar* p = url;
+    while (*p) {
+        if ((*p == '/') || (*p == '\\')) {
+            *p = slashChar;
+        }
+        p++;
+    }
 }

@@ -52,10 +52,11 @@ CP_API sal_checkReturn sal_out_opt CPURLRef CPURLCreateWithString(sal_inout_opt 
 CP_API sal_checkReturn sal_out_opt CPURLRef CPURLCreateAbsoluteCopy(sal_inout CPURLRef source);
 
 CP_API sal_out_opt CPStringRef CPURLCopyAbsoluteString(sal_inout CPURLRef url);
-CP_API sal_checkReturn BOOL CPURLGetAbsoluteString(sal_inout CPURLRef url, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize);
+CP_API sal_checkReturn BOOL CPURLGetAbsoluteString(sal_inout CPURLRef url, sal_out_bcount_opt(bufferSize) CPChar* buffer, const size_t bufferSize);
 
 // TODO: queries:
-// CPURLGetScheme
+CP_API size_t CPURLGetScheme(sal_inout CPURLRef url, sal_out_bcount_opt(bufferSize) CPChar* buffer, const size_t bufferSize);
+CP_API sal_out_opt CPStringRef CPURLCopyScheme(sal_inout CPURLRef url);
 // CPURLGetHostName
 // CPURLGetPortNumber
 // CPURLGetNetLocation
@@ -65,10 +66,11 @@ CP_API sal_checkReturn BOOL CPURLGetAbsoluteString(sal_inout CPURLRef url, sal_o
 // CPURLGetQueryString
 // CPURLGetFragment
 
-// TODO: scheme checks
-// CPURLIsHTTP
-// CPURLIsHTTPS
-// CPURLIsFile
+CP_API BOOL CPURLIsHTTP(sal_inout CPURLRef url);
+CP_API BOOL CPURLIsHTTPS(sal_inout CPURLRef url);
+CP_API BOOL CPURLIsFile(sal_inout CPURLRef url);
 
 CP_API sal_checkReturn size_t CPURLEscape(sal_in_z const CPChar* source, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize, const uint32 escapeOptions);
 CP_API sal_checkReturn size_t CPURLUnescape(sal_in_z const CPChar* source, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize);
+
+CP_API void CPURLNormalizeSlashes(sal_in_z CPChar* url, const CPChar slashChar);

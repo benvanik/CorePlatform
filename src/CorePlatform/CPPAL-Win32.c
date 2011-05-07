@@ -226,8 +226,54 @@ CPCLEANUP:
 
 CP_API BOOL CPPALConvertURLToFileSystemPath(sal_inout CPPALRef pal, sal_inout CPURLRef url, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize)
 {
+#if CP_PLATFORM(XBOX360)
+    // TODO: XBOX360 CPPALConvertURLToFileSystemPath
     CPASSERTALWAYS();
     return FALSE;
+#else
+    // Parse URLs in the form of:
+    // file:///C:/My/Long%20Path.txt -> C:\My\Long Path.txt
+
+    BOOL result = FALSE;
+    CPStringRef absoluteUrl = NULL;
+
+    CPASSERT(bufferSize >= MAX_PATH);
+    if (bufferSize < MAX_PATH) {
+        return FALSE;
+    }
+    if (!CPURLIsFile(url)) {
+        return FALSE;
+    }
+    
+    absoluteUrl = CPURLCopyAbsoluteString(url);
+    CPEXPECTNOTNULL(absoluteUrl);
+
+    CPChar bufferTemp[CP_MAX_PATH];
+    CPEXPECT(CPURLUnescape(CPStringGet(absoluteUrl), bufferTemp, CPCOUNT(bufferTemp)) != -1);
+
+    size_t prefixLength = 0;
+    if (CPStrStr(bufferTemp, CPTEXT("file:///")) == bufferTemp) {
+        // Strip off the entire host prefix
+        prefixLength = CPStrLen(CPTEXT("file:///"));
+    } else if (CPStrStr(bufferTemp, CPTEXT("file://localhost/")) == bufferTemp) {
+        // Strip off the entire host prefix
+        prefixLength = CPStrLen(CPTEXT("file://localhost/"));
+    } else {
+        // Strip off just file: (likely a UNC path)
+        prefixLength = CPStrLen(CPTEXT("file:"));
+    }
+    CPCopyMemory(bufferTemp, CPCOUNT(bufferTemp), bufferTemp + prefixLength, CPCOUNT(bufferTemp) - prefixLength);
+
+    CPURLNormalizeSlashes(bufferTemp, '\\');
+
+    // NOTE: buffer must be at least MAX_PATH
+    CPEXPECTTRUE(PathCanonicalize(buffer, bufferTemp));
+
+    result = true;
+CPCLEANUP:
+    CPRelease(absoluteUrl);
+    return result;
+#endif
 }
 
 CP_API sal_out_opt CPURLRef CPPALConvertFileSystemPathToURL(sal_inout CPPALRef pal, sal_in_z const CPChar* buffer)
@@ -241,11 +287,12 @@ CP_API sal_out_opt CPURLRef CPPALConvertFileSystemPathToURL(sal_inout CPPALRef p
     // C:\My\Long Path.txt -> file:///C:/My/Long%20Path.txt
 
     // Setup the scratch buffer with 'file:///'
-    CPChar scratchBuffer[8 + 1024];
+    CPChar scratchBuffer[8 + MAX_PATH];
     CPIGNORE(CPZeroMemory(scratchBuffer, sizeof(scratchBuffer), 0, sizeof(scratchBuffer)));
     CPStrCat(scratchBuffer, CPCOUNT(scratchBuffer), CPTEXT("file:///"));
 
     // Populate canonicalBuffer with the expanded path
+    // NOTE: canonicalBuffer must be at least MAX_PATH
     CPChar* canonicalBuffer = scratchBuffer + 8;
     if (!PathCanonicalize(canonicalBuffer, buffer)) {
         return NULL;
