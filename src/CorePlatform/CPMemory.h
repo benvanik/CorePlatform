@@ -12,6 +12,7 @@
 #include <CorePlatform/CPTypes.h>
 #include <CorePlatform/CPAnnotations.h>
 #include <CorePlatform/CPCodeUtilities.h>
+#include <CorePlatform/CPByteOrder.h>
 
 #include <memory.h>
 

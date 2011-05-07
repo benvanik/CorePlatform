@@ -59,6 +59,9 @@
     <ClInclude Include="CorePlatform\CPLFStack.h">
       <Filter>Common\Types</Filter>
     </ClInclude>
+    <ClInclude Include="CorePlatform\CPByteOrder.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CorePlatform\CPPAL.c">

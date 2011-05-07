@@ -23,6 +23,7 @@
     <ClInclude Include="CorePlatform\CPAnnotations.h" />
     <ClInclude Include="CorePlatform\CPArray.h" />
     <ClInclude Include="CorePlatform\CPAtomic.h" />
+    <ClInclude Include="CorePlatform\CPByteOrder.h" />
     <ClInclude Include="CorePlatform\CPCodeUtilities.h" />
     <ClInclude Include="CorePlatform\CPCommon.h" />
     <ClInclude Include="CorePlatform\CPConfig.h" />
