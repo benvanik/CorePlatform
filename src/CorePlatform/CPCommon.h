@@ -23,14 +23,21 @@ extern "C" {
 #include <CorePlatform/CPMemory.h>
 #include <CorePlatform/CPDebugging.h>
 #include <CorePlatform/CPStr.h>
+
 #include <CorePlatform/CPObject.h>
+
 #include <CorePlatform/CPArray.h>
 #include <CorePlatform/CPLFStack.h>
 #include <CorePlatform/CPLinkedList.h>
+
 #include <CorePlatform/CPString.h>
 #include <CorePlatform/CPURL.h>
-#include <CorePlatform/CPFile.h>
+
 #include <CorePlatform/CPPAL.h>
+
+#include <CorePlatform/CPFile.h>
+#include <CorePlatform/CPReadStream.h>
+#include <CorePlatform/CPFileReadStream.h>
 
 // NOTE: these should exist on all platforms
 #include <stddef.h>

@@ -65,6 +65,12 @@
     <ClInclude Include="CorePlatform\CPFile.h">
       <Filter>Common\Types</Filter>
     </ClInclude>
+    <ClInclude Include="CorePlatform\CPReadStream.h">
+      <Filter>Common\Types\Streams</Filter>
+    </ClInclude>
+    <ClInclude Include="CorePlatform\CPFileReadStream.h">
+      <Filter>Common\Types\Streams</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CorePlatform\CPPAL.c">
@@ -103,6 +109,12 @@
     <ClCompile Include="CorePlatform\CPFile.c">
       <Filter>Common\Types</Filter>
     </ClCompile>
+    <ClCompile Include="CorePlatform\CPReadStream.c">
+      <Filter>Common\Types\Streams</Filter>
+    </ClCompile>
+    <ClCompile Include="CorePlatform\CPFileReadStream.c">
+      <Filter>Common\Types\Streams</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -116,6 +128,9 @@
     </Filter>
     <Filter Include="Common\PAL">
       <UniqueIdentifier>{f083a5bf-ed24-4fee-bcce-3b94b8a4c726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Types\Streams">
+      <UniqueIdentifier>{37f5f201-b2cb-4a86-907a-9f11325b9c40}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

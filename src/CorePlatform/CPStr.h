@@ -26,6 +26,8 @@
 #define strcpy_s(dest, destLength, source)              !(strcpy(dest, source) == dest + (destLength*0))
 #define strncpy_s(dest, destLength, source, count)      !(strncpy(dest, source, MIN(destLength, count)) == dest + (destLength*0))
 #define strcat_s(dest, destLength, source)              !(strcat(dest, source) == dest + (destLength*0))
+#else
+#define strcasecmp                                      _stricmp
 #endif
 
 #define CPStrLenW                                       wcslen

@@ -29,6 +29,7 @@
     <ClInclude Include="CorePlatform\CPConfig.h" />
     <ClInclude Include="CorePlatform\CPDebugging.h" />
     <ClInclude Include="CorePlatform\CPFile.h" />
+    <ClInclude Include="CorePlatform\CPFileReadStream.h" />
     <ClInclude Include="CorePlatform\CPLFStack.h" />
     <ClInclude Include="CorePlatform\CPLinkedList.h" />
     <ClInclude Include="CorePlatform\CPMath.h" />
@@ -36,6 +37,7 @@
     <ClInclude Include="CorePlatform\CPObject.h" />
     <ClInclude Include="CorePlatform\CPPAL.h" />
     <ClInclude Include="CorePlatform\CPPlatform.h" />
+    <ClInclude Include="CorePlatform\CPReadStream.h" />
     <ClInclude Include="CorePlatform\CPSafeMath.h" />
     <ClInclude Include="CorePlatform\CPStr.h" />
     <ClInclude Include="CorePlatform\CPString.h" />
@@ -45,6 +47,7 @@
   <ItemGroup>
     <ClCompile Include="CorePlatform\CPArray.c" />
     <ClCompile Include="CorePlatform\CPFile.c" />
+    <ClCompile Include="CorePlatform\CPFileReadStream.c" />
     <ClCompile Include="CorePlatform\CPLFStack.c" />
     <ClCompile Include="CorePlatform\CPLinkedList.c" />
     <ClCompile Include="CorePlatform\CPMemory.c" />
@@ -63,6 +66,7 @@
     </ClCompile>
     <ClCompile Include="CorePlatform\CPPAL-Win32.c" />
     <ClCompile Include="CorePlatform\CPPAL.c" />
+    <ClCompile Include="CorePlatform\CPReadStream.c" />
     <ClCompile Include="CorePlatform\CPString.c" />
     <ClCompile Include="CorePlatform\CPURL.c" />
   </ItemGroup>
