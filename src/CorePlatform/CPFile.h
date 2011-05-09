@@ -41,6 +41,8 @@ CP_API sal_checkReturn sal_out_opt CPFileRef CPFileCreate(sal_inout CPPALRef pal
 CP_API sal_checkReturn sal_out_opt CPFileRef CPFileOpen(sal_inout CPPALRef pal, sal_inout CPURLRef path, const CPFileMode mode);
 CP_API void CPFileClose(sal_inout CPFileRef file);
 
+CP_API CPURLRef CPFileGetPath(sal_inout CPFileRef file);
+
 CP_API size_t CPFileGetSize(sal_inout CPFileRef file);
 //CP_API BOOL CPFileSetSize(sal_inout CPFileRef file, const size_t newSize);
 

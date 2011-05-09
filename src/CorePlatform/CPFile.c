@@ -80,6 +80,11 @@ CP_API void CPFileClose(sal_inout CPFileRef file)
     file->handle = NULL;
 }
 
+CP_API CPURLRef CPFileGetPath(sal_inout CPFileRef file)
+{
+    return file->path;
+}
+
 CP_API size_t CPFileGetSize(sal_inout CPFileRef file)
 {
     if (!file->handle) {

@@ -261,3 +261,9 @@ CP_API void CPPALThreadBlockEnd(sal_inout CPPALRef pal, sal_inout void* block)
     CPASSERT(block == CP_DUMMY_THREAD_BLOCK);
 #endif
 }
+
+#pragma mark -
+#pragma mark File Mapping
+
+// In shared CPPAL.c using default implementation
+

@@ -187,3 +187,9 @@ CP_API void CPPALLogBitmap(sal_in_z const CPChar* filePath, const int32 lineNumb
 #pragma mark Thread Blocks
 
 // In shared CPPAL.c using default implementation
+
+#pragma mark -
+#pragma mark File Mapping
+
+// In shared CPPAL.c using default implementation
+

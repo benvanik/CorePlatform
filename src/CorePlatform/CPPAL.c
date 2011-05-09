@@ -774,3 +774,25 @@ CP_API void CPPALThreadBlockEnd(sal_inout CPPALRef pal, sal_inout void* block)
 }
 
 #endif // !THREADBLOCKS
+
+#pragma mark -
+#pragma mark File Mapping
+
+#if !CP_PAL_HAVE(FILEMAPPING)
+
+CP_API sal_out_opt CPPALFileMapping* CPPALFileMappingCreate(sal_inout CPPALRef pal, sal_inout CPURLRef path, const CPPALFileMappingMode mode, const size_t offset, const size_t length)
+{
+#error TODO
+}
+
+CP_API void CPPALFileMappingFlush(sal_inout CPPALRef pal, sal_inout CPPALFileMapping* mapping)
+{
+#error TODO
+}
+
+CP_API void CPPALFileMappingDestroy(sal_inout CPPALRef pal, sal_inout CPPALFileMapping* mapping)
+{
+#error TODO
+}
+
+#endif // !FILEMAPPING

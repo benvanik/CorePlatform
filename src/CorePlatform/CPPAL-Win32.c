@@ -744,3 +744,104 @@ CP_API void CPPALThreadSleep(sal_inout CPPALRef pal, const CPTime delay)
 #pragma mark Thread Blocks
 
 // In shared CPPAL.c using default implementation
+
+#pragma mark -
+#pragma mark File Mapping
+
+CP_API sal_out_opt CPPALFileMapping* CPPALFileMappingCreate(sal_inout CPPALRef pal, sal_inout CPURLRef path, const CPPALFileMappingMode mode, const size_t offset, const size_t length)
+{
+    CPUNREFERENCED(pal);
+    CPASSERTNOTNULL(pal);
+
+    CPPALFileMapping* mapping = (CPPALFileMapping*)CPAlloc(sizeof(CPPALFileMapping));
+    if (!mapping) {
+        return NULL;
+    }
+
+    DWORD fileAccess        = 0;
+    DWORD fileShare         = 0;
+    DWORD createMode        = 0;
+    DWORD mappingProtect    = 0;
+    DWORD viewAccess        = 0;
+    switch (mode) {
+    case CPPALFileMappingModeRead:
+        fileAccess      |= GENERIC_READ;
+        fileShare       |= FILE_SHARE_READ;
+        createMode      |= OPEN_EXISTING;
+        mappingProtect  |= PAGE_READONLY;
+        viewAccess      |= FILE_MAP_READ;
+        break;
+    case CPPALFileMappingModeWrite:
+        fileAccess      |= GENERIC_WRITE;
+        fileShare       |= 0;
+        createMode      |= OPEN_ALWAYS;
+        mappingProtect  |= PAGE_READWRITE;
+        viewAccess      |= FILE_MAP_WRITE;
+        break;
+    case CPPALFileMappingModeReadWrite:
+        fileAccess      |= GENERIC_READ | GENERIC_WRITE;
+        fileShare       |= 0;
+        createMode      |= OPEN_EXISTING;
+        mappingProtect  |= PAGE_READWRITE;
+        viewAccess      |= FILE_MAP_READ | FILE_MAP_WRITE;
+        break;
+    }
+
+    SYSTEM_INFO systemInfo;
+    GetSystemInfo(&systemInfo);
+
+    CPChar fullPath[CP_MAX_PATH];
+    CPEXPECTTRUE(CPPALConvertURLToFileSystemPath(pal, path, fullPath, CPCOUNT(fullPath)));
+
+    HANDLE file = CreateFile(fullPath, fileAccess, fileShare, NULL, createMode, FILE_ATTRIBUTE_NORMAL, NULL);
+    CPEXPECTNOTNULL(file);
+
+    size_t alignedOffset = offset & (~(systemInfo.dwAllocationGranularity - 1));
+    size_t alignedLength = length + (offset - alignedOffset);
+
+    HANDLE handle = CreateFileMapping(file, NULL, mappingProtect, 0, 0, NULL);//(DWORD)(alignedLength >> 32), (DWORD)(alignedLength & 0xFFFFFFFF), NULL);
+    CPEXPECTNOTNULL(handle);
+
+    void* address = MapViewOfFile(handle, viewAccess, (DWORD)(alignedOffset >> 32), (DWORD)(alignedOffset & 0xFFFFFFFF), alignedLength);
+    DWORD dd = GetLastError();
+    CPEXPECTNOTNULL(address);
+
+    mapping->file       = file;
+    mapping->handle     = handle;
+    mapping->rawAddress = address;
+    mapping->address    = (byte*)address + (offset - alignedOffset);
+    mapping->length     = length;
+
+    return mapping;
+
+CPCLEANUP:
+    if (address) {
+        UnmapViewOfFile(address);
+    }
+    if (handle) {
+        CloseHandle(handle);
+    }
+    if (file) {
+        CloseHandle(file);
+    }
+    return NULL;
+}
+
+CP_API void CPPALFileMappingFlush(sal_inout CPPALRef pal, sal_inout CPPALFileMapping* mapping)
+{
+    CPUNREFERENCED(pal);
+    CPASSERTNOTNULL(pal);
+
+    FlushViewOfFile(mapping->rawAddress, 0);
+}
+
+CP_API void CPPALFileMappingDestroy(sal_inout CPPALRef pal, sal_inout CPPALFileMapping* mapping)
+{
+    CPUNREFERENCED(pal);
+    CPASSERTNOTNULL(pal);
+
+    UnmapViewOfFile(mapping->rawAddress);
+    CloseHandle(mapping->handle);
+    CloseHandle(mapping->file);
+    CPFree(mapping);
+}

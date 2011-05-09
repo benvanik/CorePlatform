@@ -31,6 +31,7 @@
 #define CP_PAL_HAVE_LOGGING         0
 #define CP_PAL_HAVE_HEAPS           0
 #define CP_PAL_HAVE_THREADBLOCKS    0
+#define CP_PAL_HAVE_FILEMAPPING     1
 #elif CP_LIKE(OSX)
 #define CP_PAL_HAVE_PATHUTILS       0
 #define CP_PAL_HAVE_RANDOM          0
@@ -38,6 +39,7 @@
 #define CP_PAL_HAVE_LOGGING         0
 #define CP_PAL_HAVE_HEAPS           0
 #define CP_PAL_HAVE_THREADBLOCKS    1
+#define CP_PAL_HAVE_FILEMAPPING     0
 #elif CP_LIKE(POSIX)
 #define CP_PAL_HAVE_PATHUTILS       0
 #define CP_PAL_HAVE_RANDOM          0
@@ -45,6 +47,7 @@
 #define CP_PAL_HAVE_LOGGING         0
 #define CP_PAL_HAVE_HEAPS           0
 #define CP_PAL_HAVE_THREADBLOCKS    0
+#define CP_PAL_HAVE_FILEMAPPING     0
 #endif
 
 #define CP_PAL_HAVE(NAME)   (defined CP_PAL_HAVE_##NAME && CP_PAL_HAVE_##NAME   )
@@ -98,6 +101,20 @@ typedef struct CPPALSystemInfo_t {
         uint32          logicalCount;
     } processors;
 } CPPALSystemInfo;
+
+typedef enum CPPALFileMappingMode_e {
+    CPPALFileMappingModeRead        = 0x01,
+    CPPALFileMappingModeWrite       = 0x02,
+    CPPALFileMappingModeReadWrite   = CPPALFileMappingModeRead | CPPALFileMappingModeWrite,
+} CPPALFileMappingMode;
+
+typedef struct CPPALFileMapping_t {
+    void*               file;
+    void*               handle;
+    void*               rawAddress;
+    void*               address;
+    size_t              length;
+} CPPALFileMapping;
 
 typedef struct CPPALOptions_t {
     CPChar              applicationName[128];
@@ -163,6 +180,10 @@ CP_API void CPPALThreadSleep(sal_inout CPPALRef pal, const CPTime delay);
 
 CP_API sal_out void* CPPALThreadBlockBegin(sal_inout CPPALRef pal);
 CP_API void CPPALThreadBlockEnd(sal_inout CPPALRef pal, sal_inout void* block);
+
+CP_API sal_out_opt CPPALFileMapping* CPPALFileMappingCreate(sal_inout CPPALRef pal, sal_inout CPURLRef path, const CPPALFileMappingMode mode, const size_t offset, const size_t length);
+CP_API void CPPALFileMappingFlush(sal_inout CPPALRef pal, sal_inout CPPALFileMapping* mapping);
+CP_API void CPPALFileMappingDestroy(sal_inout CPPALRef pal, sal_inout CPPALFileMapping* mapping);
 
 // TODO: system paths
 // TODO: base directory routines
