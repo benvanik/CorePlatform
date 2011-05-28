@@ -29,6 +29,19 @@
 #define sal_inout_z                             __notnull   __inout_z
 #define sal_inout_z_opt                         __maybenull __inout_z_opt
 
+#define sal_deref_in                            __notnull   __deref_in
+#define sal_deref_in_opt                        __maybenull __deref_in_opt
+#define sal_deref_in_z                          __notnull   __deref_in_z
+#define sal_deref_in_z_opt                      __maybenull __deref_in_z_opt
+#define sal_deref_out                           __notnull   __deref_out
+#define sal_deref_out_opt                       __maybenull __deref_out_opt
+#define sal_deref_out_z                         __notnull   __deref_out_z
+#define sal_deref_out_z_opt                     __notnull   __deref_out_z_opt
+#define sal_deref_inout                         __notnull   __deref_inout
+#define sal_deref_inout_opt                     __maybenull __deref_inout_opt
+#define sal_deref_inout_z                       __notnull   __deref_inout_z
+#define sal_deref_inout_z_opt                   __maybenull __deref_inout_z_opt
+
 #define sal_in_bcount(size)                     __notnull   __in_bcount(size)
 #define sal_in_bcount_opt(size)                 __maybenull __in_bcount_opt(size)
 #define sal_out_bcount(size)                    __notnull   __out_bcount(size)
@@ -41,6 +54,19 @@
 #define sal_out_ecount_opt(size)                __maybenull __out_ecount_opt(size)
 #define sal_inout_ecount(size)                  __notnull   __inout_ecount(size)
 #define sal_inout_ecount_opt(size)              __maybenull __inout_ecount_opt(size)
+
+#define sal_deref_in_bcount(size)               __notnull   __deref_in_bcount(size)
+#define sal_deref_in_bcount_opt(size)           __maybenull __deref_in_bcount_opt(size)
+#define sal_deref_out_bcount(size)              __notnull   __deref_out_bcount(size)
+#define sal_deref_out_bcount_opt(size)          __maybenull __deref_out_bcount_opt(size)
+#define sal_deref_inout_bcount(size)            __notnull   __deref_inout_bcount(size)
+#define sal_deref_inout_bcount_opt(size)        __maybenull __deref_inout_bcount_opt(size)
+#define sal_deref_in_ecount(size)               __notnull   __deref_in_ecount(size)
+#define sal_deref_in_ecount_opt(size)           __maybenull __deref_in_ecount_opt(size)
+#define sal_deref_out_ecount(size)              __notnull   __deref_out_ecount(size)
+#define sal_deref_out_ecount_opt(size)          __maybenull __deref_out_ecount_opt(size)
+#define sal_deref_inout_ecount(size)            __notnull   __deref_inout_ecount(size)
+#define sal_deref_inout_ecount_opt(size)        __maybenull __deref_inout_ecount_opt(size)
 
 #define sal_checkReturn                         __checkReturn
 #define sal_callback                            __callback
