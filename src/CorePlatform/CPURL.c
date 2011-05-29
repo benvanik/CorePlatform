@@ -11,10 +11,6 @@
 
 CP_DEFINE_TYPE(CPURL, NULL, CPURLDealloc);
 
-// NOTE: imported from CPString.c - this is nasty, but efficient
-sal_out size_t _CPStringGetTotalByteLength(const size_t length);
-sal_checkReturn sal_out_opt CPStringRef _CPStringCreateEmpty(const size_t length);
-
 BOOL _CPURLIsRooted(sal_in_z const CPChar* url)
 {
     // Looking for [a-zA-Z0-9]+:
@@ -278,7 +274,7 @@ sal_checkReturn sal_out_opt CPURLRef _CPURLCreateEmpty(sal_inout_opt CPURLRef ba
 
     // Nasty, disgustingly safe math that computes:
     // totalSize = sizeof(CPURL) + ((length + 1) * sizeof(CPChar))
-    const size_t totalValueBytes = _CPStringGetTotalByteLength(length);
+    const size_t totalValueBytes = CPStringGetTotalByteLength(length);
     size_t totalSize;
     CPEXPECTTRUE(CPAddSizeT(sizeof(CPURL), totalValueBytes, &totalSize));
 
@@ -359,7 +355,7 @@ CP_API sal_checkReturn sal_out_opt CPURLRef CPURLCreateAbsoluteCopy(sal_inout CP
     CPURLRef url = _CPURLCreateEmpty(NULL, length);
     CPEXPECTNOTNULL(url);
 
-    const size_t totalBytes = _CPStringGetTotalByteLength(length);
+    const size_t totalBytes = CPStringGetTotalByteLength(length);
     CPEXPECTTRUE(CPURLGetAbsoluteString(source, url->value, totalBytes));
 
     // NOTE: no validation is performed because we assume that the source URL could not have been created incorrectly
@@ -390,10 +386,10 @@ sal_callback void CPURLDealloc(sal_inout CPURLRef url)
 
 CP_API sal_out_opt CPStringRef CPURLCopyAbsoluteString(sal_inout CPURLRef url)
 {
-    CPStringRef string = _CPStringCreateEmpty(url->absoluteLength);
+    CPStringRef string = CPStringCreateEmpty(url->absoluteLength);
     CPEXPECTNOTNULL(string);
 
-    const size_t totalBytes = _CPStringGetTotalByteLength(url->absoluteLength);
+    const size_t totalBytes = CPStringGetTotalByteLength(url->absoluteLength);
     CPEXPECTTRUE(CPURLGetAbsoluteString(url, string->value, totalBytes));
 
     CPASSERT(CPStrLen(string->value) == url->absoluteLength);
@@ -407,7 +403,7 @@ CPCLEANUP:
 
 CP_API sal_checkReturn BOOL CPURLGetAbsoluteString(sal_inout CPURLRef url, sal_out_bcount_opt(bufferSize) CPChar* buffer, const size_t bufferSize)
 {
-    const size_t totalBytes = _CPStringGetTotalByteLength(url->absoluteLength);
+    const size_t totalBytes = CPStringGetTotalByteLength(url->absoluteLength);
     if (totalBytes > bufferSize) {
         return FALSE;
     }
@@ -437,11 +433,13 @@ CP_API size_t CPURLGetScheme(sal_inout CPURLRef url, sal_out_bcount_opt(bufferSi
         return 0;
     }
     const size_t length = p - url->value;
-    if (bufferSize < length + 1) {
-        return 0;
-    }
-    if (!CPStrNCpy(buffer, bufferSize, url->value, length)) {
-        return 0;
+    if (buffer) {
+        if (bufferSize < length + 1) {
+            return -1;
+        }
+        if (!CPStrNCpy(buffer, bufferSize, url->value, length)) {
+            return -1;
+        }
     }
     return length;
 }
@@ -454,6 +452,146 @@ CP_API sal_out_opt CPStringRef CPURLCopyScheme(sal_inout CPURLRef url)
         return NULL;
     }
     return CPStringCreate(buffer);
+}
+
+CP_API size_t CPURLGetLastPathComponent(sal_inout CPURLRef url, sal_out_bcount_opt(bufferSize) CPChar* buffer, const size_t bufferSize)
+{
+    // May be scheme://host, with no trailing slash or filename
+    if (!url->baseURL) {
+        const CPChar* slash1 = CPStrStr(url->value, CPTEXT("://"));
+        if (!slash1) {
+            return 0;
+        }
+        slash1 += 2; // skip :/, set now at the last /
+        const CPChar* slash2 = CPStrRChr(url->value, '/');
+        if (slash1 == slash2) {
+            // Last trailing slash is the scheme ://
+            return 0;
+        }
+    }
+
+    // Assume last path component always in this url instance
+    // This is not the case if this entire instance is a query/hash string - just call up
+    if ((url->value[0] == '?') || (url->value[0] == '#')) {
+        if (url->baseURL) {
+            return CPURLGetLastPathComponent(url->baseURL, buffer, bufferSize);
+        } else {
+            return 0;
+        }
+    }
+
+    // Grab last path pointer
+    const CPChar* p = url->value;
+    const CPChar* lastSlash = CPStrRChr(p, '/');
+    if (!lastSlash) {
+        // Entire instance is the last path component
+    } else {
+        // Skip to component
+        p = lastSlash + 1;
+    }
+
+    // Trim any query or fragment at the end
+    const CPChar* q = CPStrRChr(p, '?');
+    const CPChar* h = CPStrRChr(p, '#');
+    const CPChar* last = NULL;
+    if (q && h) {
+        if (q < h) {
+            last = q;
+        } else {
+            last = h;
+        }
+    } else if (q) {
+        last = q;
+    } else if (h) {
+        last = h;
+    }
+
+    // Found!
+    const size_t length = last ? (last - p) : CPStrLen(p);
+    if (buffer) {
+        if (!CPStrNCpy(buffer, bufferSize, p, length)) {
+            return -1;
+        }
+    }
+    return length;
+}
+
+CP_API sal_out_opt CPStringRef CPURLCopyLastPathComponent(sal_inout CPURLRef url)
+{
+    const size_t requiredLength = CPURLGetLastPathComponent(url, NULL, 0);
+    if (requiredLength == -1) {
+        return NULL;
+    }
+    CPStringRef string = CPStringCreateEmpty(requiredLength);
+    if (!string) {
+        return NULL;
+    }
+    CPChar* stringBuffer = (CPChar*)CPStringGet(string);
+    if (CPURLGetLastPathComponent(url, stringBuffer, requiredLength + 1) == -1) {
+        CPRelease(string);
+        return NULL;
+    }
+    return string;
+}
+
+CP_API size_t CPURLGetPathExtension(sal_inout CPURLRef url, sal_out_bcount_opt(bufferSize) CPChar* buffer, const size_t bufferSize)
+{
+    // Get filename
+    const size_t requiredLength = CPURLGetLastPathComponent(url, NULL, 0);
+    if (requiredLength == -1) {
+        return NULL;
+    }
+    const size_t filenameSize = CPStringGetTotalByteLength(requiredLength);
+    CPChar* filename = (CPChar*)CPStackAlloc(filenameSize);
+    CPEXPECT(CPURLGetLastPathComponent(url, filename, requiredLength + 1) != -1);
+
+    // Find last .
+    const CPChar* dot = CPStrRChr(filename, '.');
+    CPEXPECTNOTNULL(dot);
+    dot++;
+
+    const size_t length = CPStrLen(dot);
+    if (buffer) {
+        if (!CPStrNCpy(buffer, bufferSize, dot, length)) {
+            return -1;
+        }
+    }
+
+    CPStackFree(filename);
+    return length;
+
+CPCLEANUP:
+    if (filename) {
+        CPStackFree(filename);
+    }
+    return -1;
+}
+
+CP_API sal_out_opt CPStringRef CPURLCopyPathExtension(sal_inout CPURLRef url)
+{
+    // TODO: intern common extensions
+
+    // Try first with our default buffer size (common)
+    CPChar buffer[64];
+    if (CPURLGetPathExtension(url, buffer, sizeof(buffer)) != -1) {
+        return CPStringCreate(buffer);
+    }
+
+    // Dynamic allocation
+    const size_t requiredLength = CPURLGetPathExtension(url, NULL, 0);
+    if (requiredLength == -1) {
+        return NULL;
+    }
+    CPStringRef string = CPStringCreateEmpty(requiredLength);
+    if (!string) {
+        return NULL;
+    }
+    CPChar* stringBuffer = (CPChar*)CPStringGet(string);
+    if (CPURLGetPathExtension(url, stringBuffer, requiredLength + 1) == -1) {
+        CPRelease(string);
+        return NULL;
+    }
+    return string;
 }
 
 CP_API BOOL CPURLIsHTTP(sal_inout CPURLRef url)
@@ -653,6 +791,29 @@ CP_API sal_checkReturn size_t CPURLUnescape(sal_in_z const CPChar* source, sal_o
 decodeDone:
     dp[ 0 ] = 0;
     return dp - buffer;
+}
+
+CP_API sal_out_opt CPStringRef CPURLUnescapeString(sal_inout CPStringRef source)
+{
+    const CPChar* sourceChars = CPStringGet(source);
+    const CPChar* percent = CPStrChr(sourceChars, '%');
+    if (!percent) {
+        return CPStringRetain(source);
+    }
+
+    const size_t bufferSize = CPStringGetTotalByteLength(CPStringGetLength(source));
+    CPChar* buffer = (CPChar*)CPStackAlloc(bufferSize);
+    CPEXPECTNOTNULL(buffer);
+
+    CPEXPECT(CPURLUnescape(sourceChars, buffer, bufferSize) != -1);
+
+    CPStringRef result = CPStringCreate(buffer);
+    CPStackFree(buffer);
+    return result;
+
+CPCLEANUP:
+    CPStackFree(buffer);
+    return NULL;
 }
 
 CP_API void CPURLNormalizeSlashes(sal_in_z CPChar* url, const CPChar slashChar)

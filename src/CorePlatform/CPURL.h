@@ -61,8 +61,10 @@ CP_API sal_out_opt CPStringRef CPURLCopyScheme(sal_inout CPURLRef url);
 // CPURLGetPortNumber
 // CPURLGetNetLocation
 // CPURLGetPath
-// CPURLGetLastPathComponent
-// CPURLGetPathExtension
+CP_API size_t CPURLGetLastPathComponent(sal_inout CPURLRef url, sal_out_bcount_opt(bufferSize) CPChar* buffer, const size_t bufferSize);
+CP_API sal_out_opt CPStringRef CPURLCopyLastPathComponent(sal_inout CPURLRef url);
+CP_API size_t CPURLGetPathExtension(sal_inout CPURLRef url, sal_out_bcount_opt(bufferSize) CPChar* buffer, const size_t bufferSize);
+CP_API sal_out_opt CPStringRef CPURLCopyPathExtension(sal_inout CPURLRef url);
 // CPURLGetQueryString
 // CPURLGetFragment
 
@@ -72,5 +74,6 @@ CP_API BOOL CPURLIsFile(sal_inout CPURLRef url);
 
 CP_API sal_checkReturn size_t CPURLEscape(sal_in_z const CPChar* source, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize, const uint32 escapeOptions);
 CP_API sal_checkReturn size_t CPURLUnescape(sal_in_z const CPChar* source, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize);
+CP_API sal_out_opt CPStringRef CPURLUnescapeString(sal_inout CPStringRef source);
 
 CP_API void CPURLNormalizeSlashes(sal_in_z CPChar* url, const CPChar slashChar);

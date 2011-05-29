@@ -11,18 +11,7 @@
 
 CP_DEFINE_TYPE(CPString, NULL, CPStringDealloc);
 
-sal_out size_t _CPStringGetTotalByteLength(const size_t length)
-{
-    size_t totalChars;
-    size_t totalLength;
-    CPEXPECTTRUE(CPAddSizeT(length, 1, &totalChars));
-    CPEXPECTTRUE(CPMultSizeT(totalChars, sizeof(CPChar), &totalLength));
-    return totalLength;
-CPCLEANUP:
-    return -1;
-}
-
-BOOL CPStringValidateRange(const size_t totalLength, const size_t index, const size_t length, sal_out size_t* prealLength)
+BOOL _CPStringValidateRange(const size_t totalLength, const size_t index, const size_t length, sal_out size_t* prealLength)
 {
     // Always set so that worst case it's a no-op
     *prealLength = 0;
@@ -45,14 +34,30 @@ CPCLEANUP:
     return FALSE;
 }
 
-// NOTE: this is a utility method and should not be exposed!
-sal_checkReturn sal_out_opt CPStringRef _CPStringCreateEmpty(const size_t length)
+CP_API sal_out size_t CPStringGetTotalByteLength(const size_t length)
+{
+    size_t totalChars;
+    size_t totalLength;
+    CPEXPECTTRUE(CPAddSizeT(length, 1, &totalChars));
+    CPEXPECTTRUE(CPMultSizeT(totalChars, sizeof(CPChar), &totalLength));
+    return totalLength;
+CPCLEANUP:
+    return -1;
+}
+
+CP_API sal_checkReturn sal_out_opt CPStringRef CPStringCreate(sal_in_z const CPChar* source)
+{
+    const size_t length = CPStrLen(source);
+    return CPStringCreateWithCharacters(source, length);
+}
+
+CP_API sal_checkReturn sal_out_opt CPStringRef CPStringCreateEmpty(const size_t length)
 {
     CPStringRef string = NULL;
 
     // Nasty, disgustingly safe math that computes:
     // totalSize = sizeof(CPString) + ((length + 1) * sizeof(CPChar))
-    const size_t totalValueBytes = _CPStringGetTotalByteLength(length);
+    const size_t totalValueBytes = CPStringGetTotalByteLength(length);
     size_t totalSize;
     CPEXPECTTRUE(CPAddSizeT(sizeof(CPString), totalValueBytes, &totalSize));
 
@@ -72,12 +77,6 @@ CPCLEANUP:
     return NULL;
 }
 
-CP_API sal_checkReturn sal_out_opt CPStringRef CPStringCreate(sal_in_z const CPChar* source)
-{
-    const size_t length = CPStrLen(source);
-    return CPStringCreateWithCharacters(source, length);
-}
-
 CP_API sal_checkReturn sal_out_opt CPStringRef CPStringCreateWithCharacters(sal_in_ecount(length) const CPChar* source, const size_t length)
 {
     CPStringRef string = NULL;
@@ -86,7 +85,7 @@ CP_API sal_checkReturn sal_out_opt CPStringRef CPStringCreateWithCharacters(sal_
     size_t sourceValueBytes;
     CPEXPECTTRUE(CPMultSizeT(length, sizeof(CPChar), &sourceValueBytes));
 
-    string = _CPStringCreateEmpty(length);
+    string = CPStringCreateEmpty(length);
     CPEXPECTNOTNULL(string);
 
     // Copy in the string (this does not include a NUL terminator)
@@ -106,7 +105,7 @@ CP_API sal_checkReturn sal_out_opt CPStringRef CPStringCreateWithSubstring(sal_i
 {
     // Verify range is valid
     size_t realLength;
-    if (!CPStringValidateRange(source->length, index, length, &realLength)) {
+    if (!_CPStringValidateRange(source->length, index, length, &realLength)) {
         return NULL;
     }
     return CPStringCreateWithCharacters(source->value + index, realLength);
@@ -157,7 +156,7 @@ CP_API sal_checkReturn sal_out_opt CPStringRef CPStringCreateWithFormatAndArgume
 #endif // CPVSCPrintF
 
     // Now we will create an empty string of the desired length that we will write into
-    string = _CPStringCreateEmpty(result);
+    string = CPStringCreateEmpty(result);
     CPEXPECTNOTNULL(string);
 
     // Try to write again
@@ -204,7 +203,7 @@ CP_API sal_checkReturn sal_out_opt CPStringRef CPStringCreateByCombiningStrings(
     }
 
     // Allocate empty string to fill
-    string = _CPStringCreateEmpty(totalChars);
+    string = CPStringCreateEmpty(totalChars);
     CPEXPECTNOTNULL(string);
 
     CPChar* p = string->value;
@@ -267,7 +266,7 @@ CP_API sal_checkReturn BOOL CPStringGetCharacters(sal_inout CPStringRef string, 
 {
     // Verify range is valid
     size_t realLength;
-    CPEXPECTTRUE(CPStringValidateRange(string->length, index, length, &realLength));
+    CPEXPECTTRUE(_CPStringValidateRange(string->length, index, length, &realLength));
 
     // Compute the total number of bytes to copy
     size_t sourceBytes;

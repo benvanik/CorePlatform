@@ -45,7 +45,10 @@ struct CPString_t {
 #pragma warning(pop)
 };
 
+CP_API sal_out size_t CPStringGetTotalByteLength(const size_t length);
+
 CP_API sal_checkReturn sal_out_opt CPStringRef CPStringCreate(sal_in_z const CPChar* source);
+CP_API sal_checkReturn sal_out_opt CPStringRef CPStringCreateEmpty(const size_t length);
 CP_API sal_checkReturn sal_out_opt CPStringRef CPStringCreateWithCharacters(sal_in_ecount(length) const CPChar* source, const size_t length);
 CP_API sal_checkReturn sal_out_opt CPStringRef CPStringCreateWithSubstring(sal_inout CPStringRef source, const size_t index, const size_t length);
 CP_API sal_checkReturn sal_out_opt CPStringRef CPStringCreateWithFormat(sal_in_z const CPChar* format, ...);
