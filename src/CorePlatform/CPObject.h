@@ -41,6 +41,9 @@ typedef struct CPObjectType_t {
     const CPObjectType name##Type = {CPTEXT(#name), parentType, (CPObjectDealloc)dealloc}; \
     void __dummy_define_##name##Type() { CPUNREFERENCED(name##Type); }
 
+#define CP_EXTERN_TYPE(name) \
+    typedef struct name##_t* name##Ref;
+
 typedef struct CPObject_t {
     const CPObjectType*     type;
     volatile int32          count;
