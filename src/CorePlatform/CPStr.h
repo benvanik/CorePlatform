@@ -74,7 +74,8 @@ typedef wchar_t CPChar;
 #define CPSNPrintF          CPSNPrintFW
 #define CPVSNPrintF         CPVSNPrintFW
 
-#define CPStrWiden(dest, destLength, source)    mbstowcs_s(NULL, dest, destLength, source, _TRUNCATE)
+#define CPStrNarrow(dest, destLength, source)   (wcstombs_s(NULL, dest, destLength, source, _TRUNCATE) == 0)
+#define CPStrWiden(dest, destLength, source)    (mbstowcs_s(NULL, dest, destLength, source, _TRUNCATE) == 0)
 
 #else
 
@@ -94,6 +95,7 @@ typedef char CPChar;
 #define CPSNPrintF          CPSNPrintFA
 #define CPVSNPrintF         CPVSNPrintFA
 
+#define CPStrNarrow(dest, destLength, source)   CPStrCpy(dest, destLength, source)
 #define CPStrWiden(dest, destLength, source)    CPStrCpy(dest, destLength, source)
 
 #endif // WIN32
