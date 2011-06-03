@@ -48,11 +48,14 @@
 #if CP_COMPILER(MSVC)
 // http://msdn.microsoft.com/en-us/library/83ythb65.aspx
 #define CPCACHEALIGN                    __declspec(align(CP_ALIGNMENT))
+#define CPCACHEALIGN64                  __declspec(align(64))
 #elif CP_COMPILER(GNUC)
 // http://gcc.gnu.org/onlinedocs/gcc/Type-Attributes.html
 #define CPCACHEALIGN                    __attribute__ ((aligned(CP_ALIGNMENT)))
+#define CPCACHEALIGN64                  __attribute__ ((aligned(64)))
 #else
 #define CPCACHEALIGN                    
+#define CPCACHEALIGN64                  
 #endif
 typedef CPCACHEALIGN volatile void      CPAlignedVoid;
 
