@@ -71,6 +71,12 @@ CPCLEANUP:
     return FALSE;
 }
 
+CP_API sal_out_ecount(*outCount) const cpptr* CPArrayGetHeadPointer(sal_inout CPArrayRef array, sal_deref_out size_t* outCount)
+{
+    *outCount = array->count;
+    return (const cpptr*)array->items;
+}
+
 CP_API sal_out_opt cpptr CPArrayGetItem(sal_inout CPArrayRef array, const size_t index)
 {
     if (index > array->count) {

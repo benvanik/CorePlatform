@@ -39,6 +39,8 @@ CP_API size_t CPArrayGetCount(sal_inout CPArrayRef array);
 
 CP_API BOOL CPArrayExpand(sal_inout CPArrayRef array, const size_t newCapacity);
 
+CP_API sal_out_ecount(*outCount) const cpptr* CPArrayGetHeadPointer(sal_inout CPArrayRef array, sal_deref_out size_t* outCount);
+
 CP_API sal_out_opt cpptr CPArrayGetItem(sal_inout CPArrayRef array, const size_t index);
 CP_API size_t CPArrayGetIndexOfItem(sal_inout CPArrayRef array, sal_inout cpptr item);
 
