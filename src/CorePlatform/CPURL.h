@@ -27,6 +27,8 @@
 
 #define CPURLInvalidIndex ((size_t)-1)
 
+#define CPMAXURL    2048
+
 typedef enum CPURLEscapeOptions_e {
     CPURLEscapeOptionsPath          = 1,
 } CPURLEscapeOptions;
