@@ -26,6 +26,7 @@
 #define strcpy_s(dest, destLength, source)              !(strcpy(dest, source) == dest + (destLength*0))
 #define strncpy_s(dest, destLength, source, count)      !(strncpy(dest, source, MIN(destLength, count)) == dest + (destLength*0))
 #define strcat_s(dest, destLength, source)              !(strcat(dest, source) == dest + (destLength*0))
+#define _snprintf_s(dest, destLength, format, ...)      snprintf(dest, destLength, format, ##__VA_ARGS__)
 #else
 #define strcasecmp                                      _stricmp
 #endif
@@ -52,7 +53,7 @@
 #define CPStrCpyA(dest, destLength, source)             (strcpy_s(dest, destLength, source) == 0)
 #define CPStrNCpyA(dest, destLength, source, count)     (strncpy_s(dest, destLength, source, count) == 0)
 #define CPStrCatA(dest, destLength, source)             (strcat_s(dest, destLength, source) == 0)
-#define CPSNPrintFA(buffer, bufferCount, format, ...)   snprintf(buffer, bufferCount, format, ##__VA_ARGS__)
+#define CPSNPrintFA(buffer, bufferCount, format, ...)   _snprintf_s(buffer, bufferCount, format, ##__VA_ARGS__)
 #define CPVSNPrintFA(buffer, bufferCount, format, args) vsnprintf(buffer, bufferCount, format, args)
 #undef CPVSCPrintFA     // Not needed
 
