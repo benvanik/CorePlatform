@@ -100,6 +100,19 @@
 #define sal_inout_z                 
 #define sal_inout_z_opt             
 
+#define sal_deref_in                
+#define sal_deref_in_opt            
+#define sal_deref_in_z              
+#define sal_deref_in_z_opt          
+#define sal_deref_out               
+#define sal_deref_out_opt           
+#define sal_deref_out_z             
+#define sal_deref_out_z_opt         
+#define sal_deref_inout             
+#define sal_deref_inout_opt         
+#define sal_deref_inout_z           
+#define sal_deref_inout_z_opt       
+
 #define sal_in_bcount(size)         
 #define sal_in_bcount_opt(size)     
 #define sal_out_bcount(size)        
@@ -112,6 +125,19 @@
 #define sal_out_ecount_opt(size)    
 #define sal_inout_ecount(size)      
 #define sal_inout_ecount_opt(size)  
+
+#define sal_deref_in_bcount(size)               
+#define sal_deref_in_bcount_opt(size)           
+#define sal_deref_out_bcount(size)              
+#define sal_deref_out_bcount_opt(size)          
+#define sal_deref_inout_bcount(size)            
+#define sal_deref_inout_bcount_opt(size)        
+#define sal_deref_in_ecount(size)               
+#define sal_deref_in_ecount_opt(size)           
+#define sal_deref_out_ecount(size)              
+#define sal_deref_out_ecount_opt(size)          
+#define sal_deref_inout_ecount(size)            
+#define sal_deref_inout_ecount_opt(size)        
 
 #define sal_checkReturn             
 #define sal_callback                

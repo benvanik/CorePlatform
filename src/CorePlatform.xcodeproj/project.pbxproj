@@ -3,10 +3,28 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9083B5C813A142150042EE6B /* CPByteOrder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5BF13A142150042EE6B /* CPByteOrder.h */; };
+		9083B5C913A142150042EE6B /* CPByteOrder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5BF13A142150042EE6B /* CPByteOrder.h */; };
+		9083B5CA13A142150042EE6B /* CPFile.c in Sources */ = {isa = PBXBuildFile; fileRef = 9083B5C013A142150042EE6B /* CPFile.c */; };
+		9083B5CB13A142150042EE6B /* CPFile.c in Sources */ = {isa = PBXBuildFile; fileRef = 9083B5C013A142150042EE6B /* CPFile.c */; };
+		9083B5CC13A142150042EE6B /* CPFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C113A142150042EE6B /* CPFile.h */; };
+		9083B5CD13A142150042EE6B /* CPFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C113A142150042EE6B /* CPFile.h */; };
+		9083B5CE13A142150042EE6B /* CPFileReadStream.c in Sources */ = {isa = PBXBuildFile; fileRef = 9083B5C213A142150042EE6B /* CPFileReadStream.c */; };
+		9083B5CF13A142150042EE6B /* CPFileReadStream.c in Sources */ = {isa = PBXBuildFile; fileRef = 9083B5C213A142150042EE6B /* CPFileReadStream.c */; };
+		9083B5D013A142150042EE6B /* CPFileReadStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C313A142150042EE6B /* CPFileReadStream.h */; };
+		9083B5D113A142150042EE6B /* CPFileReadStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C313A142150042EE6B /* CPFileReadStream.h */; };
+		9083B5D213A142150042EE6B /* CPLFStack.c in Sources */ = {isa = PBXBuildFile; fileRef = 9083B5C413A142150042EE6B /* CPLFStack.c */; };
+		9083B5D313A142150042EE6B /* CPLFStack.c in Sources */ = {isa = PBXBuildFile; fileRef = 9083B5C413A142150042EE6B /* CPLFStack.c */; };
+		9083B5D413A142150042EE6B /* CPLFStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C513A142150042EE6B /* CPLFStack.h */; };
+		9083B5D513A142150042EE6B /* CPLFStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C513A142150042EE6B /* CPLFStack.h */; };
+		9083B5D613A142150042EE6B /* CPReadStream.c in Sources */ = {isa = PBXBuildFile; fileRef = 9083B5C613A142150042EE6B /* CPReadStream.c */; };
+		9083B5D713A142150042EE6B /* CPReadStream.c in Sources */ = {isa = PBXBuildFile; fileRef = 9083B5C613A142150042EE6B /* CPReadStream.c */; };
+		9083B5D813A142150042EE6B /* CPReadStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C713A142150042EE6B /* CPReadStream.h */; };
+		9083B5D913A142150042EE6B /* CPReadStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C713A142150042EE6B /* CPReadStream.h */; };
 		9090E9E212E81D73000F1EB7 /* CorePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9090E9C512E81D73000F1EB7 /* CorePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9090E9E312E81D73000F1EB7 /* CPAnnotations.h in Headers */ = {isa = PBXBuildFile; fileRef = 9090E9C612E81D73000F1EB7 /* CPAnnotations.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9090E9E412E81D73000F1EB7 /* CPArray.c in Sources */ = {isa = PBXBuildFile; fileRef = 9090E9C712E81D73000F1EB7 /* CPArray.c */; };
@@ -65,6 +83,15 @@
 
 /* Begin PBXFileReference section */
 		907EB82912E24F0500D20413 /* libCorePlatform-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libCorePlatform-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9083B5BF13A142150042EE6B /* CPByteOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPByteOrder.h; path = CorePlatform/CPByteOrder.h; sourceTree = "<group>"; };
+		9083B5C013A142150042EE6B /* CPFile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CPFile.c; path = CorePlatform/CPFile.c; sourceTree = "<group>"; };
+		9083B5C113A142150042EE6B /* CPFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPFile.h; path = CorePlatform/CPFile.h; sourceTree = "<group>"; };
+		9083B5C213A142150042EE6B /* CPFileReadStream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CPFileReadStream.c; path = CorePlatform/CPFileReadStream.c; sourceTree = "<group>"; };
+		9083B5C313A142150042EE6B /* CPFileReadStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPFileReadStream.h; path = CorePlatform/CPFileReadStream.h; sourceTree = "<group>"; };
+		9083B5C413A142150042EE6B /* CPLFStack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CPLFStack.c; path = CorePlatform/CPLFStack.c; sourceTree = "<group>"; };
+		9083B5C513A142150042EE6B /* CPLFStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPLFStack.h; path = CorePlatform/CPLFStack.h; sourceTree = "<group>"; };
+		9083B5C613A142150042EE6B /* CPReadStream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CPReadStream.c; path = CorePlatform/CPReadStream.c; sourceTree = "<group>"; };
+		9083B5C713A142150042EE6B /* CPReadStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPReadStream.h; path = CorePlatform/CPReadStream.h; sourceTree = "<group>"; };
 		9090E9C512E81D73000F1EB7 /* CorePlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CorePlatform.h; path = CorePlatform/CorePlatform.h; sourceTree = "<group>"; };
 		9090E9C612E81D73000F1EB7 /* CPAnnotations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPAnnotations.h; path = CorePlatform/CPAnnotations.h; sourceTree = "<group>"; };
 		9090E9C712E81D73000F1EB7 /* CPArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CPArray.c; path = CorePlatform/CPArray.c; sourceTree = "<group>"; };
@@ -153,6 +180,7 @@
 				9090E9CC12E81D73000F1EB7 /* CPConfig.h */,
 				9090E9DF12E81D73000F1EB7 /* CPTypes.h */,
 				9090E9C612E81D73000F1EB7 /* CPAnnotations.h */,
+				9083B5BF13A142150042EE6B /* CPByteOrder.h */,
 				9090E9CA12E81D73000F1EB7 /* CPCodeUtilities.h */,
 				9090E9C912E81D73000F1EB7 /* CPAtomic.h */,
 				9090E9D212E81D73000F1EB7 /* CPMemory.h */,
@@ -183,8 +211,16 @@
 				9090E9D312E81D73000F1EB7 /* CPObject.c */,
 				9090E9C812E81D73000F1EB7 /* CPArray.h */,
 				9090E9C712E81D73000F1EB7 /* CPArray.c */,
+				9083B5C013A142150042EE6B /* CPFile.c */,
+				9083B5C113A142150042EE6B /* CPFile.h */,
+				9083B5C213A142150042EE6B /* CPFileReadStream.c */,
+				9083B5C313A142150042EE6B /* CPFileReadStream.h */,
 				9090E9CF12E81D73000F1EB7 /* CPLinkedList.h */,
 				9090E9CE12E81D73000F1EB7 /* CPLinkedList.c */,
+				9083B5C413A142150042EE6B /* CPLFStack.c */,
+				9083B5C513A142150042EE6B /* CPLFStack.h */,
+				9083B5C613A142150042EE6B /* CPReadStream.c */,
+				9083B5C713A142150042EE6B /* CPReadStream.h */,
 				9090E9DE12E81D73000F1EB7 /* CPString.h */,
 				9090E9DD12E81D73000F1EB7 /* CPString.c */,
 				9090E9E112E81D73000F1EB7 /* CPURL.h */,
@@ -235,6 +271,11 @@
 				9090EA1812E81D73000F1EB7 /* CPString.h in Headers */,
 				9090EA1912E81D73000F1EB7 /* CPTypes.h in Headers */,
 				9090EA1B12E81D73000F1EB7 /* CPURL.h in Headers */,
+				9083B5C913A142150042EE6B /* CPByteOrder.h in Headers */,
+				9083B5CD13A142150042EE6B /* CPFile.h in Headers */,
+				9083B5D113A142150042EE6B /* CPFileReadStream.h in Headers */,
+				9083B5D513A142150042EE6B /* CPLFStack.h in Headers */,
+				9083B5D913A142150042EE6B /* CPReadStream.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +302,11 @@
 				9090E9FB12E81D73000F1EB7 /* CPString.h in Headers */,
 				9090E9FC12E81D73000F1EB7 /* CPTypes.h in Headers */,
 				9090E9FE12E81D73000F1EB7 /* CPURL.h in Headers */,
+				9083B5C813A142150042EE6B /* CPByteOrder.h in Headers */,
+				9083B5CC13A142150042EE6B /* CPFile.h in Headers */,
+				9083B5D013A142150042EE6B /* CPFileReadStream.h in Headers */,
+				9083B5D413A142150042EE6B /* CPLFStack.h in Headers */,
+				9083B5D813A142150042EE6B /* CPReadStream.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,10 +354,11 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Ben Vanik";
 			};
 			buildConfigurationList = 1DEB91EF08733DB70010E9CD /* Build configuration list for PBXProject "CorePlatform" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -343,6 +390,10 @@
 				9090EA1212E81D73000F1EB7 /* CPPAL.c in Sources */,
 				9090EA1712E81D73000F1EB7 /* CPString.c in Sources */,
 				9090EA1A12E81D73000F1EB7 /* CPURL.c in Sources */,
+				9083B5CB13A142150042EE6B /* CPFile.c in Sources */,
+				9083B5CF13A142150042EE6B /* CPFileReadStream.c in Sources */,
+				9083B5D313A142150042EE6B /* CPLFStack.c in Sources */,
+				9083B5D713A142150042EE6B /* CPReadStream.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +409,10 @@
 				9090E9F512E81D73000F1EB7 /* CPPAL.c in Sources */,
 				9090E9FA12E81D73000F1EB7 /* CPString.c in Sources */,
 				9090E9FD12E81D73000F1EB7 /* CPURL.c in Sources */,
+				9083B5CA13A142150042EE6B /* CPFile.c in Sources */,
+				9083B5CE13A142150042EE6B /* CPFileReadStream.c in Sources */,
+				9083B5D213A142150042EE6B /* CPLFStack.c in Sources */,
+				9083B5D613A142150042EE6B /* CPReadStream.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,7 +425,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				PRODUCT_NAME = "CorePlatform-OSX";
@@ -395,12 +449,12 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = .;
 				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				SYMROOT = ../build;
 			};
 			name = Debug;
@@ -410,11 +464,11 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = .;
-				PREBINDING = NO;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				SYMROOT = ../build;
 			};
 			name = Release;
@@ -427,7 +481,6 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				PREBINDING = NO;
 				PRODUCT_NAME = "CorePlatform-iOS";
 				PUBLIC_HEADERS_FOLDER_PATH = CorePlatform;
 				SDKROOT = iphoneos;
@@ -441,8 +494,6 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				PREBINDING = NO;
 				PRODUCT_NAME = "CorePlatform-iOS";
 				PUBLIC_HEADERS_FOLDER_PATH = CorePlatform;
 				SDKROOT = iphoneos;

@@ -13,6 +13,7 @@
 
 #include <limits.h>
 #include <stddef.h>
+#include <ctype.h>
 
 typedef unsigned char       byte;
 typedef signed char         int8;

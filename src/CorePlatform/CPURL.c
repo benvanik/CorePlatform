@@ -539,7 +539,7 @@ CP_API size_t CPURLGetPathExtension(sal_inout CPURLRef url, sal_out_bcount_opt(b
     // Get filename
     const size_t requiredLength = CPURLGetLastPathComponent(url, NULL, 0);
     if (requiredLength == -1) {
-        return NULL;
+        return -1;
     }
     const size_t filenameSize = CPStringGetTotalByteLength(requiredLength);
     CPChar* filename = (CPChar*)CPStackAlloc(filenameSize);
@@ -761,7 +761,7 @@ CP_API sal_checkReturn size_t CPURLUnescape(sal_in_z const CPChar* source, sal_o
                 }
                 *dp = 16 * c1 + c2;
                 dp++;
-                c1 = c2 = 999;
+                c1 = c2 = 255;
                 CPURLUnescapeNext();
                 CPURLUnescapeNext();
                 CPURLUnescapeNext();

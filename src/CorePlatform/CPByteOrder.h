@@ -17,6 +17,11 @@
 #define cpswap16                        _byteswap_ushort
 #define cpswap32                        _byteswap_ulong
 #define cpswap64                        _byteswap_uint64
+#elif CP_LIKE(OSX)
+#include <libkern/OSByteOrder.h>
+#define cpswap16                        OSSwapInt16
+#define cpswap32                        OSSwapInt32
+#define cpswap64                        OSSwapInt64
 #else
 #define cpswap16                        bswap_16
 #define cpswap32                        bswap_32

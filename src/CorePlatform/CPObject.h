@@ -39,6 +39,7 @@ typedef struct CPObjectType_t {
 #define CP_DEFINE_TYPE(name, parentType, dealloc) \
     void dealloc(sal_inout name* obj); \
     const CPObjectType name##Type = {CPTEXT(#name), parentType, (CPObjectDealloc)dealloc}; \
+    void __dummy_define_##name##Type(); \
     void __dummy_define_##name##Type() { CPUNREFERENCED(name##Type); }
 
 #define CP_EXTERN_TYPE(name) \

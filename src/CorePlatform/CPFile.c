@@ -33,7 +33,8 @@ sal_checkReturn sal_out_opt CPFileRef _CPFileCreateCore(sal_inout CPPALRef pal, 
 #if CP_LIKE(WIN32)
     CPEXPECTZERO(_wfopen_s((FILE**)&file->handle, fullPath, modeString));
 #else
-    CPEXPECTZERO(fopen((FILE**)&file->handle, fullPath, modeString));
+    file->handle = fopen(fullPath, modeString);
+    CPEXPECTNOTNULL(file->handle);
 #endif
 
     return file;

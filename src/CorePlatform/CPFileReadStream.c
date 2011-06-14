@@ -36,7 +36,8 @@ CP_API sal_checkReturn sal_out_opt CPFileReadStreamRef CPFileReadStreamCreateWit
 #if CP_LIKE(WIN32)
     CPEXPECTZERO(_wfopen_s((FILE**)&stream->handle, fullPath, L"rb"));
 #else
-    CPEXPECTZERO(fopen((FILE**)&stream->handle, fullPath, "rb"));
+    stream->handle = fopen(fullPath, "rb");
+    CPEXPECTNOTNULL(stream->handle);
 #endif
 
     return stream;

@@ -19,6 +19,10 @@
 #include <sys/time.h>
 #endif
 
+#if !CP_PAL_HAVE(FILEMAPPING)
+#include <sys/mman.h>
+#endif
+
 CP_DEFINE_TYPE(CPPAL, NULL, CPPALDealloc);
 
 CP_API void CPPALOptionsInitialize(sal_inout CPPALOptions* options)
@@ -782,17 +786,76 @@ CP_API void CPPALThreadBlockEnd(sal_inout CPPALRef pal, sal_inout void* block)
 
 CP_API sal_out_opt CPPALFileMapping* CPPALFileMappingCreate(sal_inout CPPALRef pal, sal_inout CPURLRef path, const CPPALFileMappingMode mode, const size_t offset, const size_t length)
 {
-#error TODO
+    CPUNREFERENCED(pal);
+    CPASSERTNOTNULL(pal);
+    
+    CPPALFileMapping* mapping = (CPPALFileMapping*)CPAlloc(sizeof(CPPALFileMapping));
+    if (!mapping) {
+        return NULL;
+    }
+    
+    char* fileMode = "rb";
+    int prot = 0;
+    switch (mode) {
+    case CPPALFileMappingModeRead:
+        prot            |= PROT_READ;
+        break;
+    case CPPALFileMappingModeWrite:
+        prot            |= PROT_WRITE;
+        fileMode        = "wb+";
+        break;
+    case CPPALFileMappingModeReadWrite:
+        prot            |= PROT_READ | PROT_WRITE;
+        break;
+    }
+
+    const size_t pageSize = getpagesize();
+    size_t alignedOffset = offset & (~(pageSize - 1));
+    size_t alignedLength = length + (offset - alignedOffset);
+    
+    CPChar fullPath[CP_MAX_PATH];
+    CPEXPECTTRUE(CPPALConvertURLToFileSystemPath(pal, path, fullPath, CPCOUNT(fullPath)));
+    
+    FILE* file = fopen(fullPath, fileMode);
+    CPEXPECTNOTNULL(file);
+    
+    void* address = mmap(NULL, alignedLength, prot, MAP_PRIVATE | MAP_ANON, fileno(file), alignedLength);
+    CPEXPECT(mapping->rawAddress != MAP_FAILED);
+    
+    mapping->file       = file;
+    mapping->rawAddress = address;
+    mapping->address    = (byte*)address + (offset - alignedOffset);
+    mapping->length     = alignedLength;
+    
+    return mapping;
+    
+CPCLEANUP:
+    if (address) {
+        munmap(mapping->rawAddress, mapping->length);
+    }
+    if (file) {
+        fclose(file);
+    }
+    CPFree(mapping);
+    return NULL;
 }
 
 CP_API void CPPALFileMappingFlush(sal_inout CPPALRef pal, sal_inout CPPALFileMapping* mapping)
 {
-#error TODO
+    CPUNREFERENCED(pal);
+    CPASSERTNOTNULL(pal);
+
+    fsync(fileno(mapping->file));
 }
 
 CP_API void CPPALFileMappingDestroy(sal_inout CPPALRef pal, sal_inout CPPALFileMapping* mapping)
 {
-#error TODO
+    CPUNREFERENCED(pal);
+    CPASSERTNOTNULL(pal);
+
+    munmap(mapping->rawAddress, mapping->length);
+    fclose((FILE*)mapping->file);
+    CPFree(mapping);
 }
 
 #endif // !FILEMAPPING

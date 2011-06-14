@@ -824,6 +824,7 @@ CPCLEANUP:
     if (file) {
         CloseHandle(file);
     }
+    CPFree(mapping);
     return NULL;
 }
 
