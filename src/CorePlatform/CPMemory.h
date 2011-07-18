@@ -43,3 +43,6 @@ CP_API void _CPFreeAligned(sal_inout_opt CPAlignedVoid* ptr);
 
 CP_API BOOL CPZeroMemory(sal_inout_bcount(size) void* ptr, const size_t size, const size_t offset, const size_t length);
 CP_API BOOL CPCopyMemory(sal_out_bcount(destSize) void* dest, const size_t destSize, sal_in_bcount(sourceSize) const void* source, const size_t sourceSize);
+
+CP_API sal_checkReturn sal_out_bcount_opt(size) void* CPVirtualAlloc(sal_inout_bcount(size) void* ptr, const size_t size);
+CP_API void CPVirtualFree(sal_inout_bcount(size) void* ptr, const size_t size);

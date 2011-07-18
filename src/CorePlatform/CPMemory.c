@@ -129,3 +129,26 @@ CP_API BOOL CPCopyMemory(sal_out_bcount(destSize) void* dest, const size_t destS
     memcpy(dest, source, sourceSize);
     return TRUE;
 }
+
+#if !CP_LIKE(WIN32)
+#include <sys/mman.h>
+#endif
+
+CP_API sal_checkReturn sal_out_bcount_opt(size) void* CPVirtualAlloc(sal_inout_bcount(size) void* ptr, const size_t size)
+{
+#if CP_LIKE(WIN32)
+    return VirtualAlloc(ptr, size, MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
+#else
+    return mmap(ptr, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_FIXED, 0, 0);
+#endif
+}
+
+CP_API void CPVirtualFree(sal_inout_bcount(size) void* ptr, const size_t size)
+{
+#if CP_LIKE(WIN32)
+    VirtualFree(ptr, size, MEM_RELEASE);
+#else
+    munmap(ptr, size);
+#endif
+}
+
