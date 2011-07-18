@@ -7,23 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9083B5C813A142150042EE6B /* CPByteOrder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5BF13A142150042EE6B /* CPByteOrder.h */; };
+		9083B5C813A142150042EE6B /* CPByteOrder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5BF13A142150042EE6B /* CPByteOrder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9083B5C913A142150042EE6B /* CPByteOrder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5BF13A142150042EE6B /* CPByteOrder.h */; };
 		9083B5CA13A142150042EE6B /* CPFile.c in Sources */ = {isa = PBXBuildFile; fileRef = 9083B5C013A142150042EE6B /* CPFile.c */; };
 		9083B5CB13A142150042EE6B /* CPFile.c in Sources */ = {isa = PBXBuildFile; fileRef = 9083B5C013A142150042EE6B /* CPFile.c */; };
-		9083B5CC13A142150042EE6B /* CPFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C113A142150042EE6B /* CPFile.h */; };
+		9083B5CC13A142150042EE6B /* CPFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C113A142150042EE6B /* CPFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9083B5CD13A142150042EE6B /* CPFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C113A142150042EE6B /* CPFile.h */; };
 		9083B5CE13A142150042EE6B /* CPFileReadStream.c in Sources */ = {isa = PBXBuildFile; fileRef = 9083B5C213A142150042EE6B /* CPFileReadStream.c */; };
 		9083B5CF13A142150042EE6B /* CPFileReadStream.c in Sources */ = {isa = PBXBuildFile; fileRef = 9083B5C213A142150042EE6B /* CPFileReadStream.c */; };
-		9083B5D013A142150042EE6B /* CPFileReadStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C313A142150042EE6B /* CPFileReadStream.h */; };
+		9083B5D013A142150042EE6B /* CPFileReadStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C313A142150042EE6B /* CPFileReadStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9083B5D113A142150042EE6B /* CPFileReadStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C313A142150042EE6B /* CPFileReadStream.h */; };
 		9083B5D213A142150042EE6B /* CPLFStack.c in Sources */ = {isa = PBXBuildFile; fileRef = 9083B5C413A142150042EE6B /* CPLFStack.c */; };
 		9083B5D313A142150042EE6B /* CPLFStack.c in Sources */ = {isa = PBXBuildFile; fileRef = 9083B5C413A142150042EE6B /* CPLFStack.c */; };
-		9083B5D413A142150042EE6B /* CPLFStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C513A142150042EE6B /* CPLFStack.h */; };
+		9083B5D413A142150042EE6B /* CPLFStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C513A142150042EE6B /* CPLFStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9083B5D513A142150042EE6B /* CPLFStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C513A142150042EE6B /* CPLFStack.h */; };
 		9083B5D613A142150042EE6B /* CPReadStream.c in Sources */ = {isa = PBXBuildFile; fileRef = 9083B5C613A142150042EE6B /* CPReadStream.c */; };
 		9083B5D713A142150042EE6B /* CPReadStream.c in Sources */ = {isa = PBXBuildFile; fileRef = 9083B5C613A142150042EE6B /* CPReadStream.c */; };
-		9083B5D813A142150042EE6B /* CPReadStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C713A142150042EE6B /* CPReadStream.h */; };
+		9083B5D813A142150042EE6B /* CPReadStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C713A142150042EE6B /* CPReadStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9083B5D913A142150042EE6B /* CPReadStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9083B5C713A142150042EE6B /* CPReadStream.h */; };
 		9090E9E212E81D73000F1EB7 /* CorePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9090E9C512E81D73000F1EB7 /* CorePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9090E9E312E81D73000F1EB7 /* CPAnnotations.h in Headers */ = {isa = PBXBuildFile; fileRef = 9090E9C612E81D73000F1EB7 /* CPAnnotations.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -297,16 +297,16 @@
 				9090E9F112E81D73000F1EB7 /* CPObject.h in Headers */,
 				9090E9F612E81D73000F1EB7 /* CPPAL.h in Headers */,
 				9090E9F712E81D73000F1EB7 /* CPPlatform.h in Headers */,
-				9090E9F812E81D73000F1EB7 /* CPSafeMath.h in Headers */,
-				9090E9F912E81D73000F1EB7 /* CPStr.h in Headers */,
-				9090E9FB12E81D73000F1EB7 /* CPString.h in Headers */,
-				9090E9FC12E81D73000F1EB7 /* CPTypes.h in Headers */,
-				9090E9FE12E81D73000F1EB7 /* CPURL.h in Headers */,
 				9083B5C813A142150042EE6B /* CPByteOrder.h in Headers */,
 				9083B5CC13A142150042EE6B /* CPFile.h in Headers */,
 				9083B5D013A142150042EE6B /* CPFileReadStream.h in Headers */,
 				9083B5D413A142150042EE6B /* CPLFStack.h in Headers */,
 				9083B5D813A142150042EE6B /* CPReadStream.h in Headers */,
+				9090E9F812E81D73000F1EB7 /* CPSafeMath.h in Headers */,
+				9090E9F912E81D73000F1EB7 /* CPStr.h in Headers */,
+				9090E9FB12E81D73000F1EB7 /* CPString.h in Headers */,
+				9090E9FC12E81D73000F1EB7 /* CPTypes.h in Headers */,
+				9090E9FE12E81D73000F1EB7 /* CPURL.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

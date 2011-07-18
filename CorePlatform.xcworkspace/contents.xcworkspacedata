@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:src/CorePlatform.xcodeproj">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "Third Party">
+      <FileRef
+         location = "group:third_party/CUnit/CUnit.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:"
+      name = "Tests">
+      <FileRef
+         location = "group:test/CPUnitTests/CPUnitTests-iOS.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:test/CPUnitTests/CPUnitTests-OSX.xcodeproj">
+      </FileRef>
+   </Group>
+</Workspace>

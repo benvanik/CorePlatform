@@ -121,15 +121,9 @@ void test_url_create_abs()
 
         url = CPURLCreate(NULL, source);
         CU_ASSERT(url != NULL);
-        if (!url) {
-            int x = 123; // for debugging
-        }
         CPZeroMemory(buffer, sizeof(buffer), 0, sizeof(buffer));
         CU_ASSERT_TRUE(CPURLGetAbsoluteString(url, buffer, sizeof(buffer)));
         CU_ASSERT(CPStrCmp(verify, buffer) == 0);
-        if (CPStrCmp(verify, buffer) != 0) {
-            int x = 123; // for debugging
-        }
         CPRelease(url);
 
         sourceString = CPStringCreate(source);
@@ -147,9 +141,6 @@ void test_url_create_abs()
         const CPChar* source = invalidURLs[n];
         url = CPURLCreate(NULL, source);
         CU_ASSERT(url == NULL);
-        if (url) {
-            int x = 123; // for debugging
-        }
 
         sourceString = CPStringCreate(source);
         CU_ASSERT(sourceString != NULL);
@@ -185,15 +176,9 @@ void test_url_create_rel()
         CU_ASSERT(url != NULL);
         sub = CPURLCreate(url, sourceSub);
         CU_ASSERT(sub != NULL);
-        if (!sub) {
-            int x = 123; // for debugging
-        }
         CPZeroMemory(buffer, sizeof(buffer), 0, sizeof(buffer));
         CU_ASSERT_TRUE(CPURLGetAbsoluteString(sub, buffer, sizeof(buffer)));
         CU_ASSERT(CPStrCmp(sourceVerify, buffer) == 0);
-        if (CPStrCmp(sourceVerify, buffer) != 0) {
-            int y = 123;
-        }
         CPRelease(sub);
         CPRelease(url);
     }
@@ -228,9 +213,6 @@ void test_url_create_copy()
         CPZeroMemory(buffer, sizeof(buffer), 0, sizeof(buffer));
         CU_ASSERT_TRUE(CPURLGetAbsoluteString(copy, buffer, sizeof(buffer)));
         CU_ASSERT(CPStrCmp(verify, buffer) == 0);
-        if (CPStrCmp(verify, buffer) != 0) {
-            int y = 123;
-        }
         CPRelease(copy);
         CPRelease(url);
     }
@@ -249,9 +231,6 @@ void test_url_create_copy()
         CPZeroMemory(buffer, sizeof(buffer), 0, sizeof(buffer));
         CU_ASSERT_TRUE(CPURLGetAbsoluteString(copy, buffer, sizeof(buffer)));
         CU_ASSERT(CPStrCmp(sourceVerify, buffer) == 0);
-        if (CPStrCmp(sourceVerify, buffer) != 0) {
-            int y = 123;
-        }
         CPRelease(copy);
         CPRelease(sub);
         CPRelease(url);

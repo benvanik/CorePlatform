@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		9090E83A12E7344A000F1EB7 /* test_linkedlist.c in Sources */ = {isa = PBXBuildFile; fileRef = 9090E83712E7344A000F1EB7 /* test_linkedlist.c */; };
 		9090E83B12E7344A000F1EB7 /* test_string.c in Sources */ = {isa = PBXBuildFile; fileRef = 9090E83812E7344A000F1EB7 /* test_string.c */; };
 		9090E83C12E7344A000F1EB7 /* test_url.c in Sources */ = {isa = PBXBuildFile; fileRef = 9090E83912E7344A000F1EB7 /* test_url.c */; };
+		9093904913D4CC1700586FE8 /* test_lfstack.c in Sources */ = {isa = PBXBuildFile; fileRef = 9093904813D4CC1700586FE8 /* test_lfstack.c */; };
 		90CB30A712E446130050A5F4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CB30A612E446130050A5F4 /* CoreFoundation.framework */; };
 		90E514EB12E40416003590D6 /* test_memory.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E514EA12E40416003590D6 /* test_memory.c */; };
 		90E514ED12E40425003590D6 /* test_math.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E514EC12E40425003590D6 /* test_math.c */; };
@@ -88,6 +89,7 @@
 		9090E83712E7344A000F1EB7 /* test_linkedlist.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_linkedlist.c; sourceTree = "<group>"; };
 		9090E83812E7344A000F1EB7 /* test_string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_string.c; sourceTree = "<group>"; };
 		9090E83912E7344A000F1EB7 /* test_url.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_url.c; sourceTree = "<group>"; };
+		9093904813D4CC1700586FE8 /* test_lfstack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_lfstack.c; sourceTree = "<group>"; };
 		90CB30A612E446130050A5F4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		90E514EA12E40416003590D6 /* test_memory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_memory.c; sourceTree = "<group>"; };
 		90E514EC12E40425003590D6 /* test_math.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_math.c; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				90E514F412E40440003590D6 /* test_object.c */,
 				908ACAD012E510120086BD9C /* test_array.c */,
 				9090E83712E7344A000F1EB7 /* test_linkedlist.c */,
+				9093904813D4CC1700586FE8 /* test_lfstack.c */,
 				9090E83812E7344A000F1EB7 /* test_string.c */,
 				9090E83912E7344A000F1EB7 /* test_url.c */,
 				90E514F612E40445003590D6 /* test_pal.c */,
@@ -208,10 +211,11 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Ben Vanik";
 			};
 			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "CPUnitTests-OSX" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -286,6 +290,7 @@
 				9090E83A12E7344A000F1EB7 /* test_linkedlist.c in Sources */,
 				9090E83B12E7344A000F1EB7 /* test_string.c in Sources */,
 				9090E83C12E7344A000F1EB7 /* test_url.c in Sources */,
+				9093904913D4CC1700586FE8 /* test_lfstack.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,7 +316,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INSTALL_PATH = /usr/local/bin;
@@ -344,8 +348,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				SYMROOT = ../../build;
 			};
 			name = Debug;
@@ -362,8 +365,7 @@
 					../../third_party/CUnit/CUnit/Headers/,
 				);
 				LIBRARY_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
-				PREBINDING = NO;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				SYMROOT = ../../build;
 			};
 			name = Release;
