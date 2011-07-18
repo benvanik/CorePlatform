@@ -13,6 +13,18 @@ int _test_object_dealloced          = 0;
 int _test_object_base_dealloced     = 0;
 int _test_object_subclass_dealloced = 0;
 
+// The object is not part of a runtime test, but should compile correctly
+CPREF(CPExtObject) _test_object_ext;
+CP_DECLARE_TYPE(CPExtObject);
+struct CPExtObject_t {
+    CPObject        base;
+};
+CP_DEFINE_TYPE(CPExtObject, NULL, CPExtObjectDealloc);
+sal_callback void CPExtObjectDealloc(sal_inout CPExtObjectRef obj)
+{
+    _test_object_ext = NULL;
+}
+
 CP_DECLARE_TYPE(CPPlainObject);
 struct CPPlainObject_t {
     CPObject        base;

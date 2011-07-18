@@ -21,6 +21,8 @@
 #include <CorePlatform/CPObject.h>
 #include <CorePlatform/CPArray.h>
 
+CP_EXTERNC_BEGIN
+
 // CPString is immutable so it is allocated as the CPString object + the character array value
 // GCC is fine with a zero sized array, but MSVC doesn't like it (hence the warning junk)
 // Design taken largely from CFString: http://developer.apple.com/library/ios/#documentation/CoreFoundation/Reference/CFStringRef/Reference/reference.html
@@ -69,3 +71,5 @@ CP_API BOOL CPStringsAreEqualChar(sal_inout CPStringRef string1, sal_in_z const 
 CP_API BOOL CPStringHasPrefix(sal_inout CPStringRef string, sal_in_z const CPChar* prefix);
 CP_API BOOL CPStringHasSuffix(sal_inout CPStringRef string, sal_in_z const CPChar* suffix);
 CP_API size_t CPStringFind(sal_inout CPStringRef string, sal_in_z const CPChar* stringToFind);
+
+CP_EXTERNC_END

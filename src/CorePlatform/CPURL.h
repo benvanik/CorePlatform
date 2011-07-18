@@ -21,6 +21,8 @@
 #include <CorePlatform/CPObject.h>
 #include <CorePlatform/CPString.h>
 
+CP_EXTERNC_BEGIN
+
 // CPURL is immutable so it is allocated as the CPURL object + the character array value
 // CPURLs that are relative will retain their baseURL - this means that repetitive URLs should be created relative to conserve memory
 // Design taken largely from CFURL: http://developer.apple.com/library/mac/#documentation/CoreFoundation/Reference/CFURLRef/Reference/reference.html
@@ -79,3 +81,5 @@ CP_API sal_checkReturn size_t CPURLUnescape(sal_in_z const CPChar* source, sal_o
 CP_API sal_out_opt CPStringRef CPURLUnescapeString(sal_inout CPStringRef source);
 
 CP_API void CPURLNormalizeSlashes(sal_in_z CPChar* url, const CPChar slashChar);
+
+CP_EXTERNC_END

@@ -20,6 +20,8 @@
 #include <CorePlatform/CPDebugging.h>
 #include <CorePlatform/CPObject.h>
 
+CP_EXTERNC_BEGIN
+
 typedef enum CPSeekOrigin_e {
     CPSeekOriginSet             = 0,
     CPSeekOriginCurrent         = 1,
@@ -58,3 +60,5 @@ CP_API void CPReadStreamSeek(sal_inout CPReadStreamRef stream, const size_t offs
 
 CP_API size_t CPReadStreamReadBuffer(sal_inout CPReadStreamRef stream, sal_out_bcount_opt(bufferSize) byte* buffer, const size_t bufferSize);
 CP_API size_t CPReadStreamReadSection(sal_inout CPReadStreamRef stream, const size_t offset, sal_out_bcount_opt(bufferSize) byte* buffer, const size_t bufferSize);
+
+CP_EXTERNC_END

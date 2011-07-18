@@ -20,6 +20,8 @@
 #include <CorePlatform/CPDebugging.h>
 #include <CorePlatform/CPObject.h>
 
+CP_EXTERNC_BEGIN
+
 CP_DECLARE_TYPE(CPLFStack);
 
 struct CPLFStack_t {
@@ -35,3 +37,5 @@ CP_API void CPLFStackPush(sal_inout CPLFStackRef stack, sal_inout void* value);
 CP_API sal_out_opt void* CPLFStackPop(sal_inout CPLFStackRef stack);
 
 // TODO: atomic stack->queue drain
+
+CP_EXTERNC_END

@@ -16,6 +16,8 @@
 #include <CorePlatform/CPCodeUtilities.h>
 #include <CorePlatform/CPStr.h>
 
+CP_EXTERNC_BEGIN
+
 struct CPObject_t;
 
 typedef void (*CPObjectDealloc)(sal_inout struct CPObject_t* obj);
@@ -42,8 +44,7 @@ typedef struct CPObjectType_t {
     void __dummy_define_##name##Type(); \
     void __dummy_define_##name##Type() { CPUNREFERENCED(name##Type); }
 
-#define CP_EXTERN_TYPE(name) \
-    typedef struct name##_t* name##Ref;
+#define CPREF(name) struct name##_t*
 
 typedef struct CPObject_t {
     const CPObjectType*     type;
@@ -58,3 +59,5 @@ CP_API sal_checkReturn sal_out_bcount_opt(size) CPObjectRef CPObjectAlloc(sal_in
 CP_API sal_out_opt cpptr CPRetain(sal_inout_opt cpptr ptr);
 CP_API void _CPReleaseCore(sal_inout_opt cpptr ptr);
 #define CPRelease(ptr)                  do { if (ptr) _CPReleaseCore((void*)ptr); ptr = NULL; } while (0)
+
+CP_EXTERNC_END

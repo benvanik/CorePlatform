@@ -22,6 +22,8 @@
 #include <CorePlatform/CPURL.h>
 #include <CorePlatform/CPPAL.h>
 
+CP_EXTERNC_BEGIN
+
 typedef enum CPFileMode_e {
     CPFileModeRead              = 0x1,
     CPFileModeWrite             = 0x2,
@@ -48,3 +50,5 @@ CP_API size_t CPFileGetSize(sal_inout CPFileRef file);
 
 CP_API size_t CPFileRead(sal_inout CPFileRef file, const size_t offset, sal_out_bcount_opt(bufferSize) byte* buffer, const size_t bufferSize);
 CP_API BOOL CPFileWrite(sal_inout CPFileRef file, const size_t offset, sal_in_bcount(bufferSize) const byte* buffer, const size_t bufferSize);
+
+CP_EXTERNC_END

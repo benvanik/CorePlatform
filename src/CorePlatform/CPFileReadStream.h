@@ -13,6 +13,8 @@
 #include <CorePlatform/CPPAL.h>
 #include <CorePlatform/CPReadStream.h>
 
+CP_EXTERNC_BEGIN
+
 CP_DECLARE_TYPE(CPFileReadStream);
 
 struct CPFileReadStream_t {
@@ -25,3 +27,5 @@ struct CPFileReadStream_t {
 };
 
 CP_API sal_checkReturn sal_out_opt CPFileReadStreamRef CPFileReadStreamCreateWithPath(sal_inout CPPALRef pal, sal_inout CPURLRef path);
+
+CP_EXTERNC_END

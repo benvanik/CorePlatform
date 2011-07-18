@@ -46,5 +46,11 @@ typedef signed int          BOOL;
 #endif
 
 #if !defined(NULL)
+#if defined(__GNUG__)
+#define NULL                __null
+#elif defined(__cplusplus)
 #define NULL                0
+#else
+#define NULL                ((void*)0)
 #endif
+#endif // !NULL

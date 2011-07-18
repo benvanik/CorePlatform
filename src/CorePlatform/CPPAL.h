@@ -21,6 +21,8 @@
 #include <CorePlatform/CPString.h>
 #include <CorePlatform/CPURL.h>
 
+CP_EXTERNC_BEGIN
+
 #define CP_MAX_PATH                 2048
 
 // Matrix of platform -> custom PAL feature implementations - if 0 then the standard CPPAL implementation is used
@@ -189,3 +191,5 @@ CP_API void CPPALFileMappingDestroy(sal_inout CPPALRef pal, sal_inout CPPALFileM
 // TODO: base directory routines
 // TODO: base file routines
 // TODO: raw file IO
+
+CP_EXTERNC_END

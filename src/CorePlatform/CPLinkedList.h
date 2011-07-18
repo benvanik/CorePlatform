@@ -20,6 +20,8 @@
 #include <CorePlatform/CPDebugging.h>
 #include <CorePlatform/CPObject.h>
 
+CP_EXTERNC_BEGIN
+
 CP_DECLARE_TYPE(CPLinkedList);
 
 struct CPLinkedList_t {
@@ -51,3 +53,5 @@ CPFORCEINLINE sal_out_opt cpptr CPLinkedListNextItem(sal_inout CPLinkedListRef l
 {
     return *((cpptr*)(((byte*)item) + list->nextPointerOffset));
 }
+
+CP_EXTERNC_END

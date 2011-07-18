@@ -70,8 +70,12 @@ typedef CPCACHEALIGN volatile void      CPAlignedVoid;
 
 #if defined(__cplusplus)
 #define CP_EXTERNC                      extern "C"
+#define CP_EXTERNC_BEGIN                extern "C" {
+#define CP_EXTERNC_END                  }
 #else
 #define CP_EXTERNC                      extern
+#define CP_EXTERNC_BEGIN
+#define CP_EXTERNC_END
 #endif
 
 #if CP_COMPILER(MSVC)
