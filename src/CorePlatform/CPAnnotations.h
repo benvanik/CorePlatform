@@ -154,4 +154,73 @@
 
 #define sal_deref_out_range(op, expr)           
 
+// TODO(benvanik): eventually pick a style and stick with it
+
+#define __in                      
+#define __in_opt                  
+#define __in_z                    
+#define __in_z_opt                
+#define __out                     
+#define __out_opt                 
+#define __out_z                   
+#define __out_z_opt               
+#define __inout                   
+#define __inout_opt               
+#define __inout_z                 
+#define __inout_z_opt             
+
+#define __deref_in                
+#define __deref_in_opt            
+#define __deref_in_z              
+#define __deref_in_z_opt          
+#define __deref_out               
+#define __deref_out_opt           
+#define __deref_out_z             
+#define __deref_out_z_opt         
+#define __deref_inout             
+#define __deref_inout_opt         
+#define __deref_inout_z           
+#define __deref_inout_z_opt       
+
+#define __in_bcount(size)         
+#define __in_bcount_opt(size)     
+#define __out_bcount(size)        
+#define __out_bcount_opt(size)    
+#define __inout_bcount(size)      
+#define __inout_bcount_opt(size)  
+#define __in_ecount(size)         
+#define __in_ecount_opt(size)     
+#define __out_ecount(size)        
+#define __out_ecount_opt(size)    
+#define __inout_ecount(size)      
+#define __inout_ecount_opt(size)  
+
+#define __deref_in_bcount(size)               
+#define __deref_in_bcount_opt(size)           
+#define __deref_out_bcount(size)              
+#define __deref_out_bcount_opt(size)          
+#define __deref_inout_bcount(size)            
+#define __deref_inout_bcount_opt(size)        
+#define __deref_in_ecount(size)               
+#define __deref_in_ecount_opt(size)           
+#define __deref_out_ecount(size)              
+#define __deref_out_ecount_opt(size)          
+#define __deref_inout_ecount(size)            
+#define __deref_inout_ecount_opt(size)        
+
+#define __checkReturn             
+#define __callback                
+#define __format_string           
+
+#define __field_bcount(size)                  
+#define __field_bcount_opt(size)              
+#define __field_bcount_part(size, length)     
+#define __field_bcount_full(size)             
+#define __field_ecount(size)                  
+#define __field_ecount_opt(size)              
+#define __field_ecount_part(size, length)     
+#define __field_ecount_full(size)             
+
+#define __deref_out_range(op, expr)           
+
 #endif
