@@ -23,8 +23,8 @@
 #define CPInvalidSize                                   ((size_t)(-1))
 
 #if !CP_LIKE(WIN32)
+int strncpy_s(char* dest, size_t destLength, const char* source, size_t count);
 #define strcpy_s(dest, destLength, source)              !(strcpy(dest, source) == dest + (destLength*0))
-#define strncpy_s(dest, destLength, source, count)      !(strncpy(dest, source, MIN(destLength, count)) == dest + (destLength*0))
 #define strcat_s(dest, destLength, source)              !(strcat(dest, source) == dest + (destLength*0))
 #define _snprintf_s(dest, destLength, format, ...)      snprintf(dest, destLength, format, ##__VA_ARGS__)
 #else

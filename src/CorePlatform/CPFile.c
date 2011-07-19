@@ -20,11 +20,11 @@ CP_DEFINE_TYPE(CPFile, NULL, CPFileDealloc);
 
 sal_checkReturn sal_out_opt CPFileRef _CPFileCreateCore(sal_inout CPPALRef pal, sal_inout CPURLRef path, const CPFileMode mode, const CPChar* modeString)
 {
-    CPChar fullPath[CP_MAX_PATH];
-    CPEXPECTTRUE(CPPALConvertURLToFileSystemPath(pal, path, fullPath, CPCOUNT(fullPath)));
-
     CPFileRef file = (CPFileRef)CPObjectAlloc(&CPFileType, sizeof(CPFile));
     CPEXPECTNOTNULL(file);
+    
+    CPChar fullPath[CP_MAX_PATH];
+    CPEXPECTTRUE(CPPALConvertURLToFileSystemPath(pal, path, fullPath, CPCOUNT(fullPath)));
 
     file->path      = CPURLRetain(path);
     file->mode      = mode;

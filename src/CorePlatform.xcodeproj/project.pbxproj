@@ -79,6 +79,8 @@
 		9090EA1912E81D73000F1EB7 /* CPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9090E9DF12E81D73000F1EB7 /* CPTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9090EA1A12E81D73000F1EB7 /* CPURL.c in Sources */ = {isa = PBXBuildFile; fileRef = 9090E9E012E81D73000F1EB7 /* CPURL.c */; };
 		9090EA1B12E81D73000F1EB7 /* CPURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 9090E9E112E81D73000F1EB7 /* CPURL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90A1361213D62FED002C1200 /* CPStr.c in Sources */ = {isa = PBXBuildFile; fileRef = 90A1361113D62FED002C1200 /* CPStr.c */; };
+		90A1361313D62FED002C1200 /* CPStr.c in Sources */ = {isa = PBXBuildFile; fileRef = 90A1361113D62FED002C1200 /* CPStr.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,6 +123,7 @@
 		9090E9DF12E81D73000F1EB7 /* CPTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPTypes.h; path = CorePlatform/CPTypes.h; sourceTree = "<group>"; };
 		9090E9E012E81D73000F1EB7 /* CPURL.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CPURL.c; path = CorePlatform/CPURL.c; sourceTree = "<group>"; };
 		9090E9E112E81D73000F1EB7 /* CPURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPURL.h; path = CorePlatform/CPURL.h; sourceTree = "<group>"; };
+		90A1361113D62FED002C1200 /* CPStr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CPStr.c; path = CorePlatform/CPStr.c; sourceTree = "<group>"; };
 		D2AAC046055464E500DB518D /* libCorePlatform-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libCorePlatform-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -187,6 +190,7 @@
 				9090E9D112E81D73000F1EB7 /* CPMemory.c */,
 				9090E9CD12E81D73000F1EB7 /* CPDebugging.h */,
 				9090E9DC12E81D73000F1EB7 /* CPStr.h */,
+				90A1361113D62FED002C1200 /* CPStr.c */,
 				9090E9CB12E81D73000F1EB7 /* CPCommon.h */,
 			);
 			name = Common;
@@ -394,6 +398,7 @@
 				9083B5CF13A142150042EE6B /* CPFileReadStream.c in Sources */,
 				9083B5D313A142150042EE6B /* CPLFStack.c in Sources */,
 				9083B5D713A142150042EE6B /* CPReadStream.c in Sources */,
+				90A1361313D62FED002C1200 /* CPStr.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +418,7 @@
 				9083B5CE13A142150042EE6B /* CPFileReadStream.c in Sources */,
 				9083B5D213A142150042EE6B /* CPLFStack.c in Sources */,
 				9083B5D613A142150042EE6B /* CPReadStream.c in Sources */,
+				90A1361213D62FED002C1200 /* CPStr.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -81,8 +81,39 @@ CP_API sal_out_opt CPURLRef CPPALSystemGetPath(sal_inout CPPALRef pal, const CPP
 
 CP_API BOOL CPPALConvertURLToFileSystemPath(sal_inout CPPALRef pal, sal_inout CPURLRef url, sal_out_bcount(bufferSize) CPChar* buffer, const size_t bufferSize)
 {
-    CPASSERTALWAYS();
-    return FALSE;
+    // Parse URLs in the form of:
+    // file:///My/Long%20Path.txt -> /My/Long Path.txt
+
+    BOOL result = FALSE;
+    CPStringRef absoluteUrl = NULL;
+
+    if (!CPURLIsFile(url)) {
+        return FALSE;
+    }
+    
+    absoluteUrl = CPURLCopyAbsoluteString(url);
+    CPEXPECTNOTNULL(absoluteUrl);
+    
+    CPChar bufferTemp[CP_MAX_PATH];
+    CPEXPECT(CPURLUnescape(CPStringGet(absoluteUrl), bufferTemp, CPCOUNT(bufferTemp)) != -1);
+    
+    size_t prefixLength = 0;
+    if (CPStrStr(bufferTemp, CPTEXT("file:///")) == bufferTemp) {
+        // Strip off the entire host prefix
+        prefixLength = CPStrLen(CPTEXT("file://"));
+    } else if (CPStrStr(bufferTemp, CPTEXT("file://localhost/")) == bufferTemp) {
+        // Strip off the entire host prefix
+        prefixLength = CPStrLen(CPTEXT("file://localhost"));
+    } else {
+        // Strip off just file: (likely a UNC path)
+        prefixLength = CPStrLen(CPTEXT("file:"));
+    }
+    CPCopyMemory(buffer, bufferSize, bufferTemp + prefixLength, CPCOUNT(bufferTemp) - prefixLength);
+
+    result = TRUE;
+CPCLEANUP:
+    CPRelease(absoluteUrl);
+    return result;
 }
 
 CP_API sal_out_opt CPURLRef CPPALConvertFileSystemPathToURL(sal_inout CPPALRef pal, sal_in_z const CPChar* buffer)
@@ -794,32 +825,35 @@ CP_API sal_out_opt CPPALFileMapping* CPPALFileMappingCreate(sal_inout CPPALRef p
         return NULL;
     }
     
-    char* fileMode = "rb";
-    int prot = 0;
+    char* fileMode;
+    int prot;
     switch (mode) {
+    default:
     case CPPALFileMappingModeRead:
-        prot            |= PROT_READ;
+        prot            = PROT_READ;
+        fileMode        = "r";
         break;
     case CPPALFileMappingModeWrite:
-        prot            |= PROT_WRITE;
-        fileMode        = "wb+";
+        prot            = PROT_WRITE;
+        fileMode        = "w+";
         break;
     case CPPALFileMappingModeReadWrite:
-        prot            |= PROT_READ | PROT_WRITE;
+        prot            = PROT_READ | PROT_WRITE;
+        fileMode        = "rw+";
         break;
     }
 
     const size_t pageSize = getpagesize();
     size_t alignedOffset = offset & (~(pageSize - 1));
-    size_t alignedLength = length + (offset - alignedOffset);
-    
+    size_t alignedLength = length;// + (offset - alignedOffset);
+
     CPChar fullPath[CP_MAX_PATH];
     CPEXPECTTRUE(CPPALConvertURLToFileSystemPath(pal, path, fullPath, CPCOUNT(fullPath)));
     
     FILE* file = fopen(fullPath, fileMode);
     CPEXPECTNOTNULL(file);
     
-    void* address = mmap(NULL, alignedLength, prot, MAP_PRIVATE | MAP_ANON, fileno(file), alignedLength);
+    void* address = mmap(NULL, alignedLength, prot, MAP_SHARED | MAP_FILE, fileno(file), alignedOffset);
     CPEXPECT(mapping->rawAddress != MAP_FAILED);
     
     mapping->file       = file;
