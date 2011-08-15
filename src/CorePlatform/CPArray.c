@@ -167,3 +167,8 @@ CP_API void CPArrayRemoveAllItems(sal_inout CPArrayRef array)
     }
     array->count = 0;
 }
+
+CP_API void CPArraySort(sal_inout CPArrayRef array, const CPArrayComparer comparer)
+{
+    qsort(array->items, array->count, sizeof(void*), (int (CPCDECL *)(const void *, const void *))comparer);
+}

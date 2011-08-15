@@ -29,6 +29,12 @@
 #endif
 
 #if CP_COMPILER(MSVC)
+#define CPCDECL                         __cdecl
+#else
+#define CPCDECL
+#endif
+
+#if CP_COMPILER(MSVC)
 // http://msdn.microsoft.com/en-us/library/z8y1yy88.aspx
 #define CPFORCEINLINE                   static __forceinline
 #define CPNOINLINE                      __declspec(noinline)

@@ -24,6 +24,8 @@ CP_EXTERNC_BEGIN
 
 #define CPArrayInvalidIndex ((size_t)-1)
 
+typedef int (CPCDECL *CPArrayComparer)(const void* a, const void* b);
+
 CP_DECLARE_TYPE(CPArray);
 
 struct CPArray_t {
@@ -51,5 +53,7 @@ CP_API BOOL CPArrayAddItem(sal_inout CPArrayRef array, sal_inout cpptr item);
 CP_API BOOL CPArrayRemoveItem(sal_inout CPArrayRef array, sal_inout cpptr item);
 CP_API BOOL CPArrayRemoveItemAtIndex(sal_inout CPArrayRef array, const size_t index);
 CP_API void CPArrayRemoveAllItems(sal_inout CPArrayRef array);
+
+CP_API void CPArraySort(sal_inout CPArrayRef array, const CPArrayComparer comparer);
 
 CP_EXTERNC_END
